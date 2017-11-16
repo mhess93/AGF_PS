@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.10.30" creationDateTime="2017-11-09T14:50:50.6209258" />
+  <contentHeader name="Test" modificationDateTime="2017-11-09T14:50:50.624425">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes />
+    <pous />
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/globalvars" handleUnknown="implementation">
+      <globalVars name="Labview">
+        <variable name="gui_ErrorMessages">
+          <type>
+            <DINT />
+          </type>
+        </variable>
+        <variable name="gui_Acknowledge">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_Popup_VAR_AA">
+          <type>
+            <string />
+          </type>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">gui_Popup_VAR_AA :STRING;  (optional) Diese Variable enthält einen String welcher den String "VAR_AA" (Platzhalter) im Meldungstext ersetzt</xhtml>
+          </documentation>
+        </variable>
+        <variable name="gui_ZustandMaschine">
+          <type>
+            <INT />
+          </type>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">0: Initialisierung, 1: Stopp, aber alles OK, 2: Produktion automatisch, 3: Schrittbetrieb, 4: Fehler, 5: Manuellbetrieb, 6: Notaus gedrückt, </xhtml>
+          </documentation>
+        </variable>
+        <variable name="gui_UserLevel">
+          <type>
+            <INT />
+          </type>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">Opérateur, Réglage, Maintenance</xhtml>
+          </documentation>
+        </variable>
+        <variable name="gui_UserLevelKeySwitchOn">
+          <type>
+            <BOOL />
+          </type>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">TRUE, wenn Schlüssel auf Service gedreht ist</xhtml>
+          </documentation>
+        </variable>
+        <variable name="gui_AktPosAchseZ">
+          <type>
+            <REAL />
+          </type>
+        </variable>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+            <Attributes>
+              <Attribute Name="Tc2GvlVarNames" Value="" />
+              <Attribute Name="TcContextName" Value="PlcTaskStandard" />
+            </Attributes>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/buildproperties" handleUnknown="implementation">
+            <BuildProperties>
+              <LinkAlways>true</LinkAlways>
+            </BuildProperties>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">{attribute 'Tc2GvlVarNames'}
+{attribute 'TcContextName':='PlcTaskStandard'}
+VAR_GLOBAL	
+	gui_ErrorMessages				:DINT;
+	gui_Acknowledge					:BOOL;
+	gui_Popup_VAR_AA				:STRING;	(*gui_Popup_VAR_AA :STRING;  (optional) Diese Variable enthält einen String welcher den String "VAR_AA" (Platzhalter) im Meldungstext ersetzt*)
+	gui_ZustandMaschine				:INT;		(*0: Initialisierung, 1: Stopp, aber alles OK, 2: Produktion automatisch, 3: Schrittbetrieb, 4: Fehler, 5: Manuellbetrieb, 6: Notaus gedrückt, *)
+	gui_UserLevel					:INT;		(*Opérateur, Réglage, Maintenance*)
+	gui_UserLevelKeySwitchOn		:BOOL;		(*TRUE, wenn Schlüssel auf Service gedreht ist*)
+	gui_AktPosAchseZ				:REAL;
+
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>8e003ba4-b040-4d81-b33e-3ca214b9ee28</ObjectId>
+          </data>
+        </addData>
+      </globalVars>
+    </data>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="Labview" ObjectId="8e003ba4-b040-4d81-b33e-3ca214b9ee28" />
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>
