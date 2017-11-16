@@ -20,12 +20,7 @@
 			border-width: 2px;
 		}
 
-		main,
-		footer  {
-			width: auto;
-			border-style:solid;
-			border-width:2px;
-		}
+
 
 		header {
 			width: auto;
@@ -59,20 +54,27 @@
 		}
 
 		main {
-			height: 66%;
+			/* -30 from header and -4 for bottom and top border */
+			height: calc(70% - 30px - 4px);
+			border-top-style:solid;
+			border-bottom-style:solid;
+			border-width:2px;
 		}
 
 		main div#main-left {
-			width:1082px;
+			width: 85%;
 			float: left;
-			border-style:solid;
-			height: 522px;
+			border-right-style:solid;
+			border-width:2px;
+			height: 100%;
+			background-color: gray;
 		}
 
 		/* Style the tab */
 		div.tab {
 			overflow: hidden;
-			margin-top: 3px;
+			background-color: white;
+			padding-left:2px;
 		}
 
 		/* Style the buttons inside the tab */
@@ -82,10 +84,12 @@
 			border: none;
 			outline: none;
 			cursor: pointer;
-			padding: 14px 16px;
+			padding: 20px 25px;
 			transition: 0.3s;
 			border-radius: 5px 5px 0px 0px;
 			background-color: #ccc;
+			font-size: 20px;
+			margin-top: 3px;
 		}
 
 		div.tab button + button {
@@ -105,12 +109,10 @@
 
 		/* Style the tab content */
 		.tabcontent {
+			width: 100%;
 			display: none;
-			padding: 6px 12px;
-			border-top: none;
-			height: 464px;
+			height: calc(100% - 66.2px);
 			background-color: gray;
-			width:1055px;
 		}
 
 		#overview  {
@@ -129,48 +131,49 @@
 			display: block;
 		}
 
-		main div#main-sidebar {
-			width:182px;
-			margin-left: 1082px;
-			border-style:solid;
-			height: 512px;
-			padding: 5px;
-			padding-left: 8px;
-		}
-
-		main div#main-sidebar h5  {
+		#main-sidebar {
+			width:15%;
+			margin-left: 85%;
+			height: 100%;
 
 		}
 
-		main div#main-sidebar ul{
+		.sidebar-container{
+			padding:10px;
+		}
+
+		#main-sidebar ul.value-list{
 			list-style-type: none;
 			padding: 0px 5px;
+			font-size: 17px;
+			margin: 0px;
+			margin-top: 20px;
 		}
 
-		main div#main-sidebar ul li{
+		#main-sidebar ul li{
 			min-height:30px;
 			line-height:30px;
 		}
 
-		main div#main-sidebar ul li label{
-			display: inline-block;
-			width: 100px;
-		}
 
-		main div#main-sidebar ul li label{
+		#main-sidebar ul li label{
 			display: inline-block;
-			width: 120px;
+			width: 160px;
 		}		
 
-		main div#main-sidebar ul li input{
+		#main-sidebar ul li input{
 			width: 40px;
 			text-align: center;
 			vertical-align: top;
 			margin-top:4px;
 		}
 
+		#main-sidebar ul li h5{
+			margin: 0px;
+		}
+
 		footer {
-			height: 29%;
+			height: 30%;
 		}
 
 		footer div.top-row, footer div.middle-row  {
@@ -860,6 +863,7 @@
 		<div class="playing-container header-content">aktueller Song: Shake it off - Taylor Swift</div>
 		<div class="status-container running header-content">Status: spielend</div>
 	</header>
+
 	<main>
 		<div id="main-left">
 			<div class="tab">
@@ -869,16 +873,16 @@
 				<button class="tablinks active" onclick="openTab(event, 'variables')">Variablen</button>
 			</div>
 			<div id="overview" class="tabcontent">
-				<h3>&Uumlbersicht</h3>
+				&Uumlbersicht
 			</div>
 			<div id="axis-X-and-Y" class="tabcontent">
-				<h3>Achsen X und Y</h3>
+				Achsen X und Y
 			</div>
 			<div id="measuring-station" class="tabcontent">
-				<h3>Messstation</h3>
+				Messstation
 			</div>
 			<div id="variables" class="tabcontent">
-				<h3>Variablen</h3>
+				Variablen
 				<button  onclick="fetchVariables()">Variablen laden</button>
 				<button  onclick="resetVariables()">Zurücksetzen</button>
 				<div id="variableContainer">
@@ -892,20 +896,24 @@
 			</div>
 		</div>
 		<div id="main-sidebar">
-			<h5>Achsen</h1>
-			<ul>
+			<div class="sidebar-container">
+			
+			<ul class="value-list">
+				<li><h5>Achsen</h5></li>
 				<li><label for="record-number">Schallplatte</label><input name="record-number" disabled="disabled" value="10"></li>
 				<li><label for="song-number">Song</label><input name="song-number"disabled="disabled" value="2"></li>
 				<li><label for="volume">Lautst&aumlrke</label><input name="volume" disabled="disabled" value="10/11"></li>
 				<li><label for="revolution-speed">Drehzahl [r/m]</label><input name="revolution-speed"disabled="disabled" value="120"></li>
 			</ul>
 
-			<h5>Werte</h1>
-			<ul>
+			
+			<ul class="value-list">
+				<li><h5>Werte</h5></li>
 				<li><label for="record-number">Kolbendruck [N/m&sup2;]</label><input name="record-number" disabled="disabled" value="10"></li>
 				<li><label for="song-number">Armposition</label><input name="song-number"disabled="disabled" value="6"></li>
 				<li><label for="volume">Vorschub [m/s]</label><input name="volume" disabled="disabled" value="0"></li>
 			</ul>
+			</div>
 		</div>
 	</main>
 	<footer>
@@ -925,5 +933,6 @@
 				<input type="text" name="alamrs-notifications">
 			</div>
 	</footer>
+
 </body>
 </html>
