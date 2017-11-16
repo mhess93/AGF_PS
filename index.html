@@ -24,14 +24,14 @@
 
 		header {
 			width: auto;
-			height: 30px;
+			height: 40px;
 			padding-left: 5px;
 		}
 
 		header div.header-content{
 			display:inline-block;
-			line-height: 30px;
-			height:30px;
+			line-height: 40px;
+			height:40px;
 		}		
 
 		header div.version-container  {
@@ -55,7 +55,7 @@
 
 		main {
 			/* -30 from header and -4 for bottom and top border */
-			height: calc(70% - 30px - 4px);
+			height: calc(70% - 40px - 4px);
 			border-top-style:solid;
 			border-bottom-style:solid;
 			border-width:2px;
@@ -85,7 +85,7 @@
 			outline: none;
 			cursor: pointer;
 			padding: 20px 25px;
-			transition: 0.3s;
+			
 			border-radius: 5px 5px 0px 0px;
 			background-color: #ccc;
 			font-size: 20px;
@@ -174,41 +174,47 @@
 
 		footer {
 			height: 30%;
+			width: 100%;
+		}
+
+		.footer-container{
+			height: calc(100% - 30px);
+			padding: 20px;
+			padding-bottom: 10px;
 		}
 
 		footer div.top-row, footer div.middle-row  {
-			width: 1254px;
-			height: 76px;
-			padding: 10px;
+			height: calc(50%  - 35px);
 		}
 
 		footer div.top-row{
-			padding-bottom: 5px;
+			padding-bottom: 10px;
 		}
 
 		footer div.middle-row  {
-			padding-top: 5px;
+			padding-top: 10px;
 		}
 
 		footer div.bottom-row  {
 			width: 1254px;
-			height: 40px;
+			height: 50px;
 			padding: 5px 10px 5px 10px;
-			line-height:40px;
+			line-height:50px;
+			font-size: 20px
 		}	
 
 		footer div.bottom-row input  {
-			height: 25px;
+			height: 30px;
 			width: 80%;
 		}	
 
 		footer div.control-button  {
-			height: 76px;
-			width: 130px;
+			height: 100%;
+			width: 230px;
 			display: inline-block;
 			box-shadow: 2px 2px 2px black;
 			vertical-align: top;
-			line-height: 76px;
+			line-height: 100%;
 		}
 
 		footer div.control-button.right-side  {
@@ -216,20 +222,21 @@
 		}
 
 		div.control-button + div.control-button  {
-			margin-left: 5px;
+			margin-left: 10px;
 		}
 
 		div.control-button.right-side + div.control-button.right-side {
-			margin-right: 5px;
+			margin-right: 10px;
 			margin-left: 0px;
 		}
 
 		div.control-button a  {
 			display:block;
-			height:50px;
-			width: 110px;
+			/* Adjust height and width to padding*/ 
+			height: calc(100% - 26px);
+			width: 210px;
 			padding:13px 10px 13px 10px;
-			line-height: 50px;
+			line-height: 100%;
 			background-color: gray;
 		}
 
@@ -265,15 +272,15 @@
 			display: inline-block;
     		margin: 0px;
     		vertical-align: top;
-    		line-height: 50px;
-    		height: 50px;
-    		margin-left: 10px;
+    		line-height: 100%;
+    		height: 100%;
+    		margin-left: 20px;
     		text-decoration: none;
     		color: black;
 		}
 
 		div.control-button img {
-			height: 50px;
+			height: calc(100%);
 		}
 
 		h1   {
@@ -917,6 +924,7 @@
 		</div>
 	</main>
 	<footer>
+		<div class="footer-container">
 		<div class="top-row">
 			<div class="control-button start"><a href="#"><img src="images/play.svg"><p>Start</p></a></div>
 			<div class="control-button stop"><a href="#"><img src="images/stop.png"><p>Stop</p></a></div>
@@ -924,7 +932,7 @@
 			<div class="control-button right-side"><a href="#"><img src="images/init.png"><p>Init</p></a></div>
 		</div>
 		<div class="middle-row">
-			<div class="control-button"><a href="#"><p>Vorher</p><img src="images/prev.png"></a></div>
+			<div class="control-button"><a href="#"><img src="images/recipe.svg"><p>Rezepte</p></a></div>
 			<div class="control-button"><a href="#"><img src="images/next.png"><p>Next</p></a></div>
 			<div class="control-button right-side"><a href="#"><img src="images/exit.png"><p>Exit</p></a></div>
 		</div>
@@ -932,6 +940,7 @@
 				<label for="alarms-notifications">Alarme/Meldungen</label>
 				<input type="text" name="alamrs-notifications">
 			</div>
+		</div>
 	</footer>
 
 </body>
