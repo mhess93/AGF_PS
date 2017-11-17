@@ -28,7 +28,7 @@ fetchVariables = function () {
 			fetchVariablesFromInformation();
 		}
 	};
-	xhttp.open("GET", "Labview.xml", true);
+	xhttp.open("GET", "MAIN_variables.xml", true);
 	xhttp.send();
 };
 
@@ -365,7 +365,11 @@ var ReadCallback = (function (e, s) {
 */
 var ReadTimeoutCallback = (function () {
     // HANDLE TIMEOUT HERE;
+    console.log("------------Processing Read Timeout------------");
+
     div_log.innerHTML = "Read timeout!";
+    clearInterval(readLoopID);
+    console.log("------------END------------");
 });
 
 /*
