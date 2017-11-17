@@ -7,7 +7,7 @@ var client = new TcAdsWebService.Client(SERVICE_URL, null, null);
 var general_timeout = 500;
 
 var readLoopID = null;
-var readLoopDelay = 50
+var readLoopDelay = 50;
 
 var varInfos = [];
 var totalSize;
@@ -28,7 +28,7 @@ fetchVariables = function () {
 			fetchVariablesFromInformation();
 		}
 	};
-	xhttp.open("GET", "MAIN_variables.xml", true);
+	xhttp.open("GET", "Labview.xml", true);
 	xhttp.send();
 };
 
