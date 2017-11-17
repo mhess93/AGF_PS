@@ -7,7 +7,7 @@ var client = new TcAdsWebService.Client(SERVICE_URL, null, null);
 var general_timeout = 500;
 
 var readLoopID = null;
-var readLoopDelay = 10;
+var readLoopDelay = 50
 
 var varInfos = [];
 var totalSize;
