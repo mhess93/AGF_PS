@@ -1,3 +1,10 @@
+
+$(document).ready(function(){
+    $('#fullscreen-button').click(function(){
+        console.log("Fullscreen");
+    });
+});
+
 /*
 	Displays the correct tab when clicking on the tabbutton
 */
