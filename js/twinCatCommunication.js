@@ -15,22 +15,73 @@ var totalSize;
 var globalBool = false;
 
 /* 
-Loads a xml file exported from TwinCat 3  from the server. 
+Loads a xml file exported from TwinCat 3  from thxe server. 
 Calls function getHandles with the all tags with name "globalVars".
 */
-fetchVariables = function () {
-	var xhttp = new XMLHttpRequest();
+$(document).ready(function () {
+    console.log("------------Document Loaded------------");
+/*	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			parser = new DOMParser();
 			xmlDoc = parser.parseFromString(this.responseText, "text/xml");
 			getPOUVariablesInformations(xmlDoc);
-			fetchVariablesFromInformation();
+			fetchHandlesFromInformation();
 		}
 	};
 	xhttp.open("GET", "MAIN_variables.xml", true);
-	xhttp.send();
-};
+	xhttp.send();*/
+
+    loadVariableInformation();
+});
+
+function loadVariableInformation(){
+    console.log("------------Loading XML File------------");
+    $.ajax({
+        url: 'Labview.xml',
+        context: document.body,
+        //timeout
+        dataType: 'xml',
+        success: function(xml){
+            console.log("   ------------Successfully loaded XML------------");
+            console.log("   ------------Extracting Variables from XML------------");
+            var variableListXML = xml.getElementsByTagName("variable");
+            console.log("       Number found: " + variableListXML.length);
+            var varEntry, name, type;
+            for(var i = 0; i < variableListXML.length; i++){
+                varEntry = variableListXML[i];
+                type = varEntry.childNodes[1].childNodes[1].nodeName;
+                name = "."+varEntry.getAttribute("name");
+
+                varInfos[i] = [];
+                varInfos[i]['name'] = name;
+                varInfos[i]['type'] = type;
+                varInfos[i]['length'] = name.length;
+                varInfos[i]['handle'] = null;
+                varInfos[i]['typeSize'] = getSizeFromDataType(type);
+                console.log("       Name: " + name + 
+                                    ", Type: " + type + 
+                                    ", Length: " + varInfos[i]['length'] + 
+                                    ", TypeSize: " + varInfos[i]['typeSize']);
+            }
+            console.log("   ------------END------------");
+        },
+
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log("   ------------Error Loading XML File------------");
+            console.log("       Status: " + textStatus);
+            console.log("       Error Thrown: " + errorThrown);
+            console.log("   ------------END------------");
+        },
+
+        complete: function(jqXHR, textStatus){
+            console.log("------------Loading Complete, Status: " + textStatus + "------------");
+            fetchHandlesFromInformation();
+        },
+
+
+    });
+}
 
 /*
 	Reads information about POU Variables from imported the XML document. (XML-Document is exported from TwinCat 3)
@@ -79,7 +130,7 @@ function getPOUVariablesInformations(xmlDoc){
 	Then writes handlenames to writer.
 	Thes send request. 
 */
-function fetchVariablesFromInformation(){
+function fetchHandlesFromInformation(){
 	console.log("------------Fetching Variables------------");
 
 	var handleswriter = new TcAdsWebService.DataWriter();	
@@ -538,6 +589,12 @@ function getSizeFromDataType(dataType){
 		case "REAL":
 			size =  4;
 			break;
+        case "DINT":
+            size =  4;
+            break;
+        case "string":
+            size =  80;
+            break;
 		}
 
 	//console.log("	Size = " + size);
