@@ -76,17 +76,63 @@ function loadVariableInformation(){
 
         complete: function(jqXHR, textStatus){
             console.log("------------Loading Complete, Status: " + textStatus + "------------");
-            fetchHandlesFromInformation();
+            fetchHandlesFromInformation(readAllVariables);
         },
-
-
     });
+}
+
+var readAllVariables = (function (){
+    readVariables(varInfos.length)
+});
+
+function readVariables(tempIndex){
+    console.log("-----------Reading Variables-----------");
+    console.log("   -----------Writing information----------");
+
+    var readSymbolValuesWriter = new TcAdsWebService.DataWriter();
+    var size = 0;
+    totalSize = 0;
+
+    for(i = 0; i < tempIndex; i++){
+        totalSize = totalSize + varInfos[i].typeSize;
+        readSymbolValuesWriter.writeDINT(TcAdsWebService.TcAdsReservedIndexGroups.SymbolValueByHandle);     // IndexGroup
+        readSymbolValuesWriter.writeDINT(varInfos[i].handle);                                               // IndexOffset = The target handle
+        readSymbolValuesWriter.writeDINT(varInfos[i].typeSize);                                             // size to read
+
+        console.log("       Wrote Handle: " + varInfos[i].handle);
+        console.log("       Wrote Size: "  + varInfos[i].typeSize);
+    }
+
+    console.log("   -----------END-----------");
+    console.log("   Total Size: "  + totalSize);
+
+    readSymbolValuesData = readSymbolValuesWriter.getBase64EncodedData();
+
+    console.log("-----------END-----------");
+
+    //readLoopID = window.setInterval(ReadLoop, readLoopDelay);
+
+   /* client.readwrite(
+        NETID,
+        PORT,
+        0xF080,                             // 0xF080 = Read command;
+        varInfos.length,                    // IndexOffset = Variables count;
+        totalSize + (varInfos.length * 4),  // Length of requested data + 4 byte errorcode per variable;
+        readSymbolValuesData,
+        ReadCallback,
+        null,
+        general_timeout,
+        ReadTimeoutCallback,
+        true
+    );*/
 }
 
 /*
 	Reads information about POU Variables from imported the XML document. (XML-Document is exported from TwinCat 3)
 	Reads name, datatype, namelength (length), and size of datatype (typeSize) to an assoziative array. Also creates slot for handle. 
 	returns the 
+
+    DEPRECATD: Used for development, not for global Variables.
 */
 function getPOUVariablesInformations(xmlDoc){
 	console.log("------------Getting POU Variable Informations------------");
@@ -130,7 +176,7 @@ function getPOUVariablesInformations(xmlDoc){
 	Then writes handlenames to writer.
 	Thes send request. 
 */
-function fetchHandlesFromInformation(){
+function fetchHandlesFromInformation(callback){
 	console.log("------------Fetching Variables------------");
 
 	var handleswriter = new TcAdsWebService.DataWriter();	
@@ -183,7 +229,7 @@ function fetchHandlesFromInformation(){
 
 	If the request had an error, displays and returns. 
 */
-var handlesRequestCallback = (function (e,s) {
+var handlesRequestCallback = (function (callback,e,s) {
 	console.log("------------Callback for Handles Request------------");
 	if (e && e.isBusy) {
         var message = "Requesting handles...";
@@ -194,26 +240,18 @@ var handlesRequestCallback = (function (e,s) {
     }	
 
     if (e && !e.hasError) {
-    	
         var reader = e.reader;
         var hasAError = false;
         console.log("	------------Checking for Errors------------");
-
         for (var i = 0; i < varInfos.length; i++) {
-
             var err = reader.readDWORD();
             var len = reader.readDWORD();
-
-            
-
             if (err != 0) {
             	console.log("		Error: " + err + " Len: " + len);
                 variableContainer.innerHTML = "Handle error!";
                 hasAError = true;
             }
-
         }
-
         if(hasAError){
         	console.log("		Has Error");
         	console.log("	-----------END-----------");
@@ -223,56 +261,15 @@ var handlesRequestCallback = (function (e,s) {
         	console.log("		No Errors");
         	console.log("	-----------END-----------");
         }
-        
         console.log("	----------- Reading Variable Handles-----------");
 
         handles = [];
 		for( i = 0; i < varInfos.length; i++){
         	varInfos[i].handle = reader.readDWORD();
-
         	console.log("		Received Handle: " + varInfos[i].handle);
         }
         console.log("	-----------END-----------");
-
-        var readSymbolValuesWriter = new TcAdsWebService.DataWriter();
-        var size = 0;
-
-        console.log("	-----------Writing handles to Writer-----------");
-
-        totalSize = 0;
-
-        for(i = 0; i < varInfos.length; i++){
-        	totalSize = totalSize + varInfos[i].typeSize;
-        	readSymbolValuesWriter.writeDINT(TcAdsWebService.TcAdsReservedIndexGroups.SymbolValueByHandle); 	// IndexGroup
-        	readSymbolValuesWriter.writeDINT(varInfos[i].handle); 												// IndexOffset = The target handle
-        	readSymbolValuesWriter.writeDINT(varInfos[i].typeSize); 											// size to read
-
-        	console.log("		Wrote Handle: " + varInfos[i].handle);
-        	console.log("		Wrote Size: "  + varInfos[i].typeSize);
-        }
-
-        console.log("	-----------END-----------");
-        console.log("	Total Size: "  + totalSize);
-
-        readSymbolValuesData = readSymbolValuesWriter.getBase64EncodedData();
-
-        console.log("-----------END-----------");
-
-        readLoopID = window.setInterval(ReadLoop, readLoopDelay);
-
-        client.readwrite(
-        	NETID,
-        	PORT,
-        	0xF080, 							// 0xF080 = Read command;
-        	varInfos.length, 					// IndexOffset = Variables count;
-        	totalSize + (varInfos.length * 4), 	// Length of requested data + 4 byte errorcode per variable;
-        	readSymbolValuesData,
-        	ReadCallback,
-        	null,
-        	general_timeout,
-        	ReadTimeoutCallback,
-        	true
-    	);
+        console.log(varInfos);
 
     } else {
 
