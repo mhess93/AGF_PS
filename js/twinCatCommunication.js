@@ -20,19 +20,8 @@ Calls function getHandles with the all tags with name "globalVars".
 */
 $(document).ready(function () {
     console.log("------------Document Loaded------------");
-/*	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			parser = new DOMParser();
-			xmlDoc = parser.parseFromString(this.responseText, "text/xml");
-			getPOUVariablesInformations(xmlDoc);
-			fetchHandlesFromInformation();
-		}
-	};
-	xhttp.open("GET", "MAIN_variables.xml", true);
-	xhttp.send();*/
-
     loadVariableInformation();
+    $('#readOverviewVariables').click(readOverviewVariables);
 });
 
 function loadVariableInformation(){
@@ -59,10 +48,12 @@ function loadVariableInformation(){
                 varInfos[i]['length'] = name.length;
                 varInfos[i]['handle'] = null;
                 varInfos[i]['typeSize'] = getSizeFromDataType(type);
+                varInfos[i]['value'] = null;
                 console.log("       Name: " + name + 
                                     ", Type: " + type + 
                                     ", Length: " + varInfos[i]['length'] + 
-                                    ", TypeSize: " + varInfos[i]['typeSize']);
+                                    ", TypeSize: " + varInfos[i]['typeSize'] + 
+                                    ", Value: " + varInfos[i]['value']);
             }
             console.log("   ------------END------------");
         },
@@ -76,98 +67,9 @@ function loadVariableInformation(){
 
         complete: function(jqXHR, textStatus){
             console.log("------------Loading Complete, Status: " + textStatus + "------------");
-            fetchHandlesFromInformation(readAllVariables);
+            fetchHandlesFromInformation();
         },
     });
-}
-
-var readAllVariables = (function (){
-    readVariables(varInfos.length)
-});
-
-function readVariables(tempIndex){
-    console.log("-----------Reading Variables-----------");
-    console.log("   -----------Writing information----------");
-
-    var readSymbolValuesWriter = new TcAdsWebService.DataWriter();
-    var size = 0;
-    totalSize = 0;
-
-    for(i = 0; i < tempIndex; i++){
-        totalSize = totalSize + varInfos[i].typeSize;
-        readSymbolValuesWriter.writeDINT(TcAdsWebService.TcAdsReservedIndexGroups.SymbolValueByHandle);     // IndexGroup
-        readSymbolValuesWriter.writeDINT(varInfos[i].handle);                                               // IndexOffset = The target handle
-        readSymbolValuesWriter.writeDINT(varInfos[i].typeSize);                                             // size to read
-
-        console.log("       Wrote Handle: " + varInfos[i].handle);
-        console.log("       Wrote Size: "  + varInfos[i].typeSize);
-    }
-
-    console.log("   -----------END-----------");
-    console.log("   Total Size: "  + totalSize);
-
-    readSymbolValuesData = readSymbolValuesWriter.getBase64EncodedData();
-
-    console.log("-----------END-----------");
-
-    //readLoopID = window.setInterval(ReadLoop, readLoopDelay);
-
-   /* client.readwrite(
-        NETID,
-        PORT,
-        0xF080,                             // 0xF080 = Read command;
-        varInfos.length,                    // IndexOffset = Variables count;
-        totalSize + (varInfos.length * 4),  // Length of requested data + 4 byte errorcode per variable;
-        readSymbolValuesData,
-        ReadCallback,
-        null,
-        general_timeout,
-        ReadTimeoutCallback,
-        true
-    );*/
-}
-
-/*
-	Reads information about POU Variables from imported the XML document. (XML-Document is exported from TwinCat 3)
-	Reads name, datatype, namelength (length), and size of datatype (typeSize) to an assoziative array. Also creates slot for handle. 
-	returns the 
-
-    DEPRECATD: Used for development, not for global Variables.
-*/
-function getPOUVariablesInformations(xmlDoc){
-	console.log("------------Getting POU Variable Informations------------");
-	console.log("	------------Reading informations------------");
-
-	var variables = xmlDoc.getElementsByTagName("variable");
-	var variableGroup = xmlDoc.getElementsByTagName("pou")[0].getAttribute("name");
-
-	console.log("		Number of Variables: " + variables.length);
-	console.log("		Variable Group: " + variableGroup);
-
-	var variable, name, type;
-	var TempPOUVarInformation = [];
-	for(i = 0; i < variables.length; i++){
-		variable = variables[i];
-		type = variable.childNodes[1].childNodes[1].nodeName;
-		name = variableGroup +"."+variable.getAttribute("name");
-
-		varInfos[i] = {};
-		varInfos[i]["name"] = name;
-		varInfos[i]["type"] = type;
-		varInfos[i]["length"] = name.length;
-		varInfos[i]["handle"] = null;
-		varInfos[i]["typeSize"] = getSizeFromDataType(type);
-
-		TempPOUVarInformation[i] = [name, type, name.length];
-		console.log("		" + TempPOUVarInformation[i]);
-		console.log('		Name: ' + varInfos[i]['name'] + ', Type: ' + varInfos[i]['type'] + ', Length: ' + varInfos[i]['length'] + ', Handle: ' + varInfos[i]['handle'] + ', typeSize: ' + varInfos[i]["typeSize"]);
-
-	}		
-	console.log("	-----------END-----------");
-
-	console.log("-----------END-----------");
-
-	return TempPOUVarInformation;
 }
 
 /*
@@ -218,6 +120,67 @@ function fetchHandlesFromInformation(callback){
         );
 }
 
+var readAllVariables = (function (){
+    readVariables(varInfos.length, function(){})
+});
+
+var readVariables = ( function ( tempIndex, updateCallback ){
+    console.log("-----------Reading Variables-----------");
+    console.log("   TempIndex: " + tempIndex);
+    console.log("   -----------Writing information----------");
+
+    var readSymbolValuesWriter = new TcAdsWebService.DataWriter();
+    var size = 0;
+    totalSize = 0;
+
+    for(i = 0; i < tempIndex; i++){
+        totalSize = totalSize + varInfos[i].typeSize;
+        readSymbolValuesWriter.writeDINT(TcAdsWebService.TcAdsReservedIndexGroups.SymbolValueByHandle);     // IndexGroup
+        readSymbolValuesWriter.writeDINT(varInfos[i].handle);                                               // IndexOffset = The target handle
+        readSymbolValuesWriter.writeDINT(varInfos[i].typeSize);                                             // size to read
+
+        console.log("       Wrote Handle: " + varInfos[i].handle);
+        console.log("       Wrote Size: "  + varInfos[i].typeSize);
+    }
+
+    console.log("   -----------END-----------");
+    console.log("   Total Size: "  + totalSize);
+
+    readSymbolValuesData = readSymbolValuesWriter.getBase64EncodedData();
+
+    console.log("-----------END-----------");
+
+    //readLoopID = window.setInterval(ReadLoop, readLoopDelay);
+
+    client.readwrite(
+        NETID,
+        PORT,
+        0xF080,                             // 0xF080 = Read command;
+        tempIndex,                    // IndexOffset = Variables count;
+        totalSize + (tempIndex * 4),  // Length of requested data + 4 byte errorcode per variable;
+        readSymbolValuesData,
+        function(e,s){
+            readCallback(e,s,updateCallback, tempIndex);
+        },
+        null,
+        general_timeout,
+        ReadTimeoutCallback,
+        true
+    );
+});
+
+var readOverviewVariables = (function (){
+    console.log("------------Reading Overview Variables------------");
+    readVariables(2, updateOverview);
+});
+
+var updateOverview = (function (){
+    console.log("------------Updating Overview Variables------------");
+    firstVar.innerHTML = varInfos[0]['value'];
+    secondVar.innerHTML = varInfos[1]['value'];
+    console.log("------------END------------");
+});
+
 
 /*
 	Gets called when the handles-information request returns. 
@@ -229,7 +192,7 @@ function fetchHandlesFromInformation(callback){
 
 	If the request had an error, displays and returns. 
 */
-var handlesRequestCallback = (function (callback,e,s) {
+var handlesRequestCallback = (function (e,s) {
 	console.log("------------Callback for Handles Request------------");
 	if (e && e.isBusy) {
         var message = "Requesting handles...";
@@ -292,7 +255,7 @@ var handlesRequestCallback = (function (callback,e,s) {
 	Gets called when Handles Request runs into timeout
 */
 var handlesRequestTimeoutCallback = (function () {
-    variableContainer.innerHTML = "Requuest handles timeout!";
+    variableContainer.innerHTML = "Request handles timeout!";
 });
 
 /*
@@ -326,16 +289,10 @@ var ReadLoop = (function () {
 	Otherwise the variable values are read from the response object and displayed to the user. 
 	@See ReadLoop
 */
-var ReadCallback = (function (e, s) {
-
+var readCallback = (function (e, s, updateCallback, tempIndex) {
 	console.log("------------Processing Read Callback------------");
-
     if (e && e.isBusy) {
-
     	console.log("	------------Still Busy------------");
-
-
-        console.log("	------------End------------");
         return;
     }
     console.log("	------------Checking for Errors------------");
@@ -345,7 +302,7 @@ var ReadCallback = (function (e, s) {
         var reader = e.reader;
         
         // Read error codes from begin of TcAdsWebService.DataReader object;
-        for (var i = 0; i < varInfos.length; i++) {
+        for (var i = 0; i < tempIndex; i++) {
             var err = reader.readDWORD();
             if (err != 0) {
                 div_log.innerHTML = "Symbol error!";
@@ -359,7 +316,7 @@ var ReadCallback = (function (e, s) {
 
         var intValue, boolValue, varValue;
         var responseString = "";
-        for(i = 0; i < varInfos.length; i++){
+        for(i = 0; i < tempIndex; i++){
         	switch(varInfos[i].type){
         		case "INT": 
         			intValue = reader.readINT(); 
@@ -381,10 +338,18 @@ var ReadCallback = (function (e, s) {
         			boolValue = reader.readREAL();
         			varValue = boolValue;
         			break;
+                case "DINT":
+                    boolValue = reader.readDINT();
+                    varValue = boolValue;
+                    break;
+                case "STRING":
+                    boolValue = reader.readSTRING();
+                    varValue = boolValue;
+                    break;
         	}
 
         	console.log("		Received: " + varInfos[i].type + " Value: " + varValue);
-
+            varInfos[i]['value'] = varValue;
         	responseString = responseString + "<p>Name: " + varInfos[i].name  + " , "  + varInfos[i].handle  + " , " + varValue +  "</p>";
         }
 
@@ -402,7 +367,7 @@ var ReadCallback = (function (e, s) {
             variableContainer.innerHTML = "Error: ErrorMessage = " + e.error.errorMessage + " ErrorCode: " + e.error.errorCode;
         }
     }
-
+    updateCallback();
     console.log("------------End------------");
 
 });
