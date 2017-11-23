@@ -5,6 +5,14 @@ For: 1708px * 1132px (Surface Pro 3);
 	font-family: sans-serif;
 }
 
+.body-wrapper{
+	display: none;
+}
+
+.body-wrapper.active{
+	display:inline
+}
+
 body {
 /*
 	height/width - 4		
@@ -15,7 +23,7 @@ body {
 	border-width: 2px;
 }
 
-header {
+header.machine-view-header {
 	width: auto;
 	height: 40px;
 	padding-left: 5px;
@@ -27,22 +35,22 @@ header {
 	height:40px;
 }		
 
-header .version-container  {
+.version-container  {
 	width: 300px;
 	padding-left: 10px;
 }
 
-header .playing-container  {
+.playing-container  {
 	width: 400px;
 }
 
-header .status-container  {
+.status-container  {
 	width: 200px;
 	padding: 0 10px 0 10px;
 	float:right;
 }
 
-header .status-container.running  {
+.status-container.running  {
 	background-color: green;
 }
 
@@ -289,3 +297,48 @@ div.control-button img {
 h1   {
 	color: blue;
 }
+
+
+
+header.player-view-header{
+	height: 15%;
+}
+
+#player-view .controls{
+	height: 85%;
+}
+
+.left-side{
+	width: 70%;
+	float: left;
+}
+
+.right-side{
+	width: 30%;
+	margin-left: 70%
+}
+
+.controls section{
+	width: 100%;
+}
+
+.vinyl-arm-section{
+	height: 80%;
+}
+
+.song-control{
+	height:20%;
+}
+
+.playlist-control{
+	height:70%;
+}
+
+.misc-control{
+	height: 30%;
+}
+
+
+
+
+

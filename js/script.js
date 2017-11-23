@@ -1,8 +1,10 @@
 
 $(document).ready(function(){
-    $('#fullscreen-button').click(function(){
+    $('.fullscreen-button').click(function(){
         console.log("Fullscreen");
+        $('.body-wrapper').toggleClass('active');
     });
+
 });
 
 /*
