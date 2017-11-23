@@ -27,7 +27,7 @@ $(document).ready(function () {
 function loadVariableInformation(){
     console.log("------------Loading XML File------------");
     $.ajax({
-        url: 'Labview.xml',
+        url: 'xmlfiles/Labview.xml',
         context: document.body,
         //timeout
         dataType: 'xml',
