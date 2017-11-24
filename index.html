@@ -157,16 +157,16 @@
 			</div>
 		</header>
 		<div class="controls left-side">
-			<section class="vinyl-arm-section">
-               <div class="vinyl-container">
+			<section class="vinyl-arm-section width-filling">
+                <div class="vinyl-container height-filling">
                     <svg height="100%" width="100%" class="vinyl">
-                        <circle cx="50%" cy="50%" r="300" stroke="black" stroke-width="5" fill="white" id="vinyl-tourning-ring"></circle>
                         <rect x="calc(50% - 150)" y="calc(50% - 150)" width="300" height="300" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)"></rect>
                     </svg>
-                </div>
+			   </div>
+			    <div class="arm-container"></div>
             </section>
-			<section class="song-control">
-                <div class="top-row">
+			<section class="song-controls width-filling">
+                <div class="top-row width-filling">
                     <div class="centered-container unselectable">
                         <div class="button-container unselectable">
                             <a href="#" class="button"><img src="images/prev.png"> </a>
@@ -185,7 +185,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bottom-row">
+                <div class="bottom-row width-filling">
                     <div class="centered-container unselectable">
                         <div class="button-container unselectable">
                             <a href="#" class="button"><img src="images/pause.svg"> </a>
@@ -202,7 +202,12 @@
             </section>
 		</div>
 		<div class="controls right-side">
-			<section class="playlist-control"></section>
+			<section class="playlist-controls">
+                <div class="playlist-control-buttons height-filling">
+                    <div class="vertically-centered-container"></div>
+                </div>
+                <div class="song-selection height-filling"></div>
+            </section>
 			<section class="misc-control"></section>
 		</div>
 	</div>	

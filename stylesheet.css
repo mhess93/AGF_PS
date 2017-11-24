@@ -322,28 +322,24 @@ header.player-view-header{
 	margin-left: 70%
 }
 
-.controls section{
-	width: 100%;
-}
-
 .vinyl-arm-section{
 	height: 75%;
+    margin-left:15%;
 }
 
 .vinyl-container{
-    width: 100%;
-    height: 100%;
+    width:70%;
+    display:inline-block
 }
 
-.song-control{
+.song-controls{
 	height:24%;
     margin-bottom: 1%;
 }
 
-.song-control div.top-row,
-.song-control div.bottom-row{
+.song-controls div.top-row,
+.song-controls div.bottom-row{
     height: 50%;
-    width: 100%;
     text-align:center
 }
 
@@ -363,17 +359,43 @@ div.centered-container{
     margin-left:10px;
 }
 
-.song-control .button{
+.song-controls .button{
     display: block;
 }
 
-.song-control .button img{
+.song-controls .button img{
     width: 100%;
     height: 100%;
 }
 
-.playlist-control{
+.arm-container{
+    display: inline-block;
+    width: 15%;
+    height:100%;
+}
+
+.playlist-controls{
 	height:70%;
+}
+
+.playlist-control-buttons{
+    width:20%;
+    float:left;
+    position: relative; /* To center the child div */
+}
+
+.vertically-centered-container{
+    width: 70%;
+    height: 50%;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.song-selection{
+    width: 80%;
+    margin-left:20%;
 }
 
 .misc-control{
@@ -390,6 +412,14 @@ div.centered-container{
     */
     -ms-user-select: none;
     user-select: none;
+}
+
+.height-filling{
+	height:100%;
+}
+
+.width-filling{
+	width:100%;
 }
 
 
