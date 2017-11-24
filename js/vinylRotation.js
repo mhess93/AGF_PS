@@ -4,7 +4,6 @@ $('document').ready(function(){
     var degrees = 30;
     var vinyl = $('.vinyl');
     var vinylContainer = $('.vinyl-container');
-    var vinylTourningRing = $('#vinyl-tourning-ring');
 
     var offset = vinylContainer.offset();
     var width = vinylContainer.width();
