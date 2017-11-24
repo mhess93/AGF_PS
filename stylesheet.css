@@ -350,21 +350,13 @@ div.centered-container{
 }
 
 .centered-container .button-container{
-    height: 92px;
+    height: 72px;
     display: inline-block;
-    width: 92px;
+    width: 72px;
+    margin:10px;
 }
 
-.button-container+.button-container{
-    margin-left:10px;
-}
-
-.song-controls .button{
-    display: block;
-}
-
-.song-controls .button img{
-    width: 100%;
+.song-controls img{
     height: 100%;
 }
 
@@ -385,12 +377,18 @@ div.centered-container{
 }
 
 .vertically-centered-container{
-    width: 70%;
-    height: 50%;
+    width: 90%;
+    height: 243px;
     overflow: auto;
     margin: auto;
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.vertically-centered-container .button-container{
+    width: 69px;
+    height:69px;
+    margin:6px;
 }
 
 .song-selection{
