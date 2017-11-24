@@ -17,8 +17,8 @@ body {
 /*
 	height/width - 4		
 	*/
-	width: 1500px;
-	height: 1000px;
+	width: 1416px;
+	height: 940px;
     border: 2px solid;
 }
 
@@ -392,12 +392,59 @@ div.centered-container{
 }
 
 .song-selection{
-    width: 80%;
+    width: calc(80% - 24px - 40px);
     margin-left:20%;
+    padding: 20px;
+    height: calc(100% - 44px);
+    border: black solid 2px;
+}
+
+.song-selection small{
+    opacity: 0.7;
+}
+
+.list-with-title{
+
+}
+
+.list-with-title ul{
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.list-with-title li{
+    line-height: 30px;
+    font-size: 20px;
+}
+
+.list-with-title h3{
+    font-size: 25px;
 }
 
 .misc-control{
 	height: 30%;
+}
+
+.misc-control .top-row,
+.misc-control .bottom-row{
+    height: calc(50% - 30px);
+    width: calc(100% - 40px);
+    padding: 20px;
+}
+
+.misc-control .top-row{
+    padding-bottom: 10px;
+}
+
+.misc-control .bottom-row{
+    padding-top: 10px;
+}
+
+.misc-control .button-container{
+    width: 69px;
+    height: 69px;
+    margin: 6px;
+    display: inline-block;
 }
 
 *.unselectable {
