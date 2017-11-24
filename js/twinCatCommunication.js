@@ -1,6 +1,6 @@
 var NETID = ""; // Empty string for local machine;
 var PORT = "851"; // PLC Runtime
-var SERVICE_URL = "http://localhost/TcAdsWebService/TcAdsWebService.dll"; // HTTP path to the TcAdsWebService;
+var SERVICE_URL = "http://192.168.1.128/TcAdsWebService/TcAdsWebService.dll"; // HTTP path to the TcAdsWebService;
 
 var client = new TcAdsWebService.Client(SERVICE_URL, null, null);
 
@@ -13,6 +13,7 @@ var varInfos = [];
 var totalSize;
 
 var globalBool = false;
+var verbose = true;
 
 /* 
 Loads a xml file exported from TwinCat 3  from thxe server. 
@@ -562,4 +563,10 @@ function getSizeFromDataType(dataType){
 	//console.log("	Size = " + size);
 	//console.log("-----------END-----------");
 	return size;
+}
+
+function logIfVerbose(message){
+    if(verbose){
+        console.log(message);
+    }
 }
