@@ -13,30 +13,30 @@ var varInfos = [];
 var totalSize;
 
 var globalBool = false;
-var verbose = true;
+var verbose = false;
 
 /* 
 Loads a xml file exported from TwinCat 3  from thxe server. 
 Calls function getHandles with the all tags with name "globalVars".
 */
 $(document).ready(function () {
-    console.log("------------Document Loaded------------");
+    logIfVerbose("------------Document Loaded------------");
     loadVariableInformation();
     $('#readOverviewVariables').click(readOverviewVariables);
 });
 
 function loadVariableInformation(){
-    console.log("------------Loading XML File------------");
+    logIfVerbose("------------Loading XML File------------");
     $.ajax({
         url: 'xmlfiles/Labview.xml',
         context: document.body,
         //timeout
         dataType: 'xml',
         success: function(xml){
-            console.log("   ------------Successfully loaded XML------------");
-            console.log("   ------------Extracting Variables from XML------------");
+            logIfVerbose("   ------------Successfully loaded XML------------");
+            logIfVerbose("   ------------Extracting Variables from XML------------");
             var variableListXML = xml.getElementsByTagName("variable");
-            console.log("       Number found: " + variableListXML.length);
+            logIfVerbose("       Number found: " + variableListXML.length);
             var varEntry, name, type;
             for(var i = 0; i < variableListXML.length; i++){
                 varEntry = variableListXML[i];
@@ -50,26 +50,26 @@ function loadVariableInformation(){
                 varInfos[i]['handle'] = null;
                 varInfos[i]['typeSize'] = getSizeFromDataType(type);
                 varInfos[i]['value'] = null;
-                console.log("       Name: " + name + 
+                logIfVerbose("       Name: " + name +
                                     ", Type: " + type + 
                                     ", Length: " + varInfos[i]['length'] + 
                                     ", TypeSize: " + varInfos[i]['typeSize'] + 
                                     ", Value: " + varInfos[i]['value']);
             }
-            console.log("   ------------END------------");
+            logIfVerbose("   ------------END------------");
         },
 
         error: function(jqXHR, textStatus, errorThrown){
-            console.log("   ------------Error Loading XML File------------");
-            console.log("       Status: " + textStatus);
-            console.log("       Error Thrown: " + errorThrown);
-            console.log("   ------------END------------");
+            logIfVerbose("   ------------Error Loading XML File------------");
+            logIfVerbose("       Status: " + textStatus);
+            logIfVerbose("       Error Thrown: " + errorThrown);
+            logIfVerbose("   ------------END------------");
         },
 
         complete: function(jqXHR, textStatus){
-            console.log("------------Loading Complete, Status: " + textStatus + "------------");
+            logIfVerbose("------------Loading Complete, Status: " + textStatus + "------------");
             fetchHandlesFromInformation();
-        },
+        }
     });
 }
 
@@ -80,31 +80,31 @@ function loadVariableInformation(){
 	Thes send request. 
 */
 function fetchHandlesFromInformation(callback){
-	console.log("------------Fetching Variables------------");
+    logIfVerbose("------------Fetching Variables------------");
 
-	var handleswriter = new TcAdsWebService.DataWriter();	
+	var handleswriter = new TcAdsWebService.DataWriter();
 
-	console.log("	------------Writing Informations To HandlesWriter------------");
+    logIfVerbose("	------------Writing Informations To HandlesWriter------------");
 
 	for(i = 0; i < varInfos.length; i++){
 		handleswriter.writeDINT(TcAdsWebService.TcAdsReservedIndexGroups.SymbolHandleByName);
 		handleswriter.writeDINT(0);
         handleswriter.writeDINT(4);
         handleswriter.writeDINT(varInfos[i].length);
-        console.log("		Wrote length to handleswriter: " + varInfos[i].length);
-	}	
-	console.log("	-----------END-----------");
+        logIfVerbose("		Wrote length to handleswriter: " + varInfos[i].length);
+	}
+    logIfVerbose("	-----------END-----------");
 
-	console.log("	-----------Writing handle names to handlewriter-----------");
+    logIfVerbose("	-----------Writing handle names to handlewriter-----------");
      // Write symbol names after the general information to the TcAdsWebService.DataWriter object;
     for (var i = 0; i < varInfos.length; i++) {
         handleswriter.writeString(varInfos[i].name);
-        console.log("		Wrote Handle Name: " + varInfos[i].name);
+        logIfVerbose("		Wrote Handle Name: " + varInfos[i].name);
     }
 
-    console.log("	-----------END-----------");
+    logIfVerbose("	-----------END-----------");
 
-    console.log("-----------END-----------");
+    logIfVerbose("-----------END-----------");
 
 	client.readwrite(
                 NETID,
@@ -126,30 +126,30 @@ var readAllVariables = (function (){
 });
 
 var readVariables = ( function ( tempIndex, updateCallback ){
-    console.log("-----------Reading Variables-----------");
-    console.log("   TempIndex: " + tempIndex);
-    console.log("   -----------Writing information----------");
+    logIfVerbose("-----------Reading Variables-----------");
+    logIfVerbose("   TempIndex: " + tempIndex);
+    logIfVerbose("   -----------Writing information----------");
 
     var readSymbolValuesWriter = new TcAdsWebService.DataWriter();
     var size = 0;
     totalSize = 0;
 
-    for(i = 0; i < tempIndex; i++){
+    for(var i = 0; i < tempIndex; i++){
         totalSize = totalSize + varInfos[i].typeSize;
         readSymbolValuesWriter.writeDINT(TcAdsWebService.TcAdsReservedIndexGroups.SymbolValueByHandle);     // IndexGroup
         readSymbolValuesWriter.writeDINT(varInfos[i].handle);                                               // IndexOffset = The target handle
         readSymbolValuesWriter.writeDINT(varInfos[i].typeSize);                                             // size to read
 
-        console.log("       Wrote Handle: " + varInfos[i].handle);
-        console.log("       Wrote Size: "  + varInfos[i].typeSize);
+        logIfVerbose("       Wrote Handle: " + varInfos[i].handle);
+        logIfVerbose("       Wrote Size: "  + varInfos[i].typeSize);
     }
 
-    console.log("   -----------END-----------");
-    console.log("   Total Size: "  + totalSize);
+    logIfVerbose("   -----------END-----------");
+    logIfVerbose("   Total Size: "  + totalSize);
 
     readSymbolValuesData = readSymbolValuesWriter.getBase64EncodedData();
 
-    console.log("-----------END-----------");
+    logIfVerbose("-----------END-----------");
 
     //readLoopID = window.setInterval(ReadLoop, readLoopDelay);
 
@@ -171,15 +171,15 @@ var readVariables = ( function ( tempIndex, updateCallback ){
 });
 
 var readOverviewVariables = (function (){
-    console.log("------------Reading Overview Variables------------");
+    logIfVerbose("------------Reading Overview Variables------------");
     readVariables(2, updateOverview);
 });
 
 var updateOverview = (function (){
-    console.log("------------Updating Overview Variables------------");
+    logIfVerbose("------------Updating Overview Variables------------");
     firstVar.innerHTML = varInfos[0]['value'];
     secondVar.innerHTML = varInfos[1]['value'];
-    console.log("------------END------------");
+    logIfVerbose("------------END------------");
 });
 
 
@@ -194,50 +194,50 @@ var updateOverview = (function (){
 	If the request had an error, displays and returns. 
 */
 var handlesRequestCallback = (function (e,s) {
-	console.log("------------Callback for Handles Request------------");
+	logIfVerbose("------------Callback for Handles Request------------");
 	if (e && e.isBusy) {
         var message = "Requesting handles...";
         variableContainer.innerHTML = message;
-        console.log("	Request Still Busy");
-        console.log("-----------END-----------");
+        logIfVerbose("	Request Still Busy");
+        logIfVerbose("-----------END-----------");
         return;
     }	
 
     if (e && !e.hasError) {
         var reader = e.reader;
         var hasAError = false;
-        console.log("	------------Checking for Errors------------");
+        logIfVerbose("	------------Checking for Errors------------");
         for (var i = 0; i < varInfos.length; i++) {
             var err = reader.readDWORD();
             var len = reader.readDWORD();
             if (err != 0) {
-            	console.log("		Error: " + err + " Len: " + len);
+            	logIfVerbose("		Error: " + err + " Len: " + len);
                 variableContainer.innerHTML = "Handle error!";
                 hasAError = true;
             }
         }
         if(hasAError){
-        	console.log("		Has Error");
-        	console.log("	-----------END-----------");
-        	console.log("-----------END-----------");
+        	logIfVerbose("		Has Error");
+        	logIfVerbose("	-----------END-----------");
+        	logIfVerbose("-----------END-----------");
         	return;
         } else {
-        	console.log("		No Errors");
-        	console.log("	-----------END-----------");
+        	logIfVerbose("		No Errors");
+        	logIfVerbose("	-----------END-----------");
         }
-        console.log("	----------- Reading Variable Handles-----------");
+        logIfVerbose("	----------- Reading Variable Handles-----------");
 
         handles = [];
-		for( i = 0; i < varInfos.length; i++){
+		for( var i = 0; i < varInfos.length; i++){
         	varInfos[i].handle = reader.readDWORD();
-        	console.log("		Received Handle: " + varInfos[i].handle);
+        	logIfVerbose("		Received Handle: " + varInfos[i].handle);
         }
-        console.log("	-----------END-----------");
-        console.log(varInfos);
+        logIfVerbose("	-----------END-----------");
+        logIfVerbose(varInfos);
 
     } else {
 
-        console.log("-----------ERROR in RequestHandlesCallback-----------");
+        logIfVerbose("-----------ERROR in RequestHandlesCallback-----------");
 
         if (e.error.getTypeString() == "TcAdsWebService.ResquestError") {
             // HANDLE TcAdsWebService.ResquestError HERE;
@@ -249,7 +249,7 @@ var handlesRequestCallback = (function (e,s) {
         }
 
     }
-    console.log("-----------END-----------");
+    logIfVerbose("-----------END-----------");
 });
 
 /*
@@ -265,8 +265,8 @@ var handlesRequestTimeoutCallback = (function () {
 */
 var ReadLoop = (function () {
 
-	console.log("------------Read Loop------------");
-	console.log("------------End------------");
+	logIfVerbose("------------Read Loop------------");
+	logIfVerbose("------------End------------");
 
     client.readwrite(
         NETID,
@@ -291,12 +291,12 @@ var ReadLoop = (function () {
 	@See ReadLoop
 */
 var readCallback = (function (e, s, updateCallback, tempIndex) {
-	console.log("------------Processing Read Callback------------");
+	logIfVerbose("------------Processing Read Callback------------");
     if (e && e.isBusy) {
-    	console.log("	------------Still Busy------------");
+    	logIfVerbose("	------------Still Busy------------");
         return;
     }
-    console.log("	------------Checking for Errors------------");
+    logIfVerbose("	------------Checking for Errors------------");
 
     if (e && !e.hasError) {
 
@@ -311,9 +311,9 @@ var readCallback = (function (e, s, updateCallback, tempIndex) {
             }
         }
 
-        console.log("	------------End------------");
+        logIfVerbose("	------------End------------");
 
-        console.log("	------------Reading Variable Values------------");
+        logIfVerbose("	------------Reading Variable Values------------");
 
         var intValue, boolValue, varValue;
         var responseString = "";
@@ -349,12 +349,12 @@ var readCallback = (function (e, s, updateCallback, tempIndex) {
                     break;
         	}
 
-        	console.log("		Received: " + varInfos[i].type + " Value: " + varValue);
+        	logIfVerbose("		Received: " + varInfos[i].type + " Value: " + varValue);
             varInfos[i]['value'] = varValue;
         	responseString = responseString + "<p>Name: " + varInfos[i].name  + " , "  + varInfos[i].handle  + " , " + varValue +  "</p>";
         }
 
-        console.log("	------------End------------");
+        logIfVerbose("	------------End------------");
         variableContainer.innerHTML = responseString;
 
     } else {
@@ -369,7 +369,7 @@ var readCallback = (function (e, s, updateCallback, tempIndex) {
         }
     }
     updateCallback();
-    console.log("------------End------------");
+    logIfVerbose("------------End------------");
 
 });
 
@@ -379,11 +379,11 @@ var readCallback = (function (e, s, updateCallback, tempIndex) {
 */
 var ReadTimeoutCallback = (function () {
     // HANDLE TIMEOUT HERE;
-    console.log("------------Processing Read Timeout------------");
+    logIfVerbose("------------Processing Read Timeout------------");
 
     div_log.innerHTML = "Read timeout!";
     clearInterval(readLoopID);
-    console.log("------------END------------");
+    logIfVerbose("------------END------------");
 });
 
 /*
@@ -396,9 +396,9 @@ resetVariables = function () {
 
     var writer = new TcAdsWebService.DataWriter();
 
-    console.log("------------Reset Variables------------");
+    logIfVerbose("------------Reset Variables------------");
 
-    console.log("	------------Writing Information------------");
+    logIfVerbose("	------------Writing Information------------");
 
     var size = 0;
     var varSize = 0;
@@ -411,11 +411,11 @@ resetVariables = function () {
 
         size = size + varSize;
 
-        console.log("		Handle:  " + varInfos[i].handle + " Size: " + varSize + ' Name: '  + varInfos[i].name);
+        logIfVerbose("		Handle:  " + varInfos[i].handle + " Size: " + varSize + ' Name: '  + varInfos[i].name);
     }
 
-    console.log("	------------End------------");
-    console.log("	Total Size: " + size);
+    logIfVerbose("	------------End------------");
+    logIfVerbose("	Total Size: " + size);
     
     var bool = false;
     // Write values to TcAdsWebService.DataWrite object;
@@ -447,8 +447,8 @@ resetVariables = function () {
         	}
     }   
 
-    console.log("	------------Sending Request------------");
-    console.log("------------End------------");
+    logIfVerbose("	------------Sending Request------------");
+    logIfVerbose("------------End------------");
 
     client.readwrite(
             NETID,
@@ -465,58 +465,58 @@ resetVariables = function () {
 };
 
 /*
-	Displays correct message when write request has been answered. 
+	Displays correct message when write request has been answered.
 	When the request is still busy, a messag is displayed
 	When an error has occured, the correct code is displayed.
 	On success nothing happens.
-	The values are adjusted in the next read request @See ReadCallback  
-*/       
+	The values are adjusted in the next read request @See ReadCallback
+*/
 var WriteCallback = (function(e,s){
 
-	console.log("------------Write Callback------------");
+	logIfVerbose("------------Write Callback------------");
 
     if (e && e.isBusy) {
 
-    	console.log("	------------Still Busy------------");
+    	logIfVerbose("	------------Still Busy------------");
 
         var message = "Writing data to plc...";
         div_log.innerHTML = message;
-       	
-        console.log("------------End------------");
+
+        logIfVerbose("------------End------------");
         return;
     }
 
     if (e && !e.hasError) {
-    	console.log("	------------Successfull------------");
+    	logIfVerbose("	------------Successfull------------");
 
         var message = "Writing data successfully finished...";
         div_log.innerHTML = message;
 
-        console.log("------------End------------");
+        logIfVerbose("------------End------------");
 
     } else {
-    	console.log("	------------Has Error------------");
+    	logIfVerbose("	------------Has Error------------");
 
         if (e.error.getTypeString() == "TcAdsWebService.ResquestError") {
 
             div_log.innerHTML = "Error: StatusText = " + e.error.statusText + " Status: " + e.error.status;
 
-            console.log("		------------ADS WebService Request Error------------");
-            console.log("			------------ Error: StatusText = " + e.error.statusText + " Status: " + e.error.status + " ------------");
+            logIfVerbose("		------------ADS WebService Request Error------------");
+            logIfVerbose("			------------ Error: StatusText = " + e.error.statusText + " Status: " + e.error.status + " ------------");
         }
         else if (e.error.getTypeString() == "TcAdsWebService.Error") {
 
-            console.log("		------------ADS WebService Error------------");
-            console.log("			------------ Error: StatusText = " + e.error.errorMessage + " Status: " + e.error.errorCode + " ------------");
+            logIfVerbose("		------------ADS WebService Error------------");
+            logIfVerbose("			------------ Error: StatusText = " + e.error.errorMessage + " Status: " + e.error.errorCode + " ------------");
 
             div_log.innerHTML = "Error: ErrorMessage = " + e.error.errorMessage + " ErrorCode: " + e.error.errorCode;
         }
 
-        console.log("	------------End------------");
+        logIfVerbose("	------------End------------");
 
     }
 
-    console.log("------------End------------");
+    logIfVerbose("------------End------------");
 
 });
 
@@ -534,7 +534,7 @@ var WriteTimeoutCallback = (function () {
 	TODO: Add all variables.
 */
 function getSizeFromDataType(dataType){
-	//console.log("-----------Getting Data Type for: " + dataType+"-----------");
+	//logIfVerbose("-----------Getting Data Type for: " + dataType+"-----------");
 	var size;
 	switch(dataType) {
 		case "BYTE":
@@ -560,8 +560,8 @@ function getSizeFromDataType(dataType){
             break;
 		}
 
-	//console.log("	Size = " + size);
-	//console.log("-----------END-----------");
+	//logIfVerbose("	Size = " + size);
+	//logIfVerbose("-----------END-----------");
 	return size;
 }
 
