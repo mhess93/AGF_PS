@@ -1,7 +1,7 @@
+var SCRIPT_VERBOSE = true;
 
 $(document).ready(function(){
     $('.fullscreen-button').click(function(){
-        console.log("Fullscreen");
         $('.body-wrapper').toggleClass('active');
     });
 
@@ -12,10 +12,18 @@ $(document).ready(function(){
 */
 function openInnerTab(evt, tabName) {
 	// Declare all variables
-	var i, tabcontent, tablinks, parent;
 
-	parent = evt.target.parentNode;
+	var jqueryTarget = $(evt.target);
+	var tab = jqueryTarget.parent();
+	var tabLinks = tab.children('.tab-links');
 
+	tabLinks.removeClass('active');
+	jqueryTarget.addClass('active');
+	$('.tabcontent').removeClass('active');
+    var tabToOpen = $('.tabcontent#'+tabName);
+    tabToOpen.addClass('active');
+
+/*
 	// Get all elements with class="tabcontent" and hide them
 	tabcontent = parent.parentNode.getElementsByClassName("tabcontent");
 	for (i = 0; i < tabcontent.length; i++) {
@@ -30,12 +38,12 @@ function openInnerTab(evt, tabName) {
 
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " active"; */
 }
 
 function openOuterTab(evt, tabName) {
 	// Declare all variables
-	var i, tabcontent, tablinks, parent, tabToOpen;
+	var i, tabContent, tablinks, parent, tabToOpen;
     parent = evt.currentTarget.parentNode;
 
     if(parent.classList.contains('active')){
@@ -43,23 +51,22 @@ function openOuterTab(evt, tabName) {
     }
 
 	// Get all elements with class="tabcontent" and hide them
-	tabcontent = document.getElementsByClassName("outer-tab-content");
-	for (i = 0; i < tabcontent.length; i++) {
-		tabcontent[i].style.display = "none";
-	}
+	tabContent = $(".outer-tab-content");
+    tabContent.removeClass('active');
+
+
 
     // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tab-links control-button");
-    for (i = 0; i < tablinks.length; i++) {
-    	tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
+    tablinks = $(".tab-links.control-button");
+
+    tablinks.removeClass('active');
 
     // Show the current tab, and add an "active" class to the button that opened the tab
-    tabToOpen = document.getElementById(tabName);
+    tabToOpen = $("#"+tabName);
 
-    tabToOpen.style.display = "block";
-    tabToOpen.getElementsByClassName("tab-links")[0].click();
+    tabToOpen.addClass("active");
+    tabToOpen.find(".tab-links")[0].click();
 
-    parent.className += " active";
+    parent.classList += " active";
 }
 

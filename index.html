@@ -27,20 +27,20 @@
 					<button class="tab-links" onclick="openInnerTab(event, 'measuring-station')">Messstation</button>
 					<button class="tab-links" onclick="openInnerTab(event, 'variables')">Variablen</button>
 				</div>
-				<div id="overview" class="tabcontent">
-					&Uumlbersicht
+				<div id="overview" class="tabcontent active">
+					<p>&Uumlbersicht</p>
 					<button id="readOverviewVariables">YEAH</button>
 					<div id="firstVar"></div>
 					<div id="secondVar"></div>
 				</div>
 				<div id="axis-X-and-Y" class="tabcontent">
-					Achsen X und Y
+					<p>Achsen X und Y</p>
 				</div>
 				<div id="measuring-station" class="tabcontent">
-					Messstation
+					<p>Messstation</p>
 				</div>
 				<div id="variables" class="tabcontent production">
-					Variablen
+					<p>Variablen</p>
 					<button  onclick="fetchVariables()">Variablen laden</button>
 					<button  onclick="resetVariables()">Zurücksetzen</button>
 					<div id="variableContainer">
@@ -59,10 +59,10 @@
 					<button class="tab-links" onclick="openInnerTab(event, 'recpie-2')">Rezept-2</button>
 				</div>
 				<div id="recpie-1" class="tabcontent">
-					Rezept-1
+					<p>Rezept-1</p>
 				</div>
 				<div id="recpie-2" class="tabcontent">
-					Rezept-2
+					<p>Rezept-2</p>
 				</div>
 			</div>
 			<div class="outer-tab-content" id="hand">
@@ -71,10 +71,10 @@
 					<button class="tab-links" onclick="openInnerTab(event, 'hand-2')">Hand-2</button>
 				</div>
 				<div id="hand-1" class="tabcontent">
-					Hand-1
+					<p>Hand-1</p>
 				</div>
 				<div id="hand-2" class="tabcontent">
-					Hand-2
+					<p>Hand-2</p>
 				</div>
 			</div>
 		</div>
@@ -113,7 +113,7 @@
 				</div>
 			</div>
 			<div class="middle-row">
-				<div class="control-button without-icon tab-links">
+				<div class="control-button without-icon tab-links active">
 					<a href="#" onclick="openOuterTab(event, 'production')">
 						<p>Produktion</p>
 					</a>

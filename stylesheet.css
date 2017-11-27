@@ -114,6 +114,11 @@ main div#main-left {
 	background-color: gray;
 }
 
+/* Style the tab content */
+.tabcontent.active {
+	display:block;
+}
+
 .outer-tab-content{
 	width: 100%;
 	display: none;
@@ -121,13 +126,12 @@ main div#main-left {
 	background-color: gray;
 }
 
-#production{
-	display:block;
+.outer-tab-content.active{
+    display: block;
 }
 
 #overview  {
     background: url("images/turntables.svg") no-repeat center;
-    display:block;
 }
 
 #axis-X-and-Y  {
