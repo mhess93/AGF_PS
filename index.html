@@ -14,10 +14,10 @@
 	<script type="text/javascript" src="js/twinCatCommunication.js"></script>
     <script type="text/javascript" src="js/tabDependingReading.js"></script>
 	<meta charset="utf-8">
-	<title>AGRAR Awsome Thingy</title>
+	<title>AGRAR Awsome Thing</title>
 </head>
 <body>
-	<div id="machine-view" class="body-wrapper active">
+	<div id="machine-view" class="body-wrapper">
 		<header class="machine-view-header">
 		<div class="version-container header-content">V0.0.0.00001A</div>
 		<div class="playing-container header-content">aktueller Song: Shake it off - Taylor Swift</div>
@@ -153,15 +153,12 @@
 		</div>
 		</footer>
 	</div>
-	<div id="player-view" class="body-wrapper">
+	<div id="player-view" class="body-wrapper active">
 		<header class="player-view-header">
 			<div class="mantra">
-				<button class="fullscreen-button">Machine</button>
                 <h1>Harder better faster stronger</h1>
 			</div>
-			<div class="logo">
-
-			</div>
+			<div class="logo"></div>
 		</header>
 		<div class="controls left-side">
 			<section class="vinyl-arm-section width-filling">
@@ -213,7 +210,7 @@
                 <div class="playlist-control-buttons height-filling">
                     <div class="vertically-centered-container">
                         <div class="button-container">
-                            <a href="#"><img src="images/reload.svg"></a>
+                            <a href="#" class="fullscreen-button"><img src="images/reload.svg"></a>
                         </div>
                         <div class="button-container">
                             <a href="#"><img src="images/refresh.svg"></a>
