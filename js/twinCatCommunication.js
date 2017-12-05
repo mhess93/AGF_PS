@@ -565,8 +565,8 @@ function getSizeFromDataType(dataType){
 	return size;
 }
 
-function logIfVerbose(message){
+var logIfVerbose = function (message){
     if(verbose){
         console.log(message);
     }
-}
+};
