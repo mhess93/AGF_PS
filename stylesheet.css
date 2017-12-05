@@ -22,6 +22,36 @@ body {
     border: 2px solid;
 }
 
+.body-overlay{
+    opacity: 0.7;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+.init-message{
+    position: fixed;
+    top: 50%;
+    left:50%;
+    width: 400px;
+    height: 180px;
+    margin-top: -90px;
+    margin-left: -200px;
+    background-color: white;
+    z-index:10;
+    font-size: 40px;
+    text-align: center;
+}
+
+.init-message p{
+    margin: 0;
+    line-height: 180px;
+}
+
 header.machine-view-header {
 	width: auto;
 	height: 40px;
