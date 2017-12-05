@@ -4,9 +4,13 @@
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<script type="text/javascript" src="js/TcAdsWebService.js"></script>
 	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+    <script>
+        var activeIndices = [];
+    </script>
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript" src="js/propeller.js"></script>
     <script type="text/javascript" src="js/vinylRotation.js"></script>
+
 	<script type="text/javascript" src="js/twinCatCommunication.js"></script>
     <script type="text/javascript" src="js/tabDependingReading.js"></script>
 	<meta charset="utf-8">
@@ -23,10 +27,10 @@
 		<div id="main-left">
 			<div class="outer-tab-content active" id="production">
 				<div class="tab">
-					<button class="tab-links active" onclick="openInnerTab(event, 'overview')">&Uumlbersicht</button>
-					<button class="tab-links" onclick="openInnerTab(event, 'axis-X-and-Y')">Achsen X und Y</button>
-					<button class="tab-links" onclick="openInnerTab(event, 'measuring-station')">Messstation</button>
-					<button class="tab-links" onclick="openInnerTab(event, 'variables')">Variablen</button>
+					<button class="tab-links active" onclick="openInnerTab(event, 'overview', [1,2,5])">&Uumlbersicht</button>
+					<button class="tab-links" onclick="openInnerTab(event, 'axis-X-and-Y', [1,5])">Achsen X und Y</button>
+					<button class="tab-links" onclick="openInnerTab(event, 'measuring-station', [2,4])">Messstation</button>
+					<button class="tab-links" onclick="openInnerTab(event, 'variables', [2,5])">Variablen</button>
 				</div>
 				<div id="overview" class="tabcontent active">
 					<p>&Uumlbersicht</p>
@@ -58,8 +62,8 @@
 			</div>
 			<div class="outer-tab-content" id="recipe">
 				<div class="tab">
-					<button class="tab-links" onclick="openInnerTab(event, 'recpie-1')">Rezept-1</button>
-					<button class="tab-links" onclick="openInnerTab(event, 'recpie-2')">Rezept-2</button>
+					<button class="tab-links" onclick="openInnerTab(event, 'recpie-1', [2,3,4])">Rezept-1</button>
+					<button class="tab-links" onclick="openInnerTab(event, 'recpie-2', [4,5])">Rezept-2</button>
 				</div>
 				<div id="recpie-1" class="tabcontent">
 					<p>Rezept-1</p>
@@ -70,8 +74,8 @@
 			</div>
 			<div class="outer-tab-content" id="hand">
 				<div class="tab">
-					<button class="tab-links" onclick="openInnerTab(event, 'hand-1')">Hand-1</button>
-					<button class="tab-links" onclick="openInnerTab(event, 'hand-2')">Hand-2</button>
+					<button class="tab-links" onclick="openInnerTab(event, 'hand-1', [1,5])">Hand-1</button>
+					<button class="tab-links" onclick="openInnerTab(event, 'hand-2', [2,4])">Hand-2</button>
 				</div>
 				<div id="hand-1" class="tabcontent">
 					<p>Hand-1</p>

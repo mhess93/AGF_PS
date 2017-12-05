@@ -10,8 +10,10 @@ $(document).ready(function(){
 /*
 	Displays the correct tab when clicking on the tabbutton
 */
-function openInnerTab(evt, tabName) {
+function openInnerTab(evt, tabName, indices) {
 	// Declare all variables
+
+    activeIndices = indices;
 
 	var jqueryTarget = $(evt.target);
 	var tab = jqueryTarget.parent();
