@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_rack>
+    <record>
+        <record_name>[ALBUMNAME]</record_name>
+        <artist>[NAME DES KÜNSTLERS]</artist>
+        <record_cover>[LINK ZUM ALBUMCOVER]</record_cover>
+        <rack_slot>[NUMMER IM RACK DES PLATTENSPIELERS]</rack_slot>
+        <side>
+            <song>[SONGNAME]</song>
+            <song>[SONGNAME]</song>
+            <song>[SONGNAME]</song>
+            <song>[SONGNAME]</song>
+        </side>
+        <side>
+            <song>[SONGNAME]</song>
+            <song>[SONGNAME]</song>
+        </side>
+    </record>
+    <record>
+        <record_name>[ALBUMNAME]</record_name>
+        <artist>[NAME DES KÜNSTLERS]</artist>
+        <record_cover>[LINK ZUM ALBUMCOVER]</record_cover>
+        <rack_slot>[NUMMER IM RACK DES PLATTENSPIELERS]</rack_slot>
+        <side>
+            <song>[SONGNAME]</song>
+            <song>[SONGNAME]</song>
+            <song>[SONGNAME]</song>
+        </side>
+        <side>
+            <song>[SONGNAME]</song>
+            <song>[SONGNAME]</song>
+            <song>[SONGNAME]</song>
+            <song>[SONGNAME]</song>
+        </side>
+    </record>
+</record_rack>
