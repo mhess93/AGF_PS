@@ -367,12 +367,18 @@ header.player-view-header{
 
 .vinyl-arm-section{
 	height: 75%;
-    margin-left:15%;
+    width: 80%;
+    padding: 0 10%;
 }
 
 .vinyl-container{
-    width:70%;
-    display:inline-block
+    width:80%;
+    display:inline-block;
+	background-image: url("images/record-plate.PNG");
+	background-position: center;
+	background-size: 90%;
+	background-repeat: no-repeat;
+    float:left;
 }
 
 .song-controls{
@@ -405,8 +411,9 @@ div.centered-container{
 
 .arm-container{
     display: inline-block;
-    width: 15%;
-    height:100%;
+    width: 20%;
+    background: url('images/sound-arm.jpg') center no-repeat;
+    background-size: 250px;
 }
 
 .playlist-controls{
@@ -429,17 +436,19 @@ div.centered-container{
 }
 
 .vertically-centered-container .button-container{
-    width: 69px;
-    height:69px;
+    width: 65px;
+    height:65px;
     margin:6px;
 }
 
 .song-selection{
-    width: calc(80% - 24px - 40px);
+    width: calc(80% - 20px - 40px);
     margin-left:20%;
     padding: 20px;
-    height: calc(100% - 44px);
-    border: black solid 2px;
+    height: calc(100% - 40px);
+    border-radius: 5px;
+    background-color: #4295f4;
+    color: white;
 }
 
 .song-selection small{
@@ -471,8 +480,8 @@ div.centered-container{
 .misc-control .top-row,
 .misc-control .bottom-row{
     height: calc(50% - 30px);
-    width: calc(100% - 40px);
     padding: 20px;
+    margin-left: 100px;
 }
 
 .misc-control .top-row{
