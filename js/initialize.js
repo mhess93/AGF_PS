@@ -25,6 +25,7 @@ $(document).ready(function(){
 
     var loadRecordRack = function(){
         initLogIfVerbose("------------Loading Rack------------");
+        
         $.ajax({
             type: "GET",
             url: "xmlfiles/records.xml",
