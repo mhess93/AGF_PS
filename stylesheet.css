@@ -355,9 +355,18 @@ header.player-view-header{
 	height: 85%;
 }
 
+.album-selection-wrapper{
+    display: none;
+}
+
 .left-side{
 	width: 70%;
 	float: left;
+    display: none;
+}
+
+.left-side.active{
+    display: block;
 }
 
 .right-side{
@@ -548,6 +557,51 @@ div.centered-container{
     margin: 6px;
     display: inline-block;
 }
+
+.album-list-wrapper{
+    height: calc(60% - 60px);
+    width: calc(100% - 120px);
+    margin: 30px 60px;
+}
+
+.album-list-wrapper div{
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+    margin-left: 4px;
+    background-position: center;
+    background-size: 100%;
+}
+
+.preview-wrapper{
+    margin: 20px;
+    height: calc(40% - 40px);
+}
+
+.preview-wrapper div{
+    height: 90%;
+    display: inline-block;
+    vertical-align: top;
+    width: 33%
+}
+
+.preview-side-A{
+    text-align: right;
+}
+
+div.preview-album-information{
+    width: 100%;
+    height: 10%;
+}
+
+div.preview-album-cover{
+    width: calc(33% - 60px);
+    margin: 0 30px;
+    background-size: 100%;
+    background-position: center;
+}
+
+
 
 *.unselectable {
     -moz-user-select: -moz-none;

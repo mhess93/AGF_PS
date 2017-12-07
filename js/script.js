@@ -5,6 +5,10 @@ $(document).ready(function(){
         $('.body-wrapper').toggleClass('active');
     });
 
+    $('.toggle-controls-albums').click(function(){
+        $('.controls.left-side').toggleClass('active');
+    });
+
 });
 
 /*

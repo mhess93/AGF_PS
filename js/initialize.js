@@ -86,14 +86,68 @@ $(document).ready(function(){
             return{
                 getIndex: function(i){
                     return recordsData[i];
+                },
+
+                length: function(){
+                    return recordsData.length;
                 }
             }
         })();
 
         initLogIfVerbose("------------END------------");
-
+        setupAlbumSelection();
         $(".init-element").remove();
     };
+
+    function setupAlbumSelection(){
+        var recordContainer, record, url ,recordList;
+        initLogIfVerbose("------------Setting up Album Selection------------");
+        recordList = $('.album-list-wrapper');
+        for(var i = 0; i < recordsModule.length() - 1; i++){
+            record = recordsModule.getIndex(i);
+            initLogIfVerbose(record);
+            recordList.append('<div></div>');
+            recordContainer = recordList.children().last();
+            recordContainer.attr('list-id', i);
+            recordContainer.click(function(evt){
+                console.log(recordsModule.getIndex($(evt.target).attr('list-id')));
+                displayInPreview(recordsModule.getIndex($(evt.target).attr('list-id')));
+            })
+            url = 'url(\" images/'+ record['record_cover']+'")';
+            recordContainer.css('background-image',url );
+
+        }
+        initLogIfVerbose("------------End------------");
+    }
+
+    function displayInPreview(record){
+        initLogIfVerbose("------------Previewing Record------------");
+        var previewContainer, side, sidePreview;
+
+        previewContainer = $('.preview-wrapper');
+        previewContainer.children('.preview-album-cover')
+            .css('background-image', 'url(\" images/'+ record['record_cover']+'")');
+
+        side = record['side_a'];
+
+        sidePreview = $('.preview-side-A ul');
+        sidePreview.children().remove();
+
+        sidePreview.append('<h4>Side A</h4>')
+        for(var i = 0; i < side.length; i++){
+            sidePreview.append('<li>'+ side[i] +'</li>')
+        }
+
+        side = record['side_b'];
+
+        sidePreview = $('.preview-side-B ul');
+        sidePreview.children().remove();
+
+        sidePreview.append('<h4>Side B</h4>')
+        for(var i = 0; i < side.length; i++){
+            sidePreview.append('<li>'+ side[i] +'</li>')
+        }
+    }
 
     var parseLabview = function(xml){
         initLogIfVerbose("------------Successfully loaded XML------------");
