@@ -6,14 +6,32 @@
         <record_cover>lunar-phase.jpg</record_cover>
         <rack_slot>1</rack_slot>
         <side>
-            <song>Energy Portal</song>
-            <song>St.Giga</song>
+            <song>
+                <title>Energy Portal</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>St.Giga</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
         </side>
         <side>
-            <song>Lunar Phase</song>
-            <song>Nautilus</song>
-            <song>Cloudless Light</song>
-            <song>Orgone</song>
+            <song>
+                <title>Lunar Phase</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>Nautilus</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>Cloudless Light</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>Orgone</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
         </side>
     </record>
     <record>
@@ -22,18 +40,48 @@
         <record_cover>johnny_cash_createst_hits_3.jpg</record_cover>
         <rack_slot>2</rack_slot>
         <side>
-            <song>There Ain't No Good Chain Gan</song>
-            <song>Oney</song>
-            <song>Any Old Wind That Blows</song>
-            <song>Old Time Feeling</song>
-            <song>I Would Like To See You Again</song>
+            <song>
+                <title> There Ain't No Good Chain Gang</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>Oney</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>Any Old Wind That Blows</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>Old Time Feeling</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>I Would Like To See You Again</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
         </side>
         <side>
-            <song>I Wish I Was Crazy Again</song>
-            <song>One Piece At A Time</song>
-            <song>After The Ball</song>
-            <song>Lady</song>
-            <song>It's All Over</song>
+            <song>
+                <title>I Wish I Was Crazy Again</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>One Piece At A Time</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>After The Ball</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>Lady</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>It's All Over</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
         </side>
     </record>
     <record>
@@ -42,15 +90,36 @@
         <record_cover>depeche_mode_personel_jesus.jpeg</record_cover>
         <rack_slot>3</rack_slot>
         <side>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
         </side>
         <side>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
         </side>
     </record>
     <record>
@@ -59,15 +128,36 @@
         <record_cover>sinatra_and_company.jpeg</record_cover>
         <rack_slot>4</rack_slot>
         <side>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
         </side>
         <side>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
         </side>
     </record>
     <record>
@@ -76,15 +166,36 @@
         <record_cover>[LINK ZUM ALBUMCOVER]</record_cover>
         <rack_slot>[NUMMER IM RACK DES PLATTENSPIELERS]</rack_slot>
         <side>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
         </side>
         <side>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
-            <song>[SONGNAME]</song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
         </side>
     </record>
 </record_rack>

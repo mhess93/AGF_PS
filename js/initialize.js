@@ -14,9 +14,7 @@ var recordsModule;
 
 $(document).ready(function(){
 
-
-
-    var INIT_VERBOSE = true;
+    var INIT_VERBOSE = false;
     function initLogIfVerbose(message) {
         if(INIT_VERBOSE){
             console.log(message);
@@ -60,7 +58,7 @@ $(document).ready(function(){
             side = [];
 
             for (var j = 0; j < sideToParse.length; j++) {
-                side[j] = sideToParse[j].childNodes[0].nodeValue;
+                side[j] = sideToParse[j].getElementsByTagName('title')[0].childNodes[0].nodeValue;
             }
 
             record['side_a'] = side;
@@ -69,7 +67,7 @@ $(document).ready(function(){
             side = [];
 
             for (var j = 0; j < sideToParse.length; j++) {
-                side[j] = sideToParse[j].childNodes[0].nodeValue;
+                side[j] = sideToParse[j].getElementsByTagName('title')[0].childNodes[0].nodeValue;
             }
 
             record['side_b'] = side;
@@ -110,9 +108,8 @@ $(document).ready(function(){
             recordContainer = recordList.children().last();
             recordContainer.attr('list-id', i);
             recordContainer.click(function(evt){
-                console.log(recordsModule.getIndex($(evt.target).attr('list-id')));
-                displayInPreview(recordsModule.getIndex($(evt.target).attr('list-id')));
-            })
+                displayInPreview(recordsModule.getIndex($(evt.target).attr('list-id')), $(evt.target).attr('list-id'));
+            });
             url = 'url(\" images/'+ record['record_cover']+'")';
             recordContainer.css('background-image',url );
 
@@ -120,7 +117,7 @@ $(document).ready(function(){
         initLogIfVerbose("------------End------------");
     }
 
-    function displayInPreview(record){
+    function displayInPreview(record, index){
         initLogIfVerbose("------------Previewing Record------------");
         var previewContainer, side, sidePreview;
 
@@ -128,12 +125,17 @@ $(document).ready(function(){
         previewContainer.children('.preview-album-cover')
             .css('background-image', 'url(\" images/'+ record['record_cover']+'")');
 
+        previewContainer.children('.preview-album-information')
+            .html('<b>' + record['record_name'] + ', ' + record['artist'] + '</b>');
+
         side = record['side_a'];
 
         sidePreview = $('.preview-side-A ul');
         sidePreview.children().remove();
 
-        sidePreview.append('<h4>Side A</h4>')
+        sidePreview.append('<h4>Side A</h4><div class="play-button side-A">\n' +
+            '                        <a href="#"> <img src="images/play-button.svg"></a>\n' +
+            '                    </div>');
         for(var i = 0; i < side.length; i++){
             sidePreview.append('<li>'+ side[i] +'</li>')
         }
@@ -143,10 +145,25 @@ $(document).ready(function(){
         sidePreview = $('.preview-side-B ul');
         sidePreview.children().remove();
 
-        sidePreview.append('<h4>Side B</h4>')
+        sidePreview.append('<h4>Side B</h4> <div class="play-button side-B">\n' +
+            '                        <a href="#"> <img src="images/play-button.svg"></a>\n' +
+            '                    </div>');
         for(var i = 0; i < side.length; i++){
             sidePreview.append('<li>'+ side[i] +'</li>')
         }
+
+
+        $('.play-button.side-A').click(function(){
+            console.log("Play Side A");
+            RecordPlayer.play(index, 0, 0);
+            $('.controls.left-side').toggleClass('active');
+        });
+
+        $('.play-button.side-B').click(function(){
+            console.log("Play Side B");
+            RecordPlayer.play(index, 1, 0);
+            $('.controls.left-side').toggleClass('active');
+        });
     }
 
     var parseLabview = function(xml){

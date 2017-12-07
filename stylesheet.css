@@ -499,6 +499,11 @@ div.centered-container{
 
 .song-selection-container h3{
     margin: 0;
+    font-size: 22px;
+}
+
+.song-selection-container li:hover{
+    background-color: #1A7FEF;
 }
 
 .repeat-button{
@@ -530,6 +535,8 @@ div.centered-container{
 .list-with-title h4{
     margin-top: 15px;
     margin-bottom: 7px;
+    font-size: 20px;
+    display: inline-block;
 }
 
 .misc-control{
@@ -571,15 +578,16 @@ div.centered-container{
     margin-left: 4px;
     background-position: center;
     background-size: 100%;
+    cursor: pointer;
 }
 
 .preview-wrapper{
     margin: 20px;
-    height: calc(40% - 40px);
+    height: calc(40% - 20px);
 }
 
-.preview-wrapper div{
-    height: 90%;
+.preview-wrapper > div{
+    height: 85%;
     display: inline-block;
     vertical-align: top;
     width: 33%
@@ -591,7 +599,9 @@ div.centered-container{
 
 div.preview-album-information{
     width: 100%;
-    height: 10%;
+    height: 15%;
+    font-size: 20px;
+    text-align: center;
 }
 
 div.preview-album-cover{
@@ -599,9 +609,17 @@ div.preview-album-cover{
     margin: 0 30px;
     background-size: 100%;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
-
+.preview-wrapper .play-button {
+    height: 40px;
+    width: 40px;
+    background-image: url('images/play-button.svg');
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
+}
 
 *.unselectable {
     -moz-user-select: -moz-none;
