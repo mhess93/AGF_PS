@@ -552,7 +552,7 @@ div.centered-container{
 .repeat-button.active{
     /* background-image: url("images/refresh_white.png"); */
     background-color: #34F841;
-    border-radius: 37.5px;
+    border-radius: 5px;
 }
 
 .reload-button{
@@ -564,7 +564,7 @@ div.centered-container{
 .reload-button.active{
     /* background-image: url("images/reload_white.png"); */
     background-color: #34F841;
-    border-radius: 37.5px;
+    border-radius: 5px;
 }
 
 .auto-button{
@@ -576,7 +576,7 @@ div.centered-container{
 .auto-button.active{
     /* background-image: url("images/auto_white.png"); */
     background-color: #34F841;
-    border-radius: 37.5px;
+    border-radius: 5px;
 }
 
 .list-with-title ul{
