@@ -17,12 +17,12 @@ $(document).ready(function(){
         RecordPlayer.stop();
     });
 
-    $('.song-selection-header').children('div').click(function(evt){
+    $('.playmode-button').click(function(evt){
         var target = $(evt.target);
         if(target.hasClass('active')){
             target.removeClass('active');
         }else{
-            $('.song-selection-header').children('div').removeClass('active');
+            $('.playmode-button').removeClass('active');
             target.addClass('active');
         }
     });

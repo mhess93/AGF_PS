@@ -438,7 +438,7 @@ div.centered-container{
     background-size: 250px;
 }
 
-.playlist-controls{
+.sidebar-container{
 	height:70%;
     padding-top: 1px;
     margin-top: -1px;
@@ -454,10 +454,6 @@ div.centered-container{
     height: 80px;
     width: 80px;
     background-repeat:no-repeat;
-}
-
-.playlist-button + .playlist-button{
-    margin-top: 5px;
 }
 
 .outer{
@@ -512,11 +508,7 @@ div.centered-container{
     font-weight: bold;
     border-radius: 5px 5px 0 0;
     padding-left: 20px;
-}
-
-.song-selection-header *{
-    display: inline-block;
-    vertical-align: top;
+    text-align: center;
 }
 
 .song-selection-header h2{
@@ -524,10 +516,14 @@ div.centered-container{
 
 }
 
-.song-selection-header div{
-    margin: 7px;
+.song-selection-header .playmode-button{
     height: 46px;
     width: 46px;
+    display: inline-block;
+}
+
+.playmode-button + .playmode-button{
+    margin-left: 20px;
 }
 
 .song-selection small{
