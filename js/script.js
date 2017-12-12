@@ -9,7 +9,19 @@ $(document).ready(function(){
         $('.controls.left-side').toggleClass('active');
     });
 
+    $('.song-controls').find('.play-button').click(function(){
+        RecordPlayer.start();
+    });
+
+    $('.song-controls').find('.stop-button').click(function(){
+        RecordPlayer.stop();
+    });
+
+    $('.song-selection-header').children('div').click(function(evt){
+        $(evt.target).toggleClass('active');
+    });
 });
+
 
 /*
 	Displays the correct tab when clicking on the tabbutton
@@ -59,8 +71,6 @@ function openOuterTab(evt, tabName) {
 	// Get all elements with class="tabcontent" and hide them
 	tabContent = $(".outer-tab-content");
     tabContent.removeClass('active');
-
-
 
     // Get all elements with class="tablinks" and remove the class "active"
     tablinks = $(".tab-links.control-button");

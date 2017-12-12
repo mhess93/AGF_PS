@@ -20,35 +20,52 @@ $(document).ready(function(){
             var songSelectionContainer =  $('.song-selection-container');
             var record = recordsModule.getIndex(currentRecord);
             var sideList, recordSideList;
-            songSelectionContainer.children('h3').html(record['record_name']);
-            sideList = songSelectionContainer.children('.side-A').children('ul');
+
+            songSelectionContainer
+                .children('h3')
+                .html(record['record_name']);
+
+            sideList = songSelectionContainer
+                .children('.side-A')
+                .children('ul');
+
             recordSideList= record['side_a'];
-            sideList.children().remove();
+            sideList
+                .children()
+                .remove();
 
             for(var i = 0; i < recordSideList.length; i++){
-
                 sideList.append('<li>' + i + '. ' + recordSideList[i] + '</li>')
                 if(currentSide === 0 && i === 0){
                     sideList.children().last().append('  <small>playing</small>')
                 }
             }
 
-            sideList = songSelectionContainer.children('.side-B').children('ul');
+            sideList = songSelectionContainer
+                .children('.side-B')
+                .children('ul');
+
             recordSideList= record['side_b'];
-            sideList.children().remove();
+
+            sideList
+                .children()
+                .remove();
 
             for(var i = 0; i < recordSideList.length; i++){
-
                 sideList.append('<li>' + i + '. ' + recordSideList[i] + '</li>')
                 if(currentSide === 1 && i === 0){
                     sideList.children().last().append(' <small>playing</small>')
                 }
             }
+
+            NotificationModule.displayNotification("Spiele <b>" + record['record_name'] + "</b> from <b>" + record['artist'] + "</b>, Seite " +
+                (currentSide === 0 ? 'A' : 'B'));
         }
 
         return{
             play: function(record, side){
-                var wrongParameters = false, error = "";
+                var wrongParameters = false,
+                    error = "";
 
                 if(!isInt(record)){
                     wrongParameters = true;
@@ -62,6 +79,7 @@ $(document).ready(function(){
                     console.log("Wrong parameters: " + error);
                 }
                 if(currentRecord === record && currentSide === side){
+                    NotificationModule.displayWarning("Bereits am Spielen");
                     return;
                 }
                 currentRecord = record;
@@ -71,18 +89,32 @@ $(document).ready(function(){
                 displayInPlayingContainer();
             },
             start: function(){
+                if(playing){
+                    return 0;
+                }
                 playing = true;
+                NotificationModule.displayNotification("Start");
             },
             stop: function(){
+                if(! playing){
+                    return 0;
+                }
                 playing = false;
+                NotificationModule.displayWarning("Stop");
+            },
+            togglePlaying: function() {
+                if(playing){
+                    this.stop();
+                }
+                else{
+                    this.start();
+                }
             },
             toString: function(){
                 return "Record: " + currentRecord + ", Side: " + currentSide + " , Song: " + currentSong + " ,Playing: " + playing;
             }
         }
     })();
-    // Short-circuiting, and saving a parse operation
 
     window.RecordPlayer = recordPlayer;
-
 });

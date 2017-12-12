@@ -4,11 +4,6 @@
     sees the user interface should be done here. (E.G eventListeners)
  */
 
-
-
-
-
-
 var variableModule;
 var recordsModule;
 

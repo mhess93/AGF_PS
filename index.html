@@ -7,16 +7,16 @@
 	<script type="text/javascript" src="js/propeller.js"></script>
     <script>
         var activeIndices = [];
-
     </script>
 	<script type="text/javascript" src="js/initialize.js"></script>
-	<script type="text/javascript" src="js/recordPlayer.js"></script>
+	<script type="text/javascript" src="js/RecordPlayer.js"></script>
+	<script type="text/javascript" src="js/Notifier.js"></script>
+	<script type="text/javascript" src="js/TwinCatConnector.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
-    <script type="text/javascript" src="js/vinylRotation.js"></script>
 	<script type="text/javascript" src="js/twinCatCommunication.js"></script>
     <script type="text/javascript" src="js/tabDependingReading.js"></script>
 	<meta charset="utf-8">
-	<title>AGRAR Awsome Thing</title>
+	<title>AGRAR PS</title>
 </head>
 <body>
 	<div class="body-overlay init-element"></div>
@@ -158,6 +158,7 @@
 		</footer>
 	</div>
 	<div id="player-view" class="body-wrapper active">
+		<div class="notification-header"></div>
 		<header class="player-view-header">
 			<div class="mantra">
                 <h1>Harder better faster stronger</h1>
@@ -194,8 +195,8 @@
                         <div class="button-container unselectable">
                             <a href="#"><img src="images/left-arrow.svg"> </a>
                         </div>
-                        <div class="button-container unselectable">
-                            <a href="#"><img src="images/play-button.svg"> </a>
+                        <div class="button-container unselectable ">
+                            <a class="play-button" href="#"><img src="images/play-button.svg"> </a>
                         </div>
                         <div class="button-container unselectable">
                             <a href="#"><img src="images/next.svg"> </a>
@@ -211,7 +212,7 @@
                             <a href="#"><img src="images/pause.svg"> </a>
                         </div>
                         <div class="button-container unselectable">
-                            <a href="#"><img src="images/stop.svg"> </a>
+                            <a class="stop-button" href="#"><img src="images/stop.svg"> </a>
                         </div>
                         <div class="button-container unselectable">
                             <a href="#"><img src="images/garbage.svg"> </a>
@@ -227,9 +228,9 @@
                 <div class="song-selection">
 					<div class="song-selection-header">
 						<h2>Modus</h2>
-						<div class="repeat-button playlist-button"></div>
-						<div class="reload-button playlist-button"></div>
-						<div class="auto-button playlist-button"></div>
+						<div class="repeat-button playlist-button unselectable"></div>
+						<div class="reload-button playlist-button unselectable"></div>
+						<div class="auto-button playlist-button unselectable"></div>
 					</div>
 					<div class="song-selection-container">
 						<h3>Kein Album Ausgewählt</h3>
