@@ -18,7 +18,13 @@ $(document).ready(function(){
     });
 
     $('.song-selection-header').children('div').click(function(evt){
-        $(evt.target).toggleClass('active');
+        var target = $(evt.target);
+        if(target.hasClass('active')){
+            target.removeClass('active');
+        }else{
+            $('.song-selection-header').children('div').removeClass('active');
+            target.addClass('active');
+        }
     });
 });
 
