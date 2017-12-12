@@ -102,8 +102,20 @@
                 <title>[SONGNAME]</title>
                 <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
             </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
         </side>
         <side>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
             <song>
                 <title>[SONGNAME]</title>
                 <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>

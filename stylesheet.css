@@ -331,6 +331,19 @@ header.player-view-header{
 	height: 100%;
 }
 
+.notification-header{
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    width: 1416px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    border-radius: 0 0 5px 5px;
+    display: none;
+    text-align: center;
+}
+
 .mantra{
 	width: 70%;
 	float:left;
@@ -507,18 +520,34 @@ div.centered-container{
 }
 
 .repeat-button{
-    background-image: url("images/refresh_white.png");
+    background-image: url("images/refresh.svg");
     margin-left: 20px;
     background-position: center;
     background-size: 46px;
 }
 
+.repeat-button.active{
+    background-image: url("images/refresh_white.png");
+}
+
 .reload-button{
     background-image: url("images/reload.svg");
+    background-position: center;
+    background-size: 46px;
+}
+
+.reload-button.active{
+    background-image: url("images/reload_white.png");
 }
 
 .auto-button{
     background-image: url("images/auto.svg");
+    background-position: center;
+    background-size: 46px;
+}
+
+.auto-button.active{
+    background-image: url("images/auto_white.png");
 }
 
 .list-with-title ul{
@@ -602,6 +631,8 @@ div.preview-album-information{
     height: 15%;
     font-size: 20px;
     text-align: center;
+    border-top: 2px solid black;
+    line-height:44px;
 }
 
 div.preview-album-cover{
