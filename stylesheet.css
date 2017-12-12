@@ -450,6 +450,30 @@ div.centered-container{
     position: relative; /* To center the child div */
 }
 
+.playlist-control-buttons .inner div{
+    height: 80px;
+    width: 80px;
+    background-repeat:no-repeat;
+}
+
+.playlist-button + .playlist-button{
+    margin-top: 5px;
+}
+
+.outer{
+    position: relative;
+    height: 100%;
+}
+
+.inner{
+    width: 100%;
+    height: 50%;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+
 .vertically-centered-container{
     width: 90%;
     height: 243px;
@@ -521,33 +545,38 @@ div.centered-container{
 
 .repeat-button{
     background-image: url("images/refresh.svg");
-    margin-left: 20px;
     background-position: center;
-    background-size: 46px;
+    background-size: 75px;
 }
 
 .repeat-button.active{
-    background-image: url("images/refresh_white.png");
+    /* background-image: url("images/refresh_white.png"); */
+    background-color: #34F841;
+    border-radius: 5px;
 }
 
 .reload-button{
     background-image: url("images/reload.svg");
     background-position: center;
-    background-size: 46px;
+    background-size: 75px;
 }
 
 .reload-button.active{
-    background-image: url("images/reload_white.png");
+    /* background-image: url("images/reload_white.png"); */
+    background-color: #34F841;
+    border-radius: 5px;
 }
 
 .auto-button{
     background-image: url("images/auto.svg");
     background-position: center;
-    background-size: 46px;
+    background-size: 75px;
 }
 
 .auto-button.active{
-    background-image: url("images/auto_white.png");
+    /* background-image: url("images/auto_white.png"); */
+    background-color: #34F841;
+    border-radius: 5px;
 }
 
 .list-with-title ul{

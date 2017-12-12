@@ -20,6 +20,10 @@ $(document).ready(function(){
     $('.song-selection-header').children('div').click(function(evt){
         $(evt.target).toggleClass('active');
     });
+
+    $('.playlist-control-buttons').children('.inner').children('div').click(function(evt){
+        $(evt.target).toggleClass('active');
+    });
 });
 
 
