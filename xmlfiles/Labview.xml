@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://www.plcopen.org/xml/tc6_0200">
-  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.10.30" creationDateTime="2017-11-09T14:50:50.6209258" />
-  <contentHeader name="Test" modificationDateTime="2017-11-09T14:50:50.624425">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.8.40" creationDateTime="2018-01-01T16:41:44.0857367" />
+  <contentHeader name="TestPLC" modificationDateTime="2018-01-01T16:41:44.0857367">
     <coordinateInfo>
       <fbd>
         <scaling x="1" y="1" />
@@ -39,14 +39,6 @@
             <BOOL />
           </type>
         </variable>
-        <variable name="gui_Popup_VAR_AA">
-          <type>
-            <string />
-          </type>
-          <documentation>
-            <xhtml xmlns="http://www.w3.org/1999/xhtml">gui_Popup_VAR_AA :STRING;  (optional) Diese Variable enthält einen String welcher den String "VAR_AA" (Platzhalter) im Meldungstext ersetzt</xhtml>
-          </documentation>
-        </variable>
         <variable name="gui_ZustandMaschine">
           <type>
             <INT />
@@ -76,6 +68,71 @@
             <REAL />
           </type>
         </variable>
+        <variable name="gui_Play">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_Stop">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_Skipback">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_Skipforward">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_Rack">
+          <type>
+            <INT />
+          </type>
+        </variable>
+        <variable name="gui_Side">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_Song">
+          <type>
+            <INT />
+          </type>
+        </variable>
+        <variable name="gui_Mute">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_IncreaseVolume">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_DecreaseVolume">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_ActRack">
+          <type>
+            <INT />
+          </type>
+        </variable>
+        <variable name="gui_ActSide">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_ActSong">
+          <type>
+            <INT />
+          </type>
+        </variable>
         <addData>
           <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
             <Attributes>
@@ -95,12 +152,24 @@
 VAR_GLOBAL	
 	gui_ErrorMessages				:DINT;
 	gui_Acknowledge					:BOOL;
-	gui_Popup_VAR_AA				:STRING;	(*gui_Popup_VAR_AA :STRING;  (optional) Diese Variable enthält einen String welcher den String "VAR_AA" (Platzhalter) im Meldungstext ersetzt*)
 	gui_ZustandMaschine				:INT;		(*0: Initialisierung, 1: Stopp, aber alles OK, 2: Produktion automatisch, 3: Schrittbetrieb, 4: Fehler, 5: Manuellbetrieb, 6: Notaus gedrückt, *)
 	gui_UserLevel					:INT;		(*Opérateur, Réglage, Maintenance*)
 	gui_UserLevelKeySwitchOn		:BOOL;		(*TRUE, wenn Schlüssel auf Service gedreht ist*)
 	gui_AktPosAchseZ				:REAL;
-
+	gui_Play						:BOOL;		
+	gui_Stop						:BOOL;
+	gui_Skipback					:BOOL;
+	gui_Skipforward					:BOOL;
+	gui_Rack						:INT;
+	gui_Side						:BOOL;
+	gui_Song						:INT;
+	gui_Mute						:BOOL;
+	gui_IncreaseVolume				:BOOL;
+	gui_DecreaseVolume				:BOOL;
+	gui_ActRack						:INT;
+	gui_ActSide						:BOOL;
+	gui_ActSong						:INT;
+	
 END_VAR
 </xhtml>
             </InterfaceAsPlainText>

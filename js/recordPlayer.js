@@ -1,11 +1,9 @@
 $(document).ready(function(){
+
     var recordPlayer = (function(){
         var currentRecord = null,
             currentSide = null,
-            currentSong = null,
-            playing = false,
-            adsWebService = null,
-            STARTING_POINT = 0;
+            currentSong = null;
 
         function isInt(value) {
             var x;
@@ -16,10 +14,13 @@ $(document).ready(function(){
             return (x | 0) === x;
         }
 
-        function displayInPlayingContainer(){
-            var songSelectionContainer =  $('.song-selection-container');
-            var record = recordsModule.getIndex(currentRecord);
-            var sideList, recordSideList;
+        function displayInPlayingContainer(recordNr,side,song){
+            var record = RecordsModule.getIndex(recordNr);
+            var songSelectionContainer =  $('.song-selection-container'),
+                sideList,
+                recordSideList,
+                displayedIndex,
+                elementToAppend;
 
             songSelectionContainer
                 .children('h3')
@@ -35,9 +36,14 @@ $(document).ready(function(){
                 .remove();
 
             for(var i = 0; i < recordSideList.length; i++){
-                sideList.append('<li>' + i + '. ' + recordSideList[i] + '</li>')
-                if(currentSide === 0 && i === 0){
-                    sideList.children().last().append('  <small>playing</small>')
+                displayedIndex = i + 1;
+                elementToAppend = $('<li>' + displayedIndex + '. ' + recordSideList[i] + '</li>');
+                sideList.append(elementToAppend);
+                elementToAppend.click({index: displayedIndex}, function(event){
+                    fetchRecord(recordNr, 0, event.data.index);
+                });
+                if(side === 0 && displayedIndex === song){
+                    sideList.children().last().addClass("active");
                 }
             }
 
@@ -49,70 +55,101 @@ $(document).ready(function(){
 
             sideList
                 .children()
+
                 .remove();
 
             for(var i = 0; i < recordSideList.length; i++){
-                sideList.append('<li>' + i + '. ' + recordSideList[i] + '</li>')
-                if(currentSide === 1 && i === 0){
-                    sideList.children().last().append(' <small>playing</small>')
+                displayedIndex = i + 1;
+                elementToAppend = $('<li>' + displayedIndex + '. ' + recordSideList[i] + '</li>');
+                sideList.append(elementToAppend);
+                elementToAppend.click({index: displayedIndex}, function(event){
+                    fetchRecord(recordNr, 1, event.data.index);
+                });
+                if(side === 1 && displayedIndex === song){
+                    sideList.children().last().addClass("active");
                 }
             }
-
-            NotificationModule.displayNotification("Spiele <b>" + record['record_name'] + "</b> from <b>" + record['artist'] + "</b>, Seite " +
-                (currentSide === 0 ? 'A' : 'B'));
         }
 
-        return{
-            play: function(record, side){
+        function sideToString(){
+            return "side_" + (currentSide === 0 ? 'a' : 'b');
+        }
+
+        var fetchRecord = function(recordNr, side, song){
+            /*
                 var wrongParameters = false,
                     error = "";
 
-                if(!isInt(record)){
+                if(!isInt(recordNr)){
                     wrongParameters = true;
-                    error += record + ", ";
+                    error += "Records: " +  recordNr + ", ";
                 }
                 if(!isInt(side) || side < 0 || side > 1){
                     wrongParameters = true;
-                    error += side + ", ";
+                    error += "Side: " + side + ", ";
+                }
+                if(song > RecordsModule.getIndex(recordNr)[sideToString()].length || song < 1){
+                    wrongParameters = true;
+                    error += "Song: " +song + ", ";
                 }
                 if(wrongParameters){
                     console.log("Wrong parameters: " + error);
+                    return;
                 }
-                if(currentRecord === record && currentSide === side){
+                if(currentRecord === recordNr && currentSide === side && currentSong === song){
                     NotificationModule.displayWarning("Bereits am Spielen");
                     return;
                 }
+                */
+
+                /*
                 currentRecord = record;
                 currentSide = side;
-                currentSong = STARTING_POINT;
+                currentSong = song;
                 playing = true;
-                displayInPlayingContainer();
+                */
+                TwincatConnectionModule.fetchRecord(recordNr,side,song);
+                var record = RecordsModule.getIndex(recordNr);
+                displayInPlayingContainer(recordNr,side,song);
+                NotificationModule.displayNotification("Spiele <b>" + record['record_name'] + "</b> from <b>" + record['artist'] + "</b>, Seite " +
+                    (side === 0 ? 'A' : 'B'));
+            };
+
+        var toString =  function(){
+            return "Record: " + currentRecord + ", Side: " + currentSide + " , Song: " + currentSong;
+        };
+
+        return{
+            fetchRecord: fetchRecord,
+            playSide: function(record, side){
+                fetchRecord(record, side, 1);
             },
             start: function(){
-                if(playing){
-                    return 0;
-                }
-                playing = true;
                 NotificationModule.displayNotification("Start");
+                TwincatConnectionModule.start();
             },
             stop: function(){
-                if(! playing){
-                    return 0;
-                }
-                playing = false;
                 NotificationModule.displayWarning("Stop");
+                TwincatConnectionModule.stop();
             },
-            togglePlaying: function() {
-                if(playing){
-                    this.stop();
-                }
-                else{
-                    this.start();
-                }
+            skipForward: function(){
+                NotificationModule.displayWarning("Vorwärts");
+                TwincatConnectionModule.skipForward();
             },
-            toString: function(){
-                return "Record: " + currentRecord + ", Side: " + currentSide + " , Song: " + currentSong + " ,Playing: " + playing;
-            }
+            skipBackward: function(){
+                NotificationModule.displayWarning("Rückwärts");
+                TwincatConnectionModule.skipBackward();
+            },
+            increaseVolume: function(){
+                console.log("Increase Volume");
+                TwincatConnectionModule.increaseVolume();
+            },
+
+            decreaseVolume: function(){
+                console.log("Decrease Volume");
+                TwincatConnectionModule.decreaseVolume();
+            },
+            toString: toString
         }
     })();
 

@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var notificationModule = (function(){
 
-        var notificationHeader = $('.notification-header');
+        var notificationHeader;
 
         return{
             displayNotification: function (message){
@@ -35,6 +35,10 @@ $(document).ready(function(){
                         .slideUp()
                         .dequeue();
                 });
+            },
+            init: function(){
+                notificationHeader = $('.notification-header');
+                initialized("Notification Module");
             }
         }
     })();

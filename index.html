@@ -4,17 +4,15 @@
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<script type="text/javascript" src="js/TcAdsWebService.js"></script>
 	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
-	<script type="text/javascript" src="js/propeller.js"></script>
-    <script>
-        var activeIndices = [];
-    </script>
-	<script type="text/javascript" src="js/initialize.js"></script>
+	<script type="text/javascript" src="js/knockout.js"></script>
+	<!--<script type="text/javascript" src="js/propeller.js"></script>-->
+	<script type="text/javascript" src="js/TwinCatConnector.js"></script>
+	<script type="text/javascript" src="js/RecordsModule.js"></script>
 	<script type="text/javascript" src="js/RecordPlayer.js"></script>
 	<script type="text/javascript" src="js/Notifier.js"></script>
-	<script type="text/javascript" src="js/TwinCatConnector.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript" src="js/twinCatCommunication.js"></script>
-    <script type="text/javascript" src="js/tabDependingReading.js"></script>
+	<script type="text/javascript" src="js/initialize.js"></script>
+	<script type="text/javascript" src="js/knockoutTry.js"></script>
+
 	<meta charset="utf-8">
 	<title>AGRAR PS</title>
 </head>
@@ -193,13 +191,13 @@
                             <a href="#"><img src="images/rewind.svg"> </a>
                         </div>
                         <div class="button-container unselectable">
-                            <a href="#"><img src="images/left-arrow.svg"> </a>
+                            <a id="skip-backward-button" href="#"><img src="images/left-arrow.svg"> </a>
                         </div>
                         <div class="button-container unselectable ">
                             <a class="play-button" href="#"><img src="images/play-button.svg"> </a>
                         </div>
                         <div class="button-container unselectable">
-                            <a href="#"><img src="images/next.svg"> </a>
+                            <a id="skip-forward-button" href="#"><img src="images/next.svg"> </a>
                         </div>
                         <div class="button-container unselectable">
                             <a href="#"><img src="images/fast-forward.svg"> </a>
@@ -232,7 +230,7 @@
 							<div class="auto-button playmode-button unselectable"></div>
 						</div>
 					</div>
-					<div class="song-selection-container">
+					<div class="song-selection-container record-preview">
 						<h3>Kein Album Ausgewählt</h3>
 						<div class="list-with-title side-A">
 							<h4>Seite A</h4>
@@ -251,11 +249,11 @@
             </div>
 			<section class="misc-control">
                 <div class="top-row">
-                    <div class="button-container">
-                        <a href="#"> <img src="images/plus.svg"></a>
+                    <div class="button-container prevent-contextmenu">
+                        <a id="increase-volume-button" href="#"> <img src="images/plus.svg"></a>
                     </div>
-                    <div class="button-container">
-                        <a href="#"> <img src="images/minus.svg"></a>
+                    <div class="button-container prevent-contextmenu">
+                        <a id="decrease-volume-button" href="#"> <img src="images/minus.svg"></a>
                     </div>
                     <div class="button-container">
                         <a href="#"> <img src="images/cancel.svg"></a>

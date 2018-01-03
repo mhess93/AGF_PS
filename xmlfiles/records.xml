@@ -6,6 +6,7 @@
         <record_cover>lunar-phase.jpg</record_cover>
         <rack_slot>1</rack_slot>
         <side>
+            <num_songs>[ANZAHL LIEDER PRO SEITE]</num_songs>
             <song>
                 <title>Energy Portal</title>
                 <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
@@ -16,6 +17,7 @@
             </song>
         </side>
         <side>
+            <num_songs>[ANZAHL LIEDER PRO SEITE]</num_songs>
             <song>
                 <title>Lunar Phase</title>
                 <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
@@ -40,6 +42,7 @@
         <record_cover>johnny_cash_createst_hits_3.jpg</record_cover>
         <rack_slot>2</rack_slot>
         <side>
+            <num_songs>[ANZAHL LIEDER PRO SEITE]</num_songs>
             <song>
                 <title> There Ain't No Good Chain Gang</title>
                 <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
@@ -62,6 +65,7 @@
             </song>
         </side>
         <side>
+            <num_songs>[ANZAHL LIEDER PRO SEITE]</num_songs>
             <song>
                 <title>I Wish I Was Crazy Again</title>
                 <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
@@ -90,6 +94,7 @@
         <record_cover>depeche_mode_personel_jesus.jpeg</record_cover>
         <rack_slot>3</rack_slot>
         <side>
+            <num_songs>[ANZAHL LIEDER PRO SEITE]</num_songs>
             <song>
                 <title>[SONGNAME]</title>
                 <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
@@ -112,6 +117,7 @@
             </song>
         </side>
         <side>
+            <num_songs>[ANZAHL LIEDER PRO SEITE]</num_songs>
             <song>
                 <title>[SONGNAME]</title>
                 <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
@@ -140,6 +146,7 @@
         <record_cover>sinatra_and_company.jpeg</record_cover>
         <rack_slot>4</rack_slot>
         <side>
+            <num_songs>[ANZAHL LIEDER PRO SEITE]</num_songs>
             <song>
                 <title>[SONGNAME]</title>
                 <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
@@ -154,6 +161,7 @@
             </song>
         </side>
         <side>
+            <num_songs>[ANZAHL LIEDER PRO SEITE]</num_songs>
             <song>
                 <title>[SONGNAME]</title>
                 <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
@@ -175,9 +183,22 @@
     <record>
         <record_name>[ALBUMNAME]</record_name>
         <artist>[NAME DES KÜNSTLERS]</artist>
-        <record_cover>[LINK ZUM ALBUMCOVER]</record_cover>
+        <record_cover>sinatra_and_company.jpeg</record_cover>
         <rack_slot>[NUMMER IM RACK DES PLATTENSPIELERS]</rack_slot>
         <side>
+            <num_songs>[ANZAHL LIEDER PRO SEITE]</num_songs>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
             <song>
                 <title>[SONGNAME] </title>
                 <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
@@ -192,6 +213,15 @@
             </song>
         </side>
         <side>
+            <num_songs>[ANZAHL LIEDER PRO SEITE]</num_songs>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
+            </song>
             <song>
                 <title>[SONGNAME] </title>
                 <radius>[RADIUS DES LIEDES AUF DER PLATTE]</radius>
