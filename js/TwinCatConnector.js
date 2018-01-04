@@ -24,6 +24,8 @@ $(document).ready(function(){
 
         var initStatus;
 
+        var nameToIndexTranslation = [];
+
         var init = function(){
             initStatus = 0;
             $.ajax({
@@ -51,8 +53,9 @@ $(document).ready(function(){
         function parseLabview(xml){
             var variableListXML = xml.getElementsByTagName("variable");
             var varEntry, name, type;
-            for(var i = 0; i < variableListXML.length; i++){
-                varEntry = variableListXML[i];
+
+            for(var i = 0; i < variableListXML.length - 5; i++){
+                varEntry = variableListXML[i + 5];
                 type = varEntry.childNodes[1].childNodes[1].nodeName;
                 name = "."+varEntry.getAttribute("name");
 
@@ -63,7 +66,34 @@ $(document).ready(function(){
                 varInfos[i]['handle'] = null;
                 varInfos[i]['typeSize'] = getSizeFromDataType(type);
                 varInfos[i]['value'] = null;
+                varInfos[i]['subscribers'] = [];
+                varInfos[i]['subscribe'] = function(subscriber){
+                    this.subscribers.push(subscriber);
+                }
+                varInfos[i]['update'] = function(newValue){
+                    console.log(this);
+                    if (arguments.length && this.value !== newValue) {
+                        this.value = newValue;
+                        for (var i = 0; i < this.subscribers.length; i++) {
+                            this.subscribers[i](this.value);
+                        }
+                    }
+
+                }
+
+                nameToIndexTranslation[name.split('_')[1]] = i;
             }
+
+            console.log(nameToIndexTranslation);
+            console.log(nameToIndexTranslation['Play']);
+
+            varInfos[3].subscribe(function(newValue){
+                console.log("Subsruber received: " + newValue);
+            });
+
+            varInfos[3].subscribe(function(newValue){
+                console.log("Subsruber 2 received: " + newValue);
+            });
 
         }
 
@@ -405,33 +435,37 @@ $(document).ready(function(){
             },
 
             start: function(){
-                writeData.push([6,1]);
+                //writeData.push([6,1]);
+                writeData.push([nameToIndexTranslation['Play'],true]);
             },
 
             stop: function(){
-                writeData.push([7,1]);
+                writeData.push([nameToIndexTranslation['Stop'],true]);
             },
 
             fetchRecord: function(record,side,song){
-                writeData.push([10,record], [11, side],[12, song]);
+                var recordIndex = nameToIndexTranslation['Rack'],
+                    sideIndex = nameToIndexTranslation['Side'],
+                    songIndex = nameToIndexTranslation['Song'];
+                writeData.push([recordIndex,record], [sideIndex, side],[songIndex, song]);
             },
 
             skipForward: function(){
-                writeData.push([9,1]);
+                writeData.push([nameToIndexTranslation['Skipforward'],true]);
             },
 
             skipBackward: function(){
-                writeData.push([8,1]);
+                writeData.push([nameToIndexTranslation['Skipback'],true]);
             },
 
             writeData: writeData,
 
             increaseVolume: function(){
-                writeData.push([14,1]);
+                writeData.push([nameToIndexTranslation['IncreaseVolume'],1]);
             },
 
             decreaseVolume: function(){
-                writeData.push([15,1]);
+                writeData.push([nameToIndexTranslation['DecreaseVolume'],1]);
             },
 
             /* DELETE */
