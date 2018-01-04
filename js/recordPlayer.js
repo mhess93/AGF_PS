@@ -71,6 +71,57 @@ $(document).ready(function(){
             }
         }
 
+        function displayRecordInPlayingContainer(recordNr){
+            var record = RecordsModule.getIndex(recordNr);
+            var songSelectionContainer =  $('.song-selection-container'),
+                sideList,
+                recordSideList,
+                displayedIndex,
+                elementToAppend;
+
+            songSelectionContainer
+                .children('h3')
+                .html(record['record_name']);
+
+            sideList = songSelectionContainer
+                .children('.side-A')
+                .children('ul');
+
+            recordSideList= record['side_a'];
+            sideList
+                .children()
+                .remove();
+
+            for(var i = 0; i < recordSideList.length; i++){
+                displayedIndex = i + 1;
+                elementToAppend = $('<li>' + displayedIndex + '. ' + recordSideList[i] + '</li>');
+                sideList.append(elementToAppend);
+                elementToAppend.click({index: displayedIndex}, function(event){
+                    fetchRecord(recordNr, 0, event.data.index);
+                });
+            }
+
+            sideList = songSelectionContainer
+                .children('.side-B')
+                .children('ul');
+
+            recordSideList= record['side_b'];
+
+            sideList
+                .children()
+
+                .remove();
+
+            for(var i = 0; i < recordSideList.length; i++){
+                displayedIndex = i + 1;
+                elementToAppend = $('<li>' + displayedIndex + '. ' + recordSideList[i] + '</li>');
+                sideList.append(elementToAppend);
+                elementToAppend.click({index: displayedIndex}, function(event){
+                    fetchRecord(recordNr, 1, event.data.index);
+                });
+            }
+        }
+
         function sideToString(){
             return "side_" + (currentSide === 0 ? 'a' : 'b');
         }
@@ -110,7 +161,7 @@ $(document).ready(function(){
                 */
                 TwincatConnectionModule.fetchRecord(recordNr,side,song);
                 var record = RecordsModule.getIndex(recordNr);
-                displayInPlayingContainer(recordNr,side,song);
+                //displayInPlayingContainer(recordNr,side,song);
                 NotificationModule.displayNotification("Spiele <b>" + record['record_name'] + "</b> from <b>" + record['artist'] + "</b>, Seite " +
                     (side === 0 ? 'A' : 'B'));
             };
@@ -120,6 +171,9 @@ $(document).ready(function(){
         };
 
         return{
+
+            displayRecordInPlayingContainer: displayRecordInPlayingContainer,
+
             fetchRecord: fetchRecord,
             playSide: function(record, side){
                 fetchRecord(record, side, 1);
@@ -149,6 +203,58 @@ $(document).ready(function(){
                 console.log("Decrease Volume");
                 TwincatConnectionModule.decreaseVolume();
             },
+
+            updatePlayingContainer: function(){
+                console.log("Update");
+                var newRecord = TwincatConnectionModule.getActRecord(),
+                    newSide = TwincatConnectionModule.getActSide(),
+                    newSong = TwincatConnectionModule.getActSong() - 1,
+                    sideList;
+
+                if (newRecord !== currentRecord) {
+                    currentRecord = newRecord;
+                    currentSide = newSide;
+                    currentSong = newSong;
+                    displayRecordInPlayingContainer(newRecord);
+
+                    if(newSide === 0){
+                        sideList = $('.song-selection-container').children('.side-A').find('li');
+                    }
+
+                    if(newSide === 1){
+                        sideList = $('.song-selection-container').children('.side-B').find('li');
+                    }
+                    $(sideList[newSong]).addClass('active');
+                }
+                else if(newSide !== currentSide){
+                    currentSide = newSide;
+                    currentSong = newSong;
+
+                    $('.song-selection-container').find('li').removeClass('active');
+
+                    if(newSide === 0){
+                        sideList = $('.song-selection-container').children('.side-A').find('li');
+                    }
+
+                    if(newSide === 1){
+                        sideList = $('.song-selection-container').children('.side-B').find('li');
+                    }
+                    $(sideList[newSong]).addClass('active');
+                }else{
+                    currentSong = newSong;
+                    if(newSide === 0){
+                        sideList = $('.song-selection-container').children('.side-A').find('li');
+                    }
+
+                    if(newSide === 1){
+                        sideList = $('.song-selection-container').children('.side-B').find('li');
+                    }
+
+                    sideList.removeClass('active');
+                    $(sideList[newSong]).addClass('active');
+                }
+            },
+
             toString: toString
         }
     })();

@@ -10,7 +10,7 @@ $(document).ready(function(){
         var general_timeout = 500;
 
         var readLoopID = null;
-        var readLoopDelay = 500;
+        var readLoopDelay = 100;
 
         var writeLoopID = null;
         var writeLoopDelay = readLoopDelay;
@@ -69,7 +69,7 @@ $(document).ready(function(){
                 varInfos[i]['subscribers'] = [];
                 varInfos[i]['subscribe'] = function(subscriber){
                     this.subscribers.push(subscriber);
-                }
+                };
                 varInfos[i]['update'] = function(newValue){
                     if (arguments.length && this.value !== newValue) {
                         this.value = newValue;
@@ -78,7 +78,7 @@ $(document).ready(function(){
                         }
                     }
 
-                }
+                };
 
                 nameToIndexTranslation[name.split('_')[1]] = i;
             }
@@ -233,7 +233,6 @@ $(document).ready(function(){
                             }
                         }
 
-                        var intValue, boolValue, varValue;
                         var value;
 
                         for(i = 0; i < varInfos.length; i++){
@@ -268,6 +267,8 @@ $(document).ready(function(){
                             //console.log("		Received: " + varInfos[i].name + " Value: " + value);
 
                         }
+
+
 
                     } else {
                         if (e.error.getTypeString() == "TcAdsWebService.ResquestError") {
@@ -473,6 +474,18 @@ $(document).ready(function(){
             },
 
             nameToIndex: nameToIndexTranslation,
+
+            getActSide: function(){
+                return varInfos[nameToIndexTranslation['Side']].value;
+            },
+
+            getActSong: function(){
+                return varInfos[nameToIndexTranslation['Song']].value;
+            },
+
+            getActRecord: function(){
+                return varInfos[nameToIndexTranslation['Rack']].value;
+            },
 
             /* DELETE */
             addToWrite: function(i,j){
