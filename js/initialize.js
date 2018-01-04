@@ -30,7 +30,6 @@ $(document).ready(function(){
     NotificationModule.init();
     RecordsModule.init();
     TwincatConnectionModule.init();
-    $(".init-element").remove();
 
 
     //TwincatConnectionModule.startReadWrite();
@@ -84,6 +83,10 @@ $(document).ready(function(){
 
     $('#decrease-volume-button').bind('touchend mouseup', function(){
         clearInterval(decreaseLoop);
+    });
+
+    $('#mute-button').click(function(){
+        TwincatConnectionModule.toggleMute();
     });
 
     $('.playmode-button').click(function(evt){

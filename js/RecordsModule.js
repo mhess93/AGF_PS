@@ -102,7 +102,7 @@ $(document).ready(function(){
                 '                        <a href="#"> <img src="images/play-button.svg"></a>\n' +
                 '                    </div>');
             for(var i = 0; i < side.length; i++){
-                sidePreview.append('<li>'+ side[i] +'</li>')
+                sidePreview.append('<li>'+ (i + 1)+ ". " + side[i] +'</li>')
             }
 
             side = record['side_b'];
@@ -114,7 +114,7 @@ $(document).ready(function(){
                 '                        <a href="#"> <img src="images/play-button.svg"></a>\n' +
                 '                    </div>');
             for(i = 0; i < side.length; i++){
-                sidePreview.append('<li>'+ side[i] +'</li>')
+                sidePreview.append('<li>'+ (i + 1)+ ". " + side[i] +'</li>')
             }
 
 

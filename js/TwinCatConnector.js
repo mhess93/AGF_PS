@@ -3,9 +3,9 @@ $(document).ready(function(){
     var twincatConnection = (function(){
         var status = 0;
         var varInfos = [];
-        var NETID = ""; // Empty string for local machine;
+        var NETID = "192.168.1.128.1.1"; // Empty string for local machine;
         var PORT = "851"; // PLC Runtime
-        var SERVICE_URL = "http://localhost/TcAdsWebService/TcAdsWebService.dll"; // HTTP path to the TcAdsWebService;
+        var SERVICE_URL = "http://192.168.1.128/TcAdsWebService/TcAdsWebService.dll"; // HTTP path to the TcAdsWebService;
         var client;
         var general_timeout = 500;
 
@@ -54,8 +54,8 @@ $(document).ready(function(){
             var variableListXML = xml.getElementsByTagName("variable");
             var varEntry, name, type;
 
-            for(var i = 0; i < variableListXML.length - 5; i++){
-                varEntry = variableListXML[i + 5];
+            for(var i = 0; i < variableListXML.length; i++){
+                varEntry = variableListXML[i];
                 type = varEntry.childNodes[1].childNodes[1].nodeName;
                 name = "."+varEntry.getAttribute("name");
 
@@ -71,7 +71,6 @@ $(document).ready(function(){
                     this.subscribers.push(subscriber);
                 }
                 varInfos[i]['update'] = function(newValue){
-                    console.log(this);
                     if (arguments.length && this.value !== newValue) {
                         this.value = newValue;
                         for (var i = 0; i < this.subscribers.length; i++) {
@@ -84,16 +83,6 @@ $(document).ready(function(){
                 nameToIndexTranslation[name.split('_')[1]] = i;
             }
 
-            console.log(nameToIndexTranslation);
-            console.log(nameToIndexTranslation['Play']);
-
-            varInfos[3].subscribe(function(newValue){
-                console.log("Subsruber received: " + newValue);
-            });
-
-            varInfos[3].subscribe(function(newValue){
-                console.log("Subsruber 2 received: " + newValue);
-            });
 
         }
 
@@ -275,7 +264,7 @@ $(document).ready(function(){
                                     value = reader.readSTRING();
                                     break;
                             }
-                            varInfos[i].value=value;
+                            varInfos[i].update(value);
                             //console.log("		Received: " + varInfos[i].name + " Value: " + value);
 
                         }
@@ -415,7 +404,6 @@ $(document).ready(function(){
 
         };
 
-
         return{
             toString: function(){
                 return "Status: " + status;
@@ -468,12 +456,31 @@ $(document).ready(function(){
                 writeData.push([nameToIndexTranslation['DecreaseVolume'],1]);
             },
 
+            subscribe: function(name, updateFunction){
+                var index = nameToIndexTranslation[name];
+                if(!index){
+                    console.log(name + " doesnt match a variablename to subscribe to");
+                    return;
+                }
+                var variable = varInfos[index];
+                variable.subscribe(updateFunction);
+            },
+
+            toggleMute: function(){
+                var index = nameToIndexTranslation['Mute'];
+                var value = varInfos[index].value;
+                writeData.push([index, !value]);
+            },
+
+            nameToIndex: nameToIndexTranslation,
+
             /* DELETE */
             addToWrite: function(i,j){
                 writeData.push([i,j]);
             }
 
         }
+
     })();
     window.TwincatConnectionModule = twincatConnection;
 });
