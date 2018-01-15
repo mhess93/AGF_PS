@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_rack>
+    <record>
+        <record_name>Lunar Phase</record_name>
+        <artist>Heavenly Music Corporation</artist>
+        <record_cover>lunar-phase.jpg</record_cover>
+        <rack_slot>1</rack_slot>
+        <side>
+            <song>
+                <title>Energy Portal</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>St.Giga</title>
+                <radius>0.2</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Lunar Phase</title>
+                <radius>1.1</radius>
+            </song>
+            <song>
+                <title>Nautilus</title>
+                <radius>2.4</radius>
+            </song>
+            <song>
+                <title>Cloudless Light</title>
+                <radius>2.5</radius>
+            </song>
+            <song>
+                <title>Orgone</title>
+                <radius>2.8</radius>
+            </song>
+        </side>
+    </record>
+    <record>
+        <record_name>Greatest Hits Volume 3</record_name>
+        <artist>Johnny Cash</artist>
+        <record_cover>johnny_cash_createst_hits_3.jpg</record_cover>
+        <rack_slot>2</rack_slot>
+        <side>
+            <song>
+                <title> There Ain't No Good Chain Gang</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>Oney</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>Any Old Wind That Blows</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>Old Time Feeling</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>I Would Like To See You Again</title>
+                <radius>0.55</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>I Wish I Was Crazy Again</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>One Piece At A Time</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>After The Ball</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>Lady</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>It's All Over</title>
+                <radius>0.55</radius>
+            </song>
+        </side>
+    </record>
+    <record>
+        <record_name>Personal Jesus</record_name>
+        <artist>Depeche Mode</artist>
+        <record_cover>depeche_mode_personel_jesus.jpeg</record_cover>
+        <rack_slot>3</rack_slot>
+        <side>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+        </side>
+    </record>
+    <record>
+        <record_name>Sinatra &amp; Company</record_name>
+        <artist>Frank Sinatra</artist>
+        <record_cover>sinatra_and_company.jpeg</record_cover>
+        <rack_slot>4</rack_slot>
+        <side>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME]</title>
+                <radius>0.55</radius>
+            </song>
+        </side>
+    </record>
+    <record>
+        <record_name>[ALBUMNAME]</record_name>
+        <artist>[NAME DES KÜNSTLERS]</artist>
+        <record_cover>[LINK ZUM ALBUMCOVER]</record_cover>
+        <rack_slot>[NUMMER IM RACK DES PLATTENSPIELERS]</rack_slot>
+        <side>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>0.55</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>0.55</radius>
+            </song>
+            <song>
+                <title>[SONGNAME] </title>
+                <radius>0.55</radius>
+            </song>
+        </side>
+    </record>
+</record_rack>

@@ -15,7 +15,7 @@ $(document).ready(function(){
         initCount++;
         console.log(name + " initialized");
         if(initCount >= 3){
-            TwincatConnectionModule.startReadWrite();
+            //TwincatConnectionModule.startReadWrite();
             initializeSubscribers();
             $(".init-element").remove();
         }

@@ -7,7 +7,7 @@ $(document).ready(function(){
             var status = 0;
             $.ajax({
                 type: "GET",
-                url: "xmlfiles/records.xml",
+                url: "xmlfiles/records_ANSII.xml",
                 dataType: "xml",
                 success: parseRecords,
                 error: function(jqXHR, textStatus, errorThrown){

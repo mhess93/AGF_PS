@@ -5,7 +5,7 @@ $(document).ready(function(){
         var varInfos = [];
         var NETID = "192.168.1.128.1.1"; // Empty string for local machine;
         var PORT = "851"; // PLC Runtime
-        var SERVICE_URL = "http://192.168.1.128/TcAdsWebService/TcAdsWebService.dll"; // HTTP path to the TcAdsWebService;
+        var SERVICE_URL = "http://192.168.43.242/TcAdsWebService/TcAdsWebService.dll"; // HTTP path to the TcAdsWebService;
         var client;
         var general_timeout = 500;
 
@@ -39,15 +39,14 @@ $(document).ready(function(){
             }).then(
                 function(data){
                     parseLabview(data);
-                    client = new TcAdsWebService.Client(SERVICE_URL, null, null);
+                    setupClient();
                     fetchHandlesFromInformation();
                 }
             ).then(
                 function(){
-                    initStatus = 0;
+                    console.log("last then");
                 }
             );
-            return initStatus;
         };
 
         function parseLabview(xml){
@@ -84,6 +83,40 @@ $(document).ready(function(){
             }
 
 
+        }
+
+        function setupClient(){
+            client = new TcAdsWebService.Client(SERVICE_URL, null, null);
+            client.readState(
+                NETID,
+                PORT,
+                function(e){
+                    if (e && e.isBusy) {
+                        return;
+                    }
+                    if(e && !e.hasError){
+
+                        var reader = e.reader;
+                        console.log("ADSState: " + reader.readWORD() + " DeviceState " + reader.readWORD());
+
+                    } else {
+                        if (e.error.getTypeString() === "TcAdsWebService.ResquestError") {
+                            // HANDLE TcAdsWebService.ResquestError HERE;
+                            console.log(e.error.getTypeString() + ", in ReadState Error: StatusText = " + e.error.requestStatus + " Status: " + e.error.requestStatusText);
+                        }
+                        else if (e.error.getTypeString() === "TcAdsWebService.Error") {
+                            // HANDLE TcAdsWebService.Error HERE;
+                            console.log(e.error.getTypeString() + ", in ReadState Error: ErrorMessage = " + e.error.errorMessage + " ErrorCode: " + e.error.errorCode);
+                        }
+                    }
+                },
+                null,
+                general_timeout,
+                function(){
+                    console.log("ReadState Timeout");
+                },
+                true
+            );
         }
 
         function getSizeFromDataType(dataType){
@@ -176,16 +209,13 @@ $(document).ready(function(){
                 }
                 prepareWriters();
             } else {
-                initStatus = 1;
-                console.log("ERROR in RequestHandlesCallback");
-
                 if (e.error.getTypeString() == "TcAdsWebService.ResquestError") {
                     // HANDLE TcAdsWebService.ResquestError HERE;
-                    console.log("Error: StatusText = " + e.error.statusText + " Status: " + e.error.status);
+                    console.log(e.error.getTypeString() + ", in HandlesRequest Error: StatusText = " + e.error.statusText + " Status: " + e.error.status);
                 }
                 else if (e.error.getTypeString() == "TcAdsWebService.Error") {
                     // HANDLE TcAdsWebService.Error HERE;
-                    console.log("Error: ErrorMessage = " + e.error.errorMessage + " ErrorCode: " + e.error.errorCode);
+                    console.log(e.error.getTypeString() + ", in HandlesRequest Error: ErrorMessage = " + e.error.errorMessage + " ErrorCode: " + e.error.errorCode);
                 }
             }
 
