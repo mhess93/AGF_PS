@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://www.plcopen.org/xml/tc6_0200">
-  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.8.40" creationDateTime="2018-01-04T13:56:45.3224157" />
-  <contentHeader name="TestPLC" modificationDateTime="2018-01-04T13:56:45.3224157">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.8.40" creationDateTime="2018-01-15T14:04:30.1349378" />
+  <contentHeader name="TestPLC" modificationDateTime="2018-01-15T14:04:30.1379336">
     <coordinateInfo>
       <fbd>
         <scaling x="1" y="1" />
@@ -59,19 +59,24 @@
             <BOOL />
           </type>
         </variable>
-        <variable name="gui_Rack">
+        <variable name="gui_ReqRack">
           <type>
             <INT />
           </type>
         </variable>
-        <variable name="gui_Side">
+        <variable name="gui_ReqSide">
           <type>
             <BOOL />
           </type>
         </variable>
-        <variable name="gui_Song">
+        <variable name="gui_ReqSong">
           <type>
             <INT />
+          </type>
+        </variable>
+        <variable name="gui_ReqNewValuesSong">
+          <type>
+            <BOOL />
           </type>
         </variable>
         <variable name="gui_Mute">
@@ -134,29 +139,29 @@ VAR_GLOBAL
 	gui_Stop						:BOOL;		
 	gui_Skipback					:BOOL;
 	gui_Skipforward					:BOOL;
-	gui_Rack						:INT;
-	gui_Side						:BOOL;
-	gui_Song						:INT;
+	gui_ReqRack						:INT;
+	gui_ReqSide						:BOOL;
+	gui_ReqSong						:INT;
+	gui_ReqNewValuesSong			:BOOL;
 	gui_Mute						:BOOL;
 	gui_IncreaseVolume				:BOOL;
 	gui_DecreaseVolume				:BOOL;
 	gui_ActRack						:INT;
 	gui_ActSide						:BOOL;
 	gui_ActSong						:INT;
-	
 END_VAR
 </xhtml>
             </InterfaceAsPlainText>
           </data>
           <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
-            <ObjectId>8e003ba4-b040-4d81-b33e-3ca214b9ee28</ObjectId>
+            <ObjectId>139818e4-6ba2-4175-86b5-0ce8602c0d0e</ObjectId>
           </data>
         </addData>
       </globalVars>
     </data>
     <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
       <ProjectStructure>
-        <Object Name="Labview" ObjectId="8e003ba4-b040-4d81-b33e-3ca214b9ee28" />
+        <Object Name="Labview" ObjectId="139818e4-6ba2-4175-86b5-0ce8602c0d0e" />
       </ProjectStructure>
     </data>
   </addData>
