@@ -4,26 +4,17 @@ $(document).ready(function(){
         var records = [];
 
         var init = function(){
-            var status = 0;
             $.ajax({
                 type: "GET",
                 url: "xmlfiles/records_ANSII.xml",
-                dataType: "xml",
-                success: parseRecords,
-                error: function(jqXHR, textStatus, errorThrown){
-                    $('.init-message p').html("ERROR: " + errorThrown);
-                    console.log(errorThrown);
-                }
-            }).then(
-                function(){
-
-                },
-                function(){
-                    console.log("Error in Records Module");
-                    status = 1;
-                }
-            );
-            return status;
+                dataType: "xml"
+            })
+                .done(parseRecords)
+                .fail(
+                    function(jqXHR, textStatus, errorThrown){
+                        $('.init-message p').html("Error in RecordsModule: " + errorThrown);
+                        console.log(errorThrown);
+                });
         };
 
         var parseRecords = function (xml) {

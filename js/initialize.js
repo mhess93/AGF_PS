@@ -14,9 +14,8 @@ $(document).ready(function(){
     var initialized = function(name){
         initCount++;
         console.log(name + " initialized");
-        if(initCount >= 3){
+        if(initCount >= 1){
             //TwincatConnectionModule.startReadWrite();
-            initializeSubscribers();
             $(".init-element").remove();
         }
     };
@@ -25,18 +24,11 @@ $(document).ready(function(){
         $(".init-element").remove();
     }
 
-    function initializeSubscribers(){
-        TwincatConnectionModule.subscribe("ActRack",RecordPlayer.updatePlayingContainer);
-
-        TwincatConnectionModule.subscribe('ActSide',RecordPlayer.updatePlayingContainer);
-
-        TwincatConnectionModule.subscribe('ActSong',RecordPlayer.updatePlayingContainer);
-    }
 
     window.initialized = initialized;
     window.forceInit = forceInit;
 
-    NotificationModule.init();
+    //NotificationModule.init();
     RecordsModule.init();
     TwincatConnectionModule.init();
 
