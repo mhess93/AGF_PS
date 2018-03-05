@@ -4,14 +4,103 @@
     sees the user interface should be done here. (E.G eventListeners)
  */
 
-var variableModule;
-
 $(document).ready(function(){
 
     var initCount = 0;
-    var loopDelay = 500;
 
-    var initialized = function(name){
+    function initializeSubscribers(asd){
+        TwincatConnectionModule.subscribeTo('ActRack', displayRecordInPlayingContainer);
+        TwincatConnectionModule.subscribeTo('ActSide', updateActiveInPlayingContainer);
+        TwincatConnectionModule.subscribeTo('ActSong', updateActiveInPlayingContainer);
+    }
+
+    function displayRecordInPlayingContainer(recordNr){
+        var record = RecordsModule.getIndex(recordNr);
+        var songSelectionContainer =  $('.song-selection-container'),
+            sideList,
+            recordSideList,
+            displayedIndex,
+            elementToAppend;
+
+        songSelectionContainer
+            .children('h3')
+            .html(record['record_name']);
+
+        sideList = songSelectionContainer
+            .children('.side-A')
+            .children('ul');
+
+        recordSideList= record['side_a'];
+        sideList
+            .children()
+            .remove();
+
+        for(var i = 0; i < recordSideList.length; i++){
+            displayedIndex = i + 1;
+            elementToAppend = $('<li>' + displayedIndex + '. ' + recordSideList[i] + '</li>');
+            sideList.append(elementToAppend);
+            elementToAppend.click({index: displayedIndex}, function(event){
+                fetchRecord(recordNr, 0, event.data.index);
+            });
+        }
+
+        sideList = songSelectionContainer
+            .children('.side-B')
+            .children('ul');
+
+        recordSideList= record['side_b'];
+
+        sideList
+            .children()
+            .remove();
+
+        for(var i = 0; i < recordSideList.length; i++){
+            displayedIndex = i + 1;
+            elementToAppend = $('<li>' + displayedIndex + '. ' + recordSideList[i] + '</li>');
+            sideList.append(elementToAppend);
+            elementToAppend.click({index: displayedIndex}, function(event){
+                fetchRecord(recordNr, 1, event.data.index);
+            });
+        }
+
+        updateActiveInPlayingContainer();
+    }
+
+    function updateActiveInPlayingContainer(){
+        var song, side, tempString, listContainer;
+
+        song = TwincatConnectionModule.getActSong();
+        side = TwincatConnectionModule.getActSide();
+
+        if(side !== 0 && side !== 1){
+            side = 0;
+        }
+        if(song === undefined){
+            song = 0;
+        }
+
+        tempString = (side === 0) ? '.side-A' : '.side-B';
+        console.log(song);
+        console.log(side);
+
+        listContainer = $('.song-selection-container');
+
+        listContainer.find("li").removeClass('active')
+
+
+        var sideList =  listContainer
+            .children(tempString)
+            .find('li');
+
+        sideList[song].className += 'active';
+    }
+
+
+
+    RecordsModule.init();
+    TwincatConnectionModule.init().then(initializeSubscribers);
+
+    window.initialized  = function(name){
         initCount++;
         console.log(name + " initialized");
 
@@ -20,26 +109,9 @@ $(document).ready(function(){
             $(".init-element").remove();
         }
     };
-
-    var forceInit = function (){
+    window.forceInit = function (){
         $(".init-element").remove();
     };
-
-    function initializeSubscribers(){
-
-    };
-
-
-    window.initialized = initialized;
-    window.forceInit = forceInit;
-
-    //NotificationModule.init();
-    RecordsModule.init();
-    TwincatConnectionModule.init().then(initializeSubscribers());
-
-    TwincatConnectionModule.subscribeTo('actRack', function(value){
-        console.log("YEEE" + value);
-    });
 
     //TwincatConnectionModule.startReadWrite();
 

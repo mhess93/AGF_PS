@@ -462,15 +462,15 @@ $(document).ready(function(){
 
 
             getActSide: function(){
-                return variables[nameToIndexTranslation['Side']].value;
+                return variables[nameToIndexTranslation['ActSide']].value;
             },
 
             getActSong: function(){
-                return variables[nameToIndexTranslation['Song']].value;
+                return variables[nameToIndexTranslation['ActSong']].value;
             },
 
             getActRecord: function(){
-                return variables[nameToIndexTranslation['Rack']].value;
+                return variables[nameToIndexTranslation['ActRack']].value;
             },
 
             /* DELETE  ALL BELLOW */
