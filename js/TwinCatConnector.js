@@ -2,7 +2,6 @@ $(document).ready(function(){
 
     var twincatConnection = (function(){
         var status = 0;
-        var varInfos = [];
         var variables = {};
         var NETID = "192.168.1.128.1.1"; // Empty string for local machine;
         var PORT = "851"; // PLC Runtime
@@ -25,6 +24,8 @@ $(document).ready(function(){
 
         var nameToIndexTranslation = [];
 
+        var resolve, reject;
+
         function Variable(name, type){
             this.name = name;
             this.type = type;
@@ -45,21 +46,25 @@ $(document).ready(function(){
         }
 
         var init = function(){
-            $.ajax({
-                type: "GET",
-                url: "xmlfiles/Labview.xml",
-                dataType: "xml"
-            }).done(
-                function(data){
-                    parseLabview(data);
-                    setupClient();
-                    fetchHandlesFromInformation();
-                }
-            ).fail(
-                function(jqXHR, textStatus, errorThrown){
-                    $('.init-message p').html("ERROR: " + errorThrown);
-                }
-            );
+            return new Promise(function(resolveFunc, rejectFunc){
+                resolve = resolveFunc;
+                $.ajax({
+                    type: "GET",
+                    url: "xmlfiles/Labview.xml",
+                    dataType: "xml"
+                }).done(
+                    function(data){
+                        parseLabview(data);
+                        setupClient();
+                        fetchHandlesFromInformation();
+                    }
+                ).fail(
+                    function(jqXHR, textStatus, errorThrown){
+                        $('.init-message p').html("ERROR: " + errorThrown);
+                        reject();
+                    }
+                );
+            });
         };
 
         function parseLabview(xml){
@@ -77,6 +82,16 @@ $(document).ready(function(){
             }
         }
 
+        function subscribeTo(varName, updateFunc){
+            var index = nameToIndexTranslation[varName];
+            if(index !== undefined){
+                variables[index].subscribe(updateFunc);
+                console.info("Subscribed to " + varName);
+            } else {
+                console.warn(varName + " not found");
+            }
+        }
+
         var prepareWriters = function(){
             readWriter = new TcAdsWebService.DataWriter();
             totalSize = 0;
@@ -90,6 +105,7 @@ $(document).ready(function(){
             readWriterBase64Data = readWriter.getBase64EncodedData();
 
             writeWriter = new TcAdsWebService.DataWriter();
+            resolve();
             initialized("Twincatconnection Module");
         };
 
@@ -183,11 +199,12 @@ $(document).ready(function(){
                     variables[i].handle = reader.readWORD();
                 }
 
-                prepareWriters();
-
             } else {
                 handleADSError(e, arguments.callee);
             }
+
+            prepareWriters();
+
 
         }
 
@@ -348,10 +365,10 @@ $(document).ready(function(){
         }
 
         function handleADSError(e, callee){
-            console.log(e.error);
             var funcName = callee.toString();
             funcName = funcName.substr('function '.length);
             funcName = funcName.substr(0, funcName.indexOf('('));
+            console.error("ERROR IN: " + funcName);
             console.error(e.error);
         }
 
@@ -390,13 +407,16 @@ $(document).ready(function(){
 
             init: init,
 
+            subscribeTo: subscribeTo,
+
             startReadWrite : function(){
-                readLoopID =  window.setInterval(readLoop, readLoopDelay);
+                //readLoopID =  window.setInterval(readLoop, readLoopDelay);
                 writeLoopID = window.setInterval(writeLoop, writeLoopDelay);
                 console.log("ReadWrite started");
             },
+
             stopReadWrite : function(){
-                clearInterval(readLoopID);
+                //clearInterval(readLoopID);
                 clearInterval(writeLoopID);
                 console.log("ReadWrite stopped");
             },
@@ -434,22 +454,11 @@ $(document).ready(function(){
                 writeData.push([nameToIndexTranslation['DecreaseVolume'],1]);
             },
 
-            subscribe: function(name, updateFunction){
-                var index = nameToIndexTranslation[name];
-                if(!index){
-                    console.log(name + " doesnt match a variablename to subscribe to");
-                    return;
-                }
-                var variable = variables[index];
-                variable.subscribe(updateFunction);
-            },
-
             toggleMute: function(){
                 var index = nameToIndexTranslation['Mute'];
                 var value = variables[index].value;
                 writeData.push([index, !value]);
             },
-
 
 
             getActSide: function(){
@@ -464,15 +473,24 @@ $(document).ready(function(){
                 return variables[nameToIndexTranslation['Rack']].value;
             },
 
-            /* DELETE */
+            /* DELETE  ALL BELLOW */
             addToWrite: function(i,j){
                 writeData.push([i,j]);
             },
 
             nameToIndex: nameToIndexTranslation,
 
-            variables: variables
+            variables: variables,
 
+            subscribe: function(name, updateFunction){
+                var index = nameToIndexTranslation[name];
+                if(!index){
+                    console.log(name + " doesnt match a variablename to subscribe to");
+                    return;
+                }
+                var variable = variables[index];
+                variable.subscribe(updateFunction);
+            },
         }
 
     })();

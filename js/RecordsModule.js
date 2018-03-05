@@ -3,18 +3,24 @@ $(document).ready(function(){
 
         var records = [];
 
+        var resolve;
+
         var init = function(){
-            $.ajax({
-                type: "GET",
-                url: "xmlfiles/records_ANSII.xml",
-                dataType: "xml"
-            })
-                .done(parseRecords)
-                .fail(
-                    function(jqXHR, textStatus, errorThrown){
-                        $('.init-message p').html("Error in RecordsModule: " + errorThrown);
-                        console.log(errorThrown);
-                });
+            return new Promise(function(resolveFunc, reject){
+                resolve = resolveFunc;
+                $.ajax({
+                    type: "GET",
+                    url: "xmlfiles/records_ANSII.xml",
+                    dataType: "xml"
+                })
+                    .done(parseRecords)
+                    .fail(
+                        function(jqXHR, textStatus, errorThrown){
+                            $('.init-message p').html("Error in RecordsModule: " + errorThrown);
+                            console.log(errorThrown);
+                            reject();
+                        });
+            });
         };
 
         var parseRecords = function (xml) {
@@ -71,6 +77,7 @@ $(document).ready(function(){
                 url = 'url(\" images/'+ record['record_cover']+'")';
                 recordContainer.css('background-image',url );
             }
+            resolve(recordList);
             initialized("Record Module");
         }
 

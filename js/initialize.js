@@ -14,6 +14,7 @@ $(document).ready(function(){
     var initialized = function(name){
         initCount++;
         console.log(name + " initialized");
+
         if(initCount >= 1){
             //TwincatConnectionModule.startReadWrite();
             $(".init-element").remove();
@@ -22,7 +23,11 @@ $(document).ready(function(){
 
     var forceInit = function (){
         $(".init-element").remove();
-    }
+    };
+
+    function initializeSubscribers(){
+
+    };
 
 
     window.initialized = initialized;
@@ -30,9 +35,15 @@ $(document).ready(function(){
 
     //NotificationModule.init();
     RecordsModule.init();
-    TwincatConnectionModule.init();
+    TwincatConnectionModule.init().then(initializeSubscribers());
+
+    TwincatConnectionModule.subscribeTo('actRack', function(value){
+        console.log("YEEE" + value);
+    });
 
     //TwincatConnectionModule.startReadWrite();
+
+    /*
 
     $('.prevent-contextmenu').bind('contextmenu',function(e){
         console.log("Prevent");
@@ -98,6 +109,8 @@ $(document).ready(function(){
             target.addClass('active');
         }
     });
+
+    */
 
 
 });
