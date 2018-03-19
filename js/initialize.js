@@ -95,20 +95,59 @@ $(document).ready(function(){
         sideList[song].className += 'active';
     }
 
+    function initialize(){
+        if(initCount === 0){
+            $(".init-element").html('Init. RecordsModule');
+            RecordsModule.init();
+        }
+        else if(initCount === 1){
+            $(".init-element").html('Init. TwincatModule');
+            TwincatConnectionModule.init()
+                .then(initializeSubscribers);
+        }
+        else if(initCount > 1){
+            console.log("All Modules Initialized");
+            //TwincatConnectionModule.startReadWrite();
+            $(".init-element").remove();
+        }
+        else{
+            console.error("Initialization failed");
+        }
+    }
 
+    function moduleInitialized(name){
+        console.log(name + " initialized");
+        initCount++
+        initialize();
+    }
 
+    function moduleInitializationFailed(name){
+        console.error(name + ' initialization failed');
+        setTimeout(initialize,100000);
+    }
+
+    window.moduleInitialized = moduleInitialized;
+    window.moduleInitializationFailed = moduleInitializationFailed;
+
+    initialize();
+
+    /*
     RecordsModule.init();
-    TwincatConnectionModule.init().then(initializeSubscribers);
-
+    TwincatConnectionModule.init()
+        .then(initializeSubscribers);
+        */
+    /*
     window.initialized  = function(name){
         initCount++;
         console.log(name + " initialized");
 
-        if(initCount >= 1){
+        if(initCount > 1){
             //TwincatConnectionModule.startReadWrite();
             $(".init-element").remove();
         }
     };
+    */
+
     window.forceInit = function (){
         $(".init-element").remove();
     };

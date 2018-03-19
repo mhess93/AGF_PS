@@ -55,9 +55,6 @@ $(document).ready(function(){
 
                 records[i] = record;
             }
-
-            
-
             setupAlbumSelection();
         };
 
@@ -78,7 +75,8 @@ $(document).ready(function(){
                 recordContainer.css('background-image',url );
             }
             resolve(recordList);
-            initialized("Record Module");
+            moduleInitialized("Recordmodule");
+            //initialized("Record Module");
         }
 
         function displayInPreview(record, index){

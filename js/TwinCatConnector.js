@@ -56,7 +56,6 @@ $(document).ready(function(){
                     function(data){
                         parseLabview(data);
                         setupClient();
-                        fetchHandlesFromInformation();
                     }
                 ).fail(
                     function(jqXHR, textStatus, errorThrown){
@@ -106,7 +105,8 @@ $(document).ready(function(){
 
             writeWriter = new TcAdsWebService.DataWriter();
             resolve();
-            initialized("Twincatconnection Module");
+            //initialized("Twincatconnection Module");
+            moduleInitialized("Twincatmodule");
         };
 
         function setupClient(){
@@ -132,6 +132,7 @@ $(document).ready(function(){
 
                 var reader = e.reader;
                 console.log("ADSState: " + reader.readWORD() + " DeviceState " + reader.readWORD());
+                fetchHandlesFromInformation();
 
             } else {
                 handleADSError(e, arguments.callee);
@@ -198,12 +199,13 @@ $(document).ready(function(){
                 for( i = 0; i < variables.length; i++){
                     variables[i].handle = reader.readWORD();
                 }
+                prepareWriters();
 
             } else {
                 handleADSError(e, arguments.callee);
             }
 
-            prepareWriters();
+
 
 
         }
@@ -370,6 +372,7 @@ $(document).ready(function(){
             funcName = funcName.substr(0, funcName.indexOf('('));
             console.error("ERROR IN: " + funcName);
             console.error(e.error);
+            moduleInitializationFailed('Twincatmodule');
         }
 
         function getSizeFromDataType(dataType){
