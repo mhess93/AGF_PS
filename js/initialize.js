@@ -7,6 +7,9 @@
 $(document).ready(function(){
 
     var initCount = 0;
+    var timeout = 5000;
+    var initMessage = $(".init-element").children('p').first();
+    var loopDelay = 1000;
 
     function initializeSubscribers(asd){
         TwincatConnectionModule.subscribeTo('ActRack', displayRecordInPlayingContainer);
@@ -40,7 +43,7 @@ $(document).ready(function(){
             elementToAppend = $('<li>' + displayedIndex + '. ' + recordSideList[i] + '</li>');
             sideList.append(elementToAppend);
             elementToAppend.click({index: displayedIndex}, function(event){
-                fetchRecord(recordNr, 0, event.data.index);
+                TwincatConnectionModule.fetchRecord(recordNr, 0, event.data.index - 1);
             });
         }
 
@@ -59,7 +62,7 @@ $(document).ready(function(){
             elementToAppend = $('<li>' + displayedIndex + '. ' + recordSideList[i] + '</li>');
             sideList.append(elementToAppend);
             elementToAppend.click({index: displayedIndex}, function(event){
-                fetchRecord(recordNr, 1, event.data.index);
+                TwincatConnectionModule.fetchRecord(recordNr, 1, event.data.index);
             });
         }
 
@@ -94,11 +97,101 @@ $(document).ready(function(){
 
         sideList[song].className += 'active';
     }
-
-
-
+/*
     RecordsModule.init();
     TwincatConnectionModule.init().then(initializeSubscribers);
+*/
+
+    window.moduleInitSuccess = function(name){
+        console.log(name + " init success")
+        initCount++;
+        initialize();
+    }
+
+    window.moduleInitFail = function(name){
+        console.error(name + " init failed");
+        console.error('Trying again in ' + timeout + " milisec");
+        setTimeout(initialize, timeout);
+    }
+
+    function initialize(){
+        if(initCount === 0){
+            initMessage.text("Initializing RecordModule");
+            RecordsModule.init();
+        }
+        else if(initCount === 1){
+            initMessage.html("Initializing Twincatmodule");
+            TwincatConnectionModule.init()
+                .then(initializeSubscribers);
+        }
+        else if(initCount === 2){
+            initMessage.html("Setting up Button Handlers");
+            initButtonHandlers();
+        }
+        else if(initCount === 3){
+            $(".init-element").remove();
+            TwincatConnectionModule.toggleFakeLoop();
+            console.log("Init Successfull");
+        }
+    }
+
+    initialize();
+
+    function initButtonHandlers(){
+
+        $('.toggle-controls-albums').click(function(){
+            $('.controls.left-side').toggleClass('active');
+        });
+
+        $('.song-controls').find('.play-button').click(function(){
+            TwincatConnectionModule.start();
+        });
+
+        $('.song-controls').find('.stop-button').click(function(){
+            TwincatConnectionModule.stop();
+        });
+
+        $('#skip-forward-button').click(function(){
+            TwincatConnectionModule.skipForward();
+        });
+
+        $('#skip-backward-button').click(function(){
+            TwincatConnectionModule.skipBackward();
+        });
+
+        var increaseLoop;
+        $('#increase-volume-button').bind('touchstart mousedown',function(){
+            increaseLoop = window.setInterval(function(){
+                TwincatConnectionModule.increaseVolume();
+            }, loopDelay);
+        });
+
+        $('#increase-volume-button').bind('touchend mouseup', function(){
+            clearInterval(increaseLoop);
+        });
+
+        var decreaseLoop;
+        $('#decrease-volume-button').bind('touchstart mousedown', function(){
+            decreaseLoop = window.setInterval(function(){
+                TwincatConnectionModule.decreaseVolume();
+            }, loopDelay);
+        });
+
+        $('#decrease-volume-button').bind('touchend mouseup', function(){
+            clearInterval(decreaseLoop);
+        });
+
+        $('#mute-button').click(function(){
+            TwincatConnectionModule.toggleMute();
+        });
+
+        moduleInitSuccess("Handlers");
+}
+
+    var increaseLoop;
+
+
+/*
 
     window.initialized  = function(name){
         initCount++;
@@ -109,9 +202,13 @@ $(document).ready(function(){
             $(".init-element").remove();
         }
     };
+
+
     window.forceInit = function (){
         $(".init-element").remove();
     };
+
+*/
 
     //TwincatConnectionModule.startReadWrite();
 
@@ -126,25 +223,6 @@ $(document).ready(function(){
         $('.body-wrapper').toggleClass('active');
     });
 
-    $('.toggle-controls-albums').click(function(){
-        $('.controls.left-side').toggleClass('active');
-    });
-
-    $('.song-controls').find('.play-button').click(function(){
-        RecordPlayer.start();
-    });
-
-    $('.song-controls').find('.stop-button').click(function(){
-        RecordPlayer.stop();
-    });
-
-    $('#skip-forward-button').click(function(){
-        RecordPlayer.skipForward();
-    });
-
-    $('#skip-backward-button').click(function(){
-        RecordPlayer.skipBackward();
-    });
 
     var increaseLoop;
     $('#increase-volume-button').bind('touchstart mousedown',function(){

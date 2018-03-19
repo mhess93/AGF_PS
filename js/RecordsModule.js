@@ -5,6 +5,8 @@ $(document).ready(function(){
 
         var resolve;
 
+        var moduleName = 'Recordmodule';
+
         var init = function(){
             return new Promise(function(resolveFunc, reject){
                 resolve = resolveFunc;
@@ -18,6 +20,7 @@ $(document).ready(function(){
                         function(jqXHR, textStatus, errorThrown){
                             $('.init-message p').html("Error in RecordsModule: " + errorThrown);
                             console.log(errorThrown);
+                            moduleInitFail(moduleName);
                             reject();
                         });
             });
@@ -56,7 +59,7 @@ $(document).ready(function(){
                 records[i] = record;
             }
 
-            
+
 
             setupAlbumSelection();
         };
@@ -78,7 +81,7 @@ $(document).ready(function(){
                 recordContainer.css('background-image',url );
             }
             resolve(recordList);
-            initialized("Record Module");
+            moduleInitSuccess(moduleName);
         }
 
         function displayInPreview(record, index){
@@ -117,12 +120,12 @@ $(document).ready(function(){
 
 
             $('.play-button.side-A').click(function(){
-                RecordPlayer.playSide(index, 0);
+                TwincatConnectionModule.fetchRecord(index, 0, 0);
                 $('.controls.left-side').toggleClass('active');
             });
 
             $('.play-button.side-B').click(function(){
-                RecordPlayer.playSide(index, 1);
+                TwincatConnectionModule.fetchRecord(index, 1, 0);
                 $('.controls.left-side').toggleClass('active');
             });
         }
