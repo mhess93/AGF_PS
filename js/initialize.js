@@ -15,6 +15,9 @@ $(document).ready(function(){
         TwincatConnectionModule.subscribeTo('ActRack', displayRecordInPlayingContainer);
         TwincatConnectionModule.subscribeTo('ActSide', updateActiveInPlayingContainer);
         TwincatConnectionModule.subscribeTo('ActSong', updateActiveInPlayingContainer);
+        TwincatConnectionModule.subscribeTo('StatusWord', function(statusWord){
+            console.log(statusWord);
+        });
     }
 
     function displayRecordInPlayingContainer(recordNr){
@@ -97,20 +100,16 @@ $(document).ready(function(){
 
         sideList[song].className += 'active';
     }
-/*
-    RecordsModule.init();
-    TwincatConnectionModule.init().then(initializeSubscribers);
-*/
 
     window.moduleInitSuccess = function(name){
         console.log(name + " init success")
         initCount++;
-        initialize();
+        setTimeout(initialize, 0);
     }
 
     window.moduleInitFail = function(name){
-        console.error(name + " init failed");
-        console.error('Trying again in ' + timeout + " milisec");
+        console.error(name + " init failed, trying again in " + timeout + " milisec");
+        initMessage.text(name + " init failed, trying again in " + timeout + " milisec");
         setTimeout(initialize, timeout);
     }
 
@@ -120,13 +119,13 @@ $(document).ready(function(){
             RecordsModule.init();
         }
         else if(initCount === 1){
-            initMessage.html("Initializing Twincatmodule");
+            initMessage.text("Initializing Twincatmodule");
             TwincatConnectionModule.init()
                 .then(initializeSubscribers);
         }
         else if(initCount === 2){
-            initMessage.html("Setting up Button Handlers");
-            initButtonHandlers();
+            initMessage.text("Setting up Handlers");
+            initHandlers();
         }
         else if(initCount === 3){
             $(".init-element").remove();
@@ -137,7 +136,7 @@ $(document).ready(function(){
 
     initialize();
 
-    function initButtonHandlers(){
+    function initHandlers(){
 
         $('.toggle-controls-albums').click(function(){
             $('.controls.left-side').toggleClass('active');
@@ -185,10 +184,19 @@ $(document).ready(function(){
             TwincatConnectionModule.toggleMute();
         });
 
-        moduleInitSuccess("Handlers");
-}
+        $('.repeat-button').click(function(){
+            TwincatConnectionModule.togglePlaymodeRepeat();
+        });
 
-    var increaseLoop;
+        $('.vinyl-container').propeller({});
+
+        moduleInitSuccess("Handlers");
+    }
+
+
+    window.forceInit = function (){
+        initCount = 2;
+    };
 
 
 /*
@@ -204,9 +212,7 @@ $(document).ready(function(){
     };
 
 
-    window.forceInit = function (){
-        $(".init-element").remove();
-    };
+
 
 */
 

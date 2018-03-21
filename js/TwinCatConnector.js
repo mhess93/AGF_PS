@@ -62,7 +62,6 @@ $(document).ready(function(){
                     function(data){
                         parseLabview(data);
                         setupClient();
-                        fetchHandlesFromInformation();
                     }
                 ).fail(
                     function(jqXHR, textStatus, errorThrown){
@@ -140,9 +139,11 @@ $(document).ready(function(){
 
                 var reader = e.reader;
                 console.log("ADSState: " + reader.readWORD() + " DeviceState " + reader.readWORD());
+                fetchHandlesFromInformation();
 
             } else {
                 handleADSError(e, arguments.callee);
+                moduleInitFail(moduleName);
             }
         }
 
@@ -198,20 +199,20 @@ $(document).ready(function(){
                     }
                 }
 
-                if(hasAError){
+                if(hasAError){return;}
 
-                    return;
-                }
 
                 for( i = 0; i < variables.length; i++){
                     variables[i].handle = reader.readWORD();
                 }
 
-            } else {
-                handleADSError(e, arguments.callee);
-            }
+                prepareWriters();
 
-            prepareWriters();
+            } else {
+                
+                handleADSError(e, arguments.callee);
+                moduleInitFail(moduleName);
+            }
 
 
         }
@@ -377,7 +378,6 @@ $(document).ready(function(){
             var funcName = callee.toString();
             funcName = funcName.substr('function '.length);
             funcName = funcName.substr(0, funcName.indexOf('('));
-            console.error("ERROR IN: " + funcName);
             console.error(e.error);
         }
 
@@ -487,6 +487,11 @@ $(document).ready(function(){
 
             getActRecord: function(){
                 return variables[nameToIndexTranslation['ActRack']].value;
+            },
+
+            togglePlaymodeRepeat: function(){
+                var index = nameToIndexTranslation['PlaymodeRepeat'];
+                writeData.push([index, true]);
             },
 
             /* DELETE  ALL BELLOW */

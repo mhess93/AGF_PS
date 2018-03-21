@@ -8,8 +8,9 @@ $(document).ready(function(){
         var moduleName = 'Recordmodule';
 
         var init = function(){
-            return new Promise(function(resolveFunc, reject){
+            return new Promise(function(resolveFunc, rejectFunc){
                 resolve = resolveFunc;
+                reject = rejectFunc;
                 $.ajax({
                     type: "GET",
                     url: "xmlfiles/records_ANSII.xml",
