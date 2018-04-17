@@ -548,33 +548,33 @@ div.centered-container{
     background-color: #1A7FEF;
 }
 
-.repeat-button{
-    background-image: url("images/refresh.svg");
+.repeat-all-button{
+    background-image: url("images/repeat-all.svg");
     background-position: center;
     background-size: 46px;
 }
 
-.repeat-button.active{
+.repeat-all-button.active{
     background-image: url("images/refresh_white.png");
 }
 
-.reload-button{
-    background-image: url("images/reload.svg");
+.repeat-one-button{
+    background-image: url("images/repeat-one.svg");
     background-position: center;
     background-size: 46px;
 }
 
-.reload-button.active{
+.repeat-one-button.active{
     background-image: url("images/reload_white.png");
 }
 
-.auto-button{
-    background-image: url("images/auto.svg");
+.shuffle-button{
+    background-image: url("images/shuffle.svg");
     background-position: center;
     background-size: 46px;
 }
 
-.auto-button.active{
+.shuffle-button.active{
     background-image: url("images/auto_white.png");
 }
 
