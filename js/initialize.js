@@ -117,20 +117,30 @@ $(document).ready(function(){
         if(initCount === 0){
             initMessage.text("Initializing RecordModule");
             RecordsModule.init();
+            return;
         }
         else if(initCount === 1){
             initMessage.text("Initializing Twincatmodule");
             TwincatConnectionModule.init()
                 .then(initializeSubscribers);
+            return;
         }
         else if(initCount === 2){
             initMessage.text("Setting up Handlers");
             initHandlers();
+            return;
         }
         else if(initCount === 3){
+            initMessage.text("Setting Up NotificationModule");
+            NotificationModule.init();
+            return;
+        }
+        else if(initCount === 4){
             $(".init-element").remove();
-            TwincatConnectionModule.toggleFakeLoop();
+            //TwincatConnectionModule.toggleFakeLoop();
             console.log("Init Successfull");
+            NotificationModule.displayNotification("Init Successfull");
+            return;
         }
     }
 
@@ -195,8 +205,12 @@ $(document).ready(function(){
 
 
     window.forceInit = function (){
-        initCount = 2;
+        initCount = 4;
     };
+    
+    window.continueInit = function(){
+        initCount++;
+    }
 
 
 /*
