@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.10.30" creationDateTime="2018-03-29T14:56:59.9452249" />
+  <contentHeader name="PLC_16099" modificationDateTime="2018-03-29T14:56:59.9482329">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes />
+    <pous />
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/globalvars" handleUnknown="implementation">
+      <globalVars name="Frontend">
+        <variable name="gui_Popup_Nr">
+          <type>
+            <INT />
+          </type>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">10000er-Stelle bestimmt Typ der Meldung:
+												0xxxxx: OK Button
+												1xxxxx: OK CANCEL Button
+												2xxxxx: YES NO Button
+												3xxxxx: YES NO CANCEL Button</xhtml>
+          </documentation>
+        </variable>
+        <variable name="gui_Popup_Answer">
+          <type>
+            <INT />
+          </type>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">0: Bereit
+												1: Warten auf Antwort 
+												2: Antwort JA (OK)
+												3: Antwort NEIN
+												4: Antwort CANCEL</xhtml>
+          </documentation>
+        </variable>
+        <variable name="gui_Play">
+          <type>
+            <BOOL />
+          </type>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">************************************************************************************************
+Aktuelle Positionen Achsen, Werte von Sensoren etc.
+************************************************************************************************</xhtml>
+          </documentation>
+        </variable>
+        <variable name="gui_Stop">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_Skipback">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_Skipforward">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_ReqRack">
+          <type>
+            <INT />
+          </type>
+        </variable>
+        <variable name="gui_ReqSideTwo">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_ReqSong">
+          <type>
+            <INT />
+          </type>
+        </variable>
+        <variable name="gui_ReqNewValuesSong">
+          <type>
+            <BOOL />
+          </type>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">Frontend verlangt einen neuen Song</xhtml>
+          </documentation>
+        </variable>
+        <variable name="gui_Mute">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_IncreaseVolume">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_DecreaseVolume">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_ActRack">
+          <type>
+            <INT />
+          </type>
+        </variable>
+        <variable name="gui_SideTwo">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_ActSong">
+          <type>
+            <INT />
+          </type>
+        </variable>
+        <variable name="gui_AktPosMotor1">
+          <type>
+            <REAL />
+          </type>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">Noch nicht in XML-Liste</xhtml>
+          </documentation>
+        </variable>
+        <variable name="gui_AktPosMotor2">
+          <type>
+            <REAL />
+          </type>
+        </variable>
+        <variable name="gui_Init">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_Manuellbetrieb">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_RequestOpenDoors">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_Beenden">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+            <Attributes>
+              <Attribute Name="Tc2GvlVarNames" Value="" />
+              <Attribute Name="TcContextName" Value="PlcTaskStandard" />
+            </Attributes>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/buildproperties" handleUnknown="implementation">
+            <BuildProperties>
+              <LinkAlways>true</LinkAlways>
+            </BuildProperties>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">{attribute 'Tc2GvlVarNames'}
+{attribute 'TcContextName':='PlcTaskStandard'}
+(*Diese Liste beinhaltet sämtliche mit dem Frontend ausgetauschten Variablen, plus einige mehr*)
+VAR_GLOBAL
+	gui_Popup_Nr					:INT;		(*10000er-Stelle bestimmt Typ der Meldung:
+												0xxxxx: OK Button
+												1xxxxx: OK CANCEL Button
+												2xxxxx: YES NO Button
+												3xxxxx: YES NO CANCEL Button*)
+	gui_Popup_Answer				:INT;		(*0: Bereit
+												1: Warten auf Antwort 
+												2: Antwort JA (OK)
+												3: Antwort NEIN
+												4: Antwort CANCEL*)
+												
+(**************************************************************************************************)
+	(*Aktuelle Positionen Achsen, Werte von Sensoren etc.*)
+(**************************************************************************************************)
+	gui_Play						:BOOL;
+	gui_Stop						:BOOL;
+	gui_Skipback					:BOOL;
+	gui_Skipforward					:BOOL;
+	gui_ReqRack						:INT;
+	gui_ReqSideTwo					:BOOL;
+	gui_ReqSong						:INT;
+	gui_ReqNewValuesSong			:BOOL;		(*Frontend verlangt einen neuen Song*)
+	gui_Mute						:BOOL;
+	gui_IncreaseVolume				:BOOL;
+	gui_DecreaseVolume				:BOOL;
+	gui_ActRack						:INT;
+	gui_SideTwo						:BOOL;
+	gui_ActSong						:INT;
+	
+	(*Noch nicht in XML-Liste*)	
+	gui_AktPosMotor1				:REAL;
+	gui_AktPosMotor2				:REAL;
+	gui_Init						:BOOL;
+	gui_Manuellbetrieb				:BOOL;
+	gui_RequestOpenDoors			:BOOL;
+	gui_Beenden						:BOOL;
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>14b05d6b-7177-4fd1-bf71-d651d02b09b8</ObjectId>
+          </data>
+        </addData>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml">Diese Liste beinhaltet sämtliche mit dem Frontend ausgetauschten Variablen, plus einige mehr</xhtml>
+        </documentation>
+      </globalVars>
+    </data>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="Frontend" ObjectId="14b05d6b-7177-4fd1-bf71-d651d02b09b8" />
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>

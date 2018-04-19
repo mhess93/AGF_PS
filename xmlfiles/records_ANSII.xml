@@ -1,213 +1,1328 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_rack>
     <record>
-        <record_name>Lunar Phase</record_name>
-        <artist>Heavenly Music Corporation</artist>
-        <record_cover>lunar-phase.jpg</record_cover>
+        <record_name>Beats, Rhymes And Life LP1</record_name>
+        <artist>A Tribe Called Quest</artist>
+        <record_cover>ATribeCalledQuest_1.jpg</record_cover>
         <rack_slot>1</rack_slot>
         <side>
             <song>
-                <title>Energy Portal</title>
+                <title>Phony Rappers</title>
+                <radius>0.1</radius>
+            </song>
+			<song>
+                <title>Get A Hold</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Motivators</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Jam</title>
                 <radius>0.1</radius>
             </song>
             <song>
-                <title>St.Giga</title>
+                <title>Crew</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>The Pressure</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>1nce Again</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+    </record>
+    <record>
+        <record_name>Beats, Rhymes And Life LP2</record_name>
+        <artist>A Tribe Called Quest</artist>
+        <record_cover>ATribeCalledQuest_2.jpg</record_cover>
+        <rack_slot>2</rack_slot>
+        <side>
+            <song>
+                <title>Mind Power</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>The Hop</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Keeping It Moving</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Baby Phife's Return</title>
+                <radius>0.4</radius>
+            </song>
+            </side>
+        <side>
+            <song>
+                <title>Separate / Together</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>What Really Goes On</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Word Play</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Stressed Out</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+    </record>
+    <record>
+        <record_name>Take Off Your Pants And Jacket</record_name>
+        <artist>Blink 182</artist>
+        <record_cover>Blink182.jpg</record_cover>
+        <rack_slot>3</rack_slot>
+        <side>
+            <song>
+                <title>Anthem Part Two</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Online Songs</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>First Date</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Happy Holidays, You Bastard</title>
+                <radius>0.4</radius>
+            </song>
+            <song>
+                <title>Story Of A Lonely Guy</title>
+                <radius>0.5</radius>
+            </song>
+			      <song>
+                <title>The Rock Show</title>
+                <radius>0.6</radius>
+            </song>
+			       <song>
+                <title>Stay Together For The Kids</title>
+                <radius>0.7</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Roller Coaster</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Reckless Abandon</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Everytime I Look For You</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Give Me One Good Reason</title>
+                <radius>0.4</radius>
+            </song>
+            <song>
+                <title>Shut Up</title>
+                <radius>0.5</radius>
+            </song>
+			 <song>
+                <title>Please Take Me Home</title>
+                <radius>0.6</radius>
+            </song>
+        </side>
+    </record>
+    <record>
+        <record_name>Legend</record_name>
+        <artist>Bob Marley And The Wailers</artist>
+        <record_cover>Blink182.jpg</record_cover>
+        <rack_slot>4</rack_slot>
+        <side>
+            <song>
+                <title>Is This Love</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>No Woman No Cry</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Could You Be Loved</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>Three Little Birds</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>Buffalo Soldier</title>
+                <radius>0.5</radius>
+            </song>
+			<song>
+                <title>Get Up Stand Up</title>
+                <radius>0.6</radius>
+            </song>
+			<song>
+                <title>Stir It Up</title>
+                <radius>0.7</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Stir It Up</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>I Shot The Sheriff</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Waiting In Vain</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Redemption Song</title>
+                <radius>0.4</radius>
+            </song>
+			 <song>
+                <title>Satisfy My Soul</title>
+                <radius>0.5</radius>
+            </song>
+			 <song>
+                <title>Exodus</title>
+                <radius>0.6</radius>
+            </song>
+			 <song>
+                <title>Jamming</title>
+                <radius>0.7</radius>
+            </song>
+        </side>
+    </record>
+	<record>
+        <record_name>Buena Vista Social Club LP1</record_name>
+        <artist>Buena Vista Social Club</artist>
+        <record_cover>Buena_1.jpg</record_cover>
+        <rack_slot>5</rack_slot>
+        <side>
+            <song>
+                <title>Chan Chan</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>De Camino A La Vereda</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>El Cuarto De Tula</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Pueblo Nuevo</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Dos Gardenias</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>¿ Y Tu Qué Has Hecho?</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Veinte Años</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+
+    </record>
+	<record>
+        <record_name>Buena Vista Social Club LP2</record_name>
+        <artist>Buena Vista Social Club</artist>
+        <record_cover>Buena_2.jpg</record_cover>
+        <rack_slot>6</rack_slot>
+        <side>
+            <song>
+                <title>El Carretero</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Candela</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Candela</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Orgullecida</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Murmullo</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Buena Vista Social Club</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>La Bayamesa</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+    </record>
+	<record>
+        <record_name>Chronology</record_name>
+        <artist> Chronixx</artist>
+        <record_cover>Chronixx.jpg</record_cover>
+        <rack_slot>7</rack_slot>
+        <side>
+            <song>
+                <title>Spanish Town Rockin'</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Big Bad Sound</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Skankin' Sweet</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>Ghetto Paradise</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>Smile Jamaica</title>
+                <radius>0.5</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Black Is Beautiful</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Majesty</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Loneliness</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Tell Me Now</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>Legend</title>
+                <radius>0.5</radius>
+            </song>
+        </side>
+    </record>
+	<record>
+        <record_name>X and Y LP1</record_name>
+        <artist>Coldplay</artist>
+        <record_cover>Coldplay_1.jpg</record_cover>
+        <rack_slot>8</rack_slot>
+        <side>
+            <song>
+                <title>Square One</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>What If</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>White Shadows</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Fix You</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Talk</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>XandY</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+    </record>
+	<record>
+        <record_name>X and Y LP2</record_name>
+        <artist>Coldplay</artist>
+        <record_cover>Coldplay_2.jpg</record_cover>
+        <rack_slot>9</rack_slot>
+        <side>
+            <song>
+                <title>Speed Of Sound</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>A Message</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Low</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>The Hardest Part</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Swallowed In The Sea</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Twisted Logic</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Til Kingdom Come</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+    </record>
+	<record>
+        <record_name>Chronicle - The 20 Greatest Hits LP1 </record_name>
+        <artist> Creedence Clearwater Revival</artist>
+        <record_cover>Creedence_1.jpg</record_cover>
+        <rack_slot>10</rack_slot>
+        <side>
+            <song>
+                <title>Susie Q</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>I Put A Spell On You</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Proud Mary</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>Bad Moon Rising</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Lodi</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Green River</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Commotion</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Down On The Corner</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>Fortunate Son</title>
+                <radius>0.5</radius>
+            </song>
+			<song>
+                <title>Travelin' Band</title>
+                <radius>0.6</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Chronicle - The 20 Greatest Hits LP2 </record_name>
+        <artist> Creedence Clearwater Revival</artist>
+        <record_cover>Creedence_2.jpg</record_cover>
+        <rack_slot>11</rack_slot>
+        <side>
+            <song>
+                <title>Who'll Stop The Rain</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Up Around The Bend</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Run Through The Jungle</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>Lookin' Out My Back Door</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>Long As I Can See The Light</title>
+                <radius>0.5</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>I Heard It Through The Grapevine</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Have You Ever Seen The Rain</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Hey Tonight</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Sweet Hitch-Hiker</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>Someday Never Come</title>
+                <radius>0.5</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Random Access Memories LP1</record_name>
+        <artist>Daft Punk</artist>
+        <record_cover>DaftPunk_1.jpg</record_cover>
+        <rack_slot>12</rack_slot>
+        <side>
+            <song>
+                <title>Give Life Back To Music</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>The Game Of Love</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Giorgio By Moroder</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Within</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Instant Crush</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Lose Yourself To Dance</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Random Access Memories LP2</record_name>
+        <artist>Daft Punk</artist>
+        <record_cover>DaftPunk_2.jpg</record_cover>
+        <rack_slot>13</rack_slot>
+        <side>
+            <song>
+                <title>Touch</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Get Lucky</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Beyond</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Motherboard</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Fragments Of Time</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Doin' It Right</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>Contact</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Brothers In Arms</record_name>
+        <artist>Dire Straits</artist>
+        <record_cover>DireStraits.jpg</record_cover>
+        <rack_slot>14</rack_slot>
+        <side>
+            <song>
+                <title>So Far Away</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Money For Nothing</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Walk Of Life</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>Your Latest Trick</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>Why Worry</title>
+                <radius>0.5</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Ride Across The River</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>The Man's Too Strong</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>One World</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Brothers In Arms</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>A New Perspective </record_name>
+        <artist>Donald Byrd</artist>
+        <record_cover>DonaldByrd.jpg</record_cover>
+        <rack_slot>15</rack_slot>
+        <side>
+            <song>
+                <title>Elijah</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Beast Of Burden</title>
                 <radius>0.2</radius>
             </song>
         </side>
         <side>
             <song>
-                <title>Lunar Phase</title>
-                <radius>1.1</radius>
+                <title>Cristo Redentor</title>
+                <radius>0.1</radius>
             </song>
             <song>
-                <title>Nautilus</title>
-                <radius>2.4</radius>
+                <title>The Black Disciple</title>
+                <radius>0.2</radius>
             </song>
             <song>
-                <title>Cloudless Light</title>
-                <radius>2.5</radius>
-            </song>
-            <song>
-                <title>Orgone</title>
-                <radius>2.8</radius>
+                <title>Chant</title>
+                <radius>0.3</radius>
             </song>
         </side>
-    </record>
-    <record>
-        <record_name>Greatest Hits Volume 3</record_name>
-        <artist>Johnny Cash</artist>
-        <record_cover>johnny_cash_createst_hits_3.jpg</record_cover>
-        <rack_slot>2</rack_slot>
+	</record>
+	<record>
+        <record_name>23 Unforgettable Songs LP1</record_name>
+        <artist>Edith Piaf</artist>
+        <record_cover>EdithPiaf_1.jpg</record_cover>
+        <rack_slot>16</rack_slot>
         <side>
             <song>
-                <title> There Ain't No Good Chain Gang</title>
-                <radius>0.55</radius>
+                <title>Non, Je Ne Regrette Rien</title>
+                <radius>0.1</radius>
             </song>
             <song>
-                <title>Oney</title>
-                <radius>0.55</radius>
+                <title>Milord</title>
+                <radius>0.2</radius>
             </song>
             <song>
-                <title>Any Old Wind That Blows</title>
-                <radius>0.55</radius>
+                <title>La Vie En Rose</title>
+                <radius>0.3</radius>
             </song>
-            <song>
-                <title>Old Time Feeling</title>
-                <radius>0.55</radius>
+			<song>
+                <title>Les Trois Cloches</title>
+                <radius>0.4</radius>
             </song>
-            <song>
-                <title>I Would Like To See You Again</title>
-                <radius>0.55</radius>
+			<song>
+                <title>L'accordéoniste</title>
+                <radius>0.5</radius>
             </song>
         </side>
         <side>
             <song>
-                <title>I Wish I Was Crazy Again</title>
-                <radius>0.55</radius>
+                <title>Hymne À L'amour</title>
+                <radius>0.1</radius>
             </song>
             <song>
-                <title>One Piece At A Time</title>
-                <radius>0.55</radius>
+                <title>Sous Le Ciel De Paris</title>
+                <radius>0.2</radius>
             </song>
             <song>
-                <title>After The Ball</title>
-                <radius>0.55</radius>
+                <title>La Goualante Du Pauvre Jean</title>
+                <radius>0.3</radius>
             </song>
             <song>
-                <title>Lady</title>
-                <radius>0.55</radius>
+                <title>Padam...Padam</title>
+                <radius>0.4</radius>
             </song>
-            <song>
-                <title>It's All Over</title>
-                <radius>0.55</radius>
+			<song>
+                <title>Padam...Padam</title>
+                <radius>0.5</radius>
             </song>
-        </side>
-    </record>
-    <record>
-        <record_name>Personal Jesus</record_name>
-        <artist>Depeche Mode</artist>
-        <record_cover>depeche_mode_personel_jesus.jpeg</record_cover>
-        <rack_slot>3</rack_slot>
-        <side>
-            <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
-            </song>
-            <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
-            </song>
-            <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
-            </song>
-            <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
-            </song>
-            <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
+			<song>
+                <title>Exodus</title>
+                <radius>0.6</radius>
             </song>
         </side>
+	</record>
+	<record>
+        <record_name>23 Unforgettable Songs LP2</record_name>
+        <artist>Edith Piaf</artist>
+        <record_cover>EdithPiaf_2.jpg</record_cover>
+        <rack_slot>17</rack_slot>
         <side>
             <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
+                <title>Bravo Pour Le Clown</title>
+                <radius>0.1</radius>
             </song>
             <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
+                <title>Mon Légionnaire</title>
+                <radius>0.2</radius>
             </song>
             <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
+                <title>Un Jeune Homme Chantait</title>
+                <radius>0.3</radius>
             </song>
-            <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
+			<song>
+                <title>Adieu Mon Coeur</title>
+                <radius>0.4</radius>
             </song>
-            <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
+			<song>
+                <title>Comme Moi</title>
+                <radius>0.5</radius>
             </song>
-        </side>
-    </record>
-    <record>
-        <record_name>Sinatra &amp; Company</record_name>
-        <artist>Frank Sinatra</artist>
-        <record_cover>sinatra_and_company.jpeg</record_cover>
-        <rack_slot>4</rack_slot>
-        <side>
-            <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
-            </song>
-            <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
-            </song>
-            <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
+			<song>
+                <title>Les Amants</title>
+                <radius>0.6</radius>
             </song>
         </side>
         <side>
             <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
+                <title>Tu Es Partout</title>
+                <radius>0.1</radius>
             </song>
             <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
+                <title>Le Vieux Piano</title>
+                <radius>0.2</radius>
             </song>
             <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
+                <title>De L'autre Coté De La Rue</title>
+                <radius>0.3</radius>
             </song>
             <song>
-                <title>[SONGNAME]</title>
-                <radius>0.55</radius>
+                <title>Y'a Pas D'printemps</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>Les Flons Flons Du Bal</title>
+                <radius>0.5</radius>
+            </song>
+			<song>
+                <title>Mon Manège À Moi</title>
+                <radius>0.6</radius>
             </song>
         </side>
-    </record>
-    <record>
-        <record_name>[ALBUMNAME]</record_name>
-        <artist>[NAME DES K�NSTLERS]</artist>
-        <record_cover>[LINK ZUM ALBUMCOVER]</record_cover>
-        <rack_slot>[NUMMER IM RACK DES PLATTENSPIELERS]</rack_slot>
+	</record>
+	<record>
+        <record_name>Mondo</record_name>
+        <artist> Electric Guest </artist>
+        <record_cover>Electric.jpg</record_cover>
+        <rack_slot>18</rack_slot>
         <side>
             <song>
-                <title>[SONGNAME] </title>
-                <radius>0.55</radius>
+                <title>Holes</title>
+                <radius>0.1</radius>
             </song>
             <song>
-                <title>[SONGNAME] </title>
-                <radius>0.55</radius>
+                <title>This Head I Hold</title>
+                <radius>0.2</radius>
             </song>
             <song>
-                <title>[SONGNAME] </title>
-                <radius>0.55</radius>
+                <title>Under The Gun</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>Awake</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>Amber</title>
+                <radius>0.5</radius>
             </song>
         </side>
         <side>
             <song>
-                <title>[SONGNAME] </title>
-                <radius>0.55</radius>
+                <title>The Bait</title>
+                <radius>0.1</radius>
             </song>
             <song>
-                <title>[SONGNAME] </title>
-                <radius>0.55</radius>
+                <title>Waves</title>
+                <radius>0.2</radius>
             </song>
             <song>
-                <title>[SONGNAME] </title>
-                <radius>0.55</radius>
+                <title>Troubleman</title>
+                <radius>0.3</radius>
             </song>
             <song>
-                <title>[SONGNAME] </title>
-                <radius>0.55</radius>
+                <title>American Daydream</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>Control</title>
+                <radius>0.5</radius>
             </song>
         </side>
-    </record>
+	</record>
+	<record>
+        <record_name> Greatest Hits LP1</record_name>
+        <artist>Foo Fighters</artist>
+        <record_cover>Foo_1.jpg</record_cover>
+        <rack_slot>19</rack_slot>
+        <side>
+            <song>
+                <title>All My Life</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Best Of You</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Everlong</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>The Pretender</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>My Hero</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Learn To Fly</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Times Like These</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Monkey Wrench</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name> Greatest Hits LP2</record_name>
+        <artist>Foo Fighters</artist>
+        <record_cover>Foo_2.jpg</record_cover>
+        <rack_slot>20</rack_slot>
+        <side>
+            <song>
+                <title>Big Me</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Breakout</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Long Road To Ruin</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>This Is A Call</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Skin And Bones</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Wheels</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Word Forward</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Everlong Acoustic</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Guardians Of The Galaxy Awesome Mix Vol. 1</record_name>
+        <artist>Various</artist>
+        <record_cover>Guardians.jpg</record_cover>
+        <rack_slot>21</rack_slot>
+        <side>
+            <song>
+                <title>Hooked On A Feeling</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Go All The Way</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Spirit In The Sky</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>Moonage Daydream</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>Fooled Around And Fell In Love</title>
+                <radius>0.5</radius>
+            </song>
+			<song>
+                <title>I Want You Back</title>
+                <radius>0.6</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>I'm Not In Love</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Come And Get Your Love</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Cherry Bomb</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Escape (The Piña Colada Song)</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>O-o-h Child</title>
+                <radius>0.5</radius>
+            </song>
+			<song>
+                <title>Ain't No Mountain High Enough</title>
+                <radius>0.6</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Root Down - Jimmy Smith Live!</record_name>
+        <artist>Jimmy Smith</artist>
+        <record_cover>JimmySmith.jpg</record_cover>
+        <rack_slot>22</rack_slot>
+        <side>
+            <song>
+                <title>Sagg Shootin' His Arrow</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>For Everyone Under The Sun</title>
+                <radius>0.2</radius>
+            </song>
+			<song>
+                <title>After Hours</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Root Down</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Let's Stay Together</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Slow Down Sagg</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Moments</record_name>
+        <artist>Marek Hemmann</artist>
+        <record_cover>Marek.jpg</record_cover>
+        <rack_slot>23</rack_slot>
+        <side>
+            <song>
+                <title>Helio</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Venice</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Ginger</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>Purple</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Mandrill</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Joker</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Comonia</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Bob</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Thriller</record_name>
+        <artist>Michael Jackson</artist>
+        <record_cover>Thriller.jpg</record_cover>
+        <rack_slot>24</rack_slot>
+        <side>
+            <song>
+                <title>Wanna Be Startin' Somethin'</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Baby Be Mine</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>The Girl Is Mine</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>Thriller</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Beat It</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Billie Jean</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Human Nature</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>P.Y.T. Pretty Young Thing</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>The Lady In My Life</title>
+                <radius>0.5</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Kind Of Blue</record_name>
+        <artist>Miles Davis</artist>
+        <record_cover>Miles.jpg</record_cover>
+        <rack_slot>25</rack_slot>
+        <side>
+            <song>
+                <title>So What</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Freddie Freeloader</title>
+                <radius>0.2</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Blue In Green</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Blue In Green</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Flamenco Sketches</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Play LP1</record_name>
+        <artist>Moby</artist>
+        <record_cover>Moby_1.jpg</record_cover>
+        <rack_slot>26</rack_slot>
+        <side>
+            <song>
+                <title>Honey</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Find My Baby</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Porcelain</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>Why Does My Heart Feel So Bad?</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>South Side</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Rushing</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Bodyrock</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Natural Blues</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Play LP2</record_name>
+        <artist>Moby</artist>
+        <record_cover>Moby_2.jpg</record_cover>
+        <rack_slot>27</rack_slot>
+        <side>
+            <song>
+                <title>Machete</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>7</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Run On</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>Down Slow</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>If Things Were Perfect</title>
+                <radius>0.5</radius>
+            </song>
+			<song>
+                <title>Everloving</title>
+                <radius>0.6</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Inside</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Guitar Flute &amp; String</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>The Sky Is Broken</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>My Weakness</title>
+                <radius>0.4</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Big Calm</record_name>
+        <artist>Morcheeba</artist>
+        <record_cover>Morcheeba.jpg</record_cover>
+        <rack_slot>28</rack_slot>
+        <side>
+            <song>
+                <title>The Sea</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Shoulder Holster</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Part Of The Process</title>
+                <radius>0.3</radius>
+            </song>
+			<song>
+                <title>Blindfold</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>Let Me See</title>
+                <radius>0.5</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Bullet Proof</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Over And Over</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Friction</title>
+                <radius>0.3</radius>
+            </song>
+            <song>
+                <title>Diggin' A Watery Grave</title>
+                <radius>0.4</radius>
+            </song>
+			<song>
+                <title>Fear And Love</title>
+                <radius>0.5</radius>
+            </song>
+			<song>
+                <title>Big Calm</title>
+                <radius>0.6</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Genius Loves Company LP1</record_name>
+        <artist>Ray Charles</artist>
+        <record_cover>RayCharles_1.jpg</record_cover>
+        <rack_slot>29</rack_slot>
+        <side>
+            <song>
+                <title>Here We Go Again</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Sweet Potato Pie</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>You Don't Know Me</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Sorry Seems To Be The Hardest Word</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Fever</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Do I Ever Cross Your Mind?</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+	</record>
+	<record>
+        <record_name>Genius Loves Company LP2</record_name>
+        <artist>Ray Charles</artist>
+        <record_cover>RayCharles_2.jpg</record_cover>
+        <rack_slot>30</rack_slot>
+        <side>
+            <song>
+                <title>It Was A Very Good Year</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Hey Girl</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Sinner's Prayer</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+        <side>
+            <song>
+                <title>Heaven Help Us All</title>
+                <radius>0.1</radius>
+            </song>
+            <song>
+                <title>Over The Rainbow</title>
+                <radius>0.2</radius>
+            </song>
+            <song>
+                <title>Crazy Love</title>
+                <radius>0.3</radius>
+            </song>
+        </side>
+	</record>
 </record_rack>
