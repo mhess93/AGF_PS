@@ -6,6 +6,7 @@ $(document).ready(function(){
         var resolve;
 
         var moduleName = 'Recordmodule';
+        var backupCover = "url(\" images/logo.png \")";
 
         var init = function(){
             return new Promise(function(resolveFunc, rejectFunc){
@@ -59,12 +60,6 @@ $(document).ready(function(){
 
                 records[i] = record;
             }
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> cde300cf03a0d4436257eec306b20f5f0c56bbf8
             setupAlbumSelection();
         };
 
@@ -77,28 +72,34 @@ $(document).ready(function(){
                 recordContainer = recordList.children().last();
                 recordContainer.attr('list-id', i);
                 recordContainer.click(function(evt){
-                    displayInPreview(records[$(evt.target).attr('list-id')], $(evt.target).attr('list-id'));
+                    displayInPreview($(evt.target).attr('list-id'));
                     $('.album-list-wrapper').children('div').removeClass('active');
                     $(evt.target).addClass('active');
                 });
                 url = 'url(\" images/'+ record['record_cover']+'")';
+                url += ", " + backupCover;
+                console.log(url);
                 recordContainer.css('background-image',url );
             }
             resolve(recordList);
-<<<<<<< HEAD
-            moduleInitialized("Recordmodule");
-            //initialized("Record Module");
-=======
+            displayInPreview(0);
+
             moduleInitSuccess(moduleName);
->>>>>>> cde300cf03a0d4436257eec306b20f5f0c56bbf8
         }
 
-        function displayInPreview(record, index){
+        function displayInPreview(index){
             var previewContainer, side, sidePreview;
+            var record = records[index];
 
             previewContainer = $('.preview-wrapper');
+
+            var url = 'url(\" images/'+ record['record_cover']+'")' + ", " + backupCover;
+
             previewContainer.children('.preview-album-cover')
-                .css('background-image', 'url(\" images/'+ record['record_cover']+'")');
+                .css('background-image', url);
+
+            previewContainer.children('.preview-album-cover').click(playFromAlbum);
+
 
             previewContainer.children('.preview-album-information')
                 .html('<b>' + record['record_name'] + ', ' + record['artist'] + '</b>');
@@ -137,6 +138,10 @@ $(document).ready(function(){
                 TwincatConnectionModule.fetchRecord(index, 1, 0);
                 $('.controls.left-side').toggleClass('active');
             });
+        }
+
+        function playFromAlbum(event){
+          console.log(event);
         }
 
         return{

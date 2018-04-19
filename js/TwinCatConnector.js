@@ -56,7 +56,7 @@ $(document).ready(function(){
                 reject = rejectFunc;
                 $.ajax({
                     type: "GET",
-                    url: "xmlfiles/Labview.xml",
+                    url: "xmlfiles/Frontend.xml",
                     dataType: "xml"
                 }).done(
                     function(data){
@@ -491,8 +491,21 @@ $(document).ready(function(){
                 return variables[nameToIndexTranslation['ActRack']].value;
             },
 
-            togglePlaymodeRepeat: function(){
-                var index = nameToIndexTranslation['PlaymodeRepeat'];
+            togglePlaymodeRepeatAll: function(){
+                var index = nameToIndexTranslation['PlaymodeRepeatAll'];
+                console.log("RepeatAll");
+                writeData.push([index, true]);
+            },
+
+            togglePlaymodeRepeatOne: function(){
+                var index = nameToIndexTranslation['PlaymodeRepeatOne'];
+                console.log("RepeatOne");
+                writeData.push([index, true]);
+            },
+
+            togglePlaymodeShuffleAll: function(){
+                var index = nameToIndexTranslation['PlaymodeShuffleAll'];
+                console.log("ShuffleAll");
                 writeData.push([index, true]);
             },
 

@@ -15,7 +15,7 @@ For: 1708px * 1132px (Surface Pro 3);
 
 body {
 /*
-	height/width - 4		
+	height/width - 4
 	*/
 	width: 1416px;
 	height: 940px;
@@ -61,7 +61,7 @@ header.machine-view-header {
 	display:inline-block;
 	line-height: 40px;
 	height:40px;
-}		
+}
 
 .version-container  {
 	width: 300px;
@@ -194,7 +194,7 @@ main div#main-left {
 #main-sidebar ul li label{
 	display: inline-block;
 	width: 160px;
-}		
+}
 
 #main-sidebar ul li input{
 	width: 40px;
@@ -235,12 +235,12 @@ footer div.bottom-row  {
 	padding: 5px 10px 5px 10px;
 	line-height:50px;
 	font-size: 20px
-}	
+}
 
 footer div.bottom-row input  {
 	height: 30px;
 	width: 80%;
-}	
+}
 
 footer div.control-button  {
 	height: 100%;
@@ -265,13 +265,13 @@ div.control-button.right-side + div.control-button.right-side {
 
 div.control-button a  {
 	display:block;
-	/* Adjust height and width to padding*/ 
+	/* Adjust height and width to padding*/
 	height: calc(100% - 26px);
 	padding:13px 10px 13px 10px;
 	background-color: gray;
 }
 
-div.control-button a:active { 
+div.control-button a:active {
 	background-color: #4E4E4E;
 }
 
@@ -346,9 +346,9 @@ header.player-view-header{
 .mantra{
 	width: 70%;
 	float:left;
-	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 89,100 100,0 0,0' style='fill:%234295f4;' /%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100px' height='100%' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 89,100 100,0 0,0' style='fill:%234295f4;' /%3E%3C/svg%3E");
 	background-repeat: no-repeat;
-	padding-right: 100px;
+	padding-right: 65px;
 	text-align: center;
 }
 
@@ -360,8 +360,7 @@ header.player-view-header{
 .logo{
 	margin-left: 70%;
 	background: url('images/logo.png') no-repeat right;
-    background-size: 285px;
-    margin-right: 25px;
+  margin-right: 77px;
 }
 
 #player-view .controls{
@@ -373,7 +372,7 @@ header.player-view-header{
 }
 
 .left-side{
-	width: 70%;
+	width: 72%;
 	float: left;
     display: none;
 }
@@ -383,8 +382,8 @@ header.player-view-header{
 }
 
 .right-side{
-	width: 30%;
-	margin-left: 70%
+	width: 28%;
+	margin-left: 72%
 }
 
 .vinyl-arm-section{
@@ -424,7 +423,7 @@ div.centered-container{
     height: 72px;
     display: inline-block;
     width: 72px;
-    margin:10px;
+    margin:5px;
 }
 
 .song-controls img{
@@ -439,9 +438,9 @@ div.centered-container{
 }
 
 .sidebar-container{
-	height: calc(100% - 100px);
-    padding-top: 1px;
-    margin-top: -1px;
+		height: calc(100% - 100px);
+  	padding-top: 1px;
+  	margin-top: -1px;
 }
 
 .playlist-control-buttons{
@@ -486,10 +485,12 @@ div.centered-container{
 }
 */
 .song-selection{
-    width: calc(80% - 20px - 4px);
-    margin-left:20%;
-    margin-top: 35px;
-    height: calc(100% - 35px - 4px);
+    width: 350px;
+    margin-top: 30px;
+		margin-left: 30px;
+		margin-right:20px;
+		margin-bottom: 10px;
+    height: calc(100% - 30px - 10px);
     border-radius: 5px;
     background-color: #4295f4;
     color: white;
@@ -497,8 +498,13 @@ div.centered-container{
 
 .song-selection-container{
     padding:  10px 20px;
-    overflow-y: auto;
+    overflow-y: scroll;
     height: calc(100% - 60px);
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
 }
 
 .song-selection-header{
@@ -533,11 +539,14 @@ div.centered-container{
 .song-selection-container h3{
     margin: 0;
     font-size: 22px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
 }
 
 .song-selection-container .list-with-title li{
-    font-size: 17px;
-    height: 30px;
+    font-size: 18px;
+    height: 33px;
     overflow:hidden;
     text-overflow:ellipsis;
     padding: 0 10px;
@@ -549,34 +558,26 @@ div.centered-container{
     background-color: #1A7FEF;
 }
 
-.repeat-all-button{
-    background-image: url("images/repeat-all.svg");
-    background-position: center;
-    background-size: 46px;
+.playmode-button{
+	background-position: center;
+	background-size: 46px;
 }
 
-.repeat-all-button.active{
-    background-image: url("images/refresh_white.png");
+.playmode-button.active{
+			-webkit-filter: invert(100%);
+			filter: invert(100%);
+}
+
+.repeat-all-button{
+    background-image: url("images/repeat-all.svg");
 }
 
 .repeat-one-button{
     background-image: url("images/repeat-one.svg");
-    background-position: center;
-    background-size: 46px;
 }
 
-.repeat-one-button.active{
-    background-image: url("images/reload_white.png");
-}
-
-.shuffle-button{
+.shuffle-all-button{
     background-image: url("images/shuffle-all.svg");
-    background-position: center;
-    background-size: 46px;
-}
-
-.shuffle-button.active{
-    background-image: url("images/auto_white.png");
 }
 
 .list-with-title ul{
@@ -598,23 +599,12 @@ div.centered-container{
 }
 
 .misc-control{
-	height: 100px;
+	height: 90px;
+	padding-left: 33px;
+	padding-bottom: 10px;
+	padding-top: 5px;
 }
 
-.misc-control .top-row,
-.misc-control .bottom-row{
-    height: calc(50% - 30px);
-    padding: 20px;
-    margin-left: 100px;
-}
-
-.misc-control .top-row{
-    padding-bottom: 10px;
-}
-
-.misc-control .bottom-row{
-    padding-top: 10px;
-}
 /*
 .misc-control .button-container{
     width: 69px;
@@ -669,11 +659,20 @@ div.preview-album-information{
 }
 
 div.preview-album-cover{
-    width: calc(33% - 60px);
+    width: calc(33% - 70px);
     margin: 0 30px;
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
+		text-align: center;
+}
+
+div.preview-album-cover div{
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	background-image: url("images/play-button.svg");
+	margin: 75px;
 }
 
 .preview-wrapper .play-button {
@@ -704,8 +703,3 @@ div.preview-album-cover{
 .width-filling{
 	width:100%;
 }
-
-
-
-
-

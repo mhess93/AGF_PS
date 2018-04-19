@@ -7,9 +7,8 @@
 	<script type="text/javascript" src="js/propeller.js"></script>
 	<script type="text/javascript" src="js/TwinCatConnector.js"></script>
 	<script type="text/javascript" src="js/RecordsModule.js"></script>
-    <script type="text/javascript" src="js/Notifier.js"></script>
+	<script type="text/javascript" src="js/Notifier.js"></script>
 	<script type="text/javascript" src="js/initialize.js"></script>
-
 	<meta charset="utf-8">
 	<title>AGRAR PS</title>
 </head>
@@ -20,7 +19,7 @@
 		<div class="notification-header"></div>
 		<header class="player-view-header">
 			<div class="mantra">
-                <h1>Harder better faster stronger</h1>
+				<h1>Harder better faster stronger</h1>
 			</div>
 			<div class="logo"></div>
 		</header>
@@ -32,7 +31,9 @@
 				<div class="preview-side-A list-with-title">
 					<ul></ul>
 				</div>
-				<div class="preview-album-cover"></div>
+				<div class="preview-album-cover">
+					<div></div>
+				</div>
 				<div class="preview-side-B list-with-title">
 					<ul></ul>
 				</div>
@@ -41,58 +42,58 @@
 		<div class="controls left-side record-control-wrapper">
 			<section class="vinyl-arm-section">
 				<div class="vinyl-container height-filling"></div>
-			    <div class="arm-container height-filling"></div>
-            </section>
+				<div class="arm-container height-filling"></div>
+			</section>
 			<section class="song-controls width-filling">
-                <div class="top-row width-filling">
-                    <div class="centered-container unselectable">
-                        <div class="button-container unselectable">
-                            <a href="#"><img src="images/rewind.svg"> </a>
-                        </div>
-                        <div class="button-container unselectable">
-                            <a id="skip-backward-button" href="#"><img src="images/left-arrow.svg"> </a>
-                        </div>
-                        <div class="button-container unselectable ">
-                            <a class="play-button" href="#"><img src="images/play-button.svg"> </a>
-                        </div>
-                        <div class="button-container unselectable">
-                            <a id="skip-forward-button" href="#"><img src="images/next.svg"> </a>
-                        </div>
-                        <div class="button-container unselectable">
-                            <a href="#"><img src="images/fast-forward.svg"> </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bottom-row width-filling">
-                    <div class="centered-container unselectable">
-                        <div class="button-container unselectable">
-                            <a href="#"><img src="images/pause.svg"> </a>
-                        </div>
-                        <div class="button-container unselectable">
-                            <a class="stop-button" href="#"><img src="images/stop.svg"> </a>
-                        </div>
-                        <div class="button-container unselectable">
-                            <a href="#"><img src="images/garbage.svg"> </a>
-                        </div>
+				<div class="top-row width-filling">
+					<div class="centered-container unselectable">
+						<div class="button-container unselectable">
+							<a href="#"><img src="images/rewind.svg"> </a>
+						</div>
+						<div class="button-container unselectable">
+							<a id="skip-backward-button" href="#"><img src="images/left-arrow.svg"> </a>
+						</div>
+						<div class="button-container unselectable ">
+							<a class="play-button" href="#"><img src="images/play-button.svg"> </a>
+						</div>
+						<div class="button-container unselectable">
+							<a id="skip-forward-button" href="#"><img src="images/next.svg"> </a>
+						</div>
+						<div class="button-container unselectable">
+							<a href="#"><img src="images/fast-forward.svg"> </a>
+						</div>
+					</div>
+				</div>
+				<div class="bottom-row width-filling">
+					<div class="centered-container unselectable">
+						<div class="button-container unselectable">
+							<a href="#"><img src="images/pause.svg"> </a>
+						</div>
+						<div class="button-container unselectable">
+							<a class="stop-button" href="#"><img src="images/stop.svg"> </a>
+						</div>
+						<div class="button-container unselectable">
+							<a href="#"><img src="images/garbage.svg"> </a>
+						</div>
 
-                    </div>
-                </div>
-            </section>
+					</div>
+				</div>
+			</section>
 		</div>
 		<div class="controls right-side">
 			<div class="sidebar-container">
-                <div class="song-selection">
+				<div class="song-selection">
 					<div class="song-selection-header">
 						<div class="centered-container unselectable">
-							<div class="repeat-all-button playmode-button unselectable">
-                                
-                            </div>
-							<div class="repeat-one-button playmode-button unselectable">
-                                
-                            </div>
-							<div class="shuffle-button playmode-button unselectable">
-                                
-                            </div>
+							<div id="repeat-all-button" class="repeat-all-button playmode-button unselectable">
+
+							</div>
+							<div id="repeat-one-button" class="repeat-one-button playmode-button unselectable">
+
+							</div>
+							<div id="shuffle-all-button" class="shuffle-all-button playmode-button unselectable">
+
+							</div>
 						</div>
 					</div>
 					<div class="song-selection-container record-preview">
@@ -110,23 +111,23 @@
 							</ul>
 						</div>
 					</div>
-                </div>
-            </div>
+				</div>
+			</div>
 			<section class="misc-control">
-                    <div class="button-container toggle-controls-albums">
-                        <a href="#"> <img src="images/more.svg"></a>
-                    </div>
-                    <div class="button-container prevent-contextmenu">
-                        <a id="increase-volume-button" href="#"> <img src="images/increase-volume.svg"></a>
-                    </div>
-                    <div class="button-container prevent-contextmenu">
-                        <a id="decrease-volume-button" href="#"> <img src="images/decrease-volume.svg"></a>
-                    </div>
-                    <div class="button-container">
-                        <a id="mute-button" href="#"> <img src="images/mute.svg"></a>
-                    </div>
-            </section>
+				<div class="button-container toggle-controls-albums">
+					<a id="toggle-controls-albums" href="#"> <img src="images/more.svg"></a>
+				</div>
+				<div class="button-container prevent-contextmenu">
+					<a id="increase-volume-button" href="#"> <img src="images/increase-volume.svg"></a>
+				</div>
+				<div class="button-container prevent-contextmenu">
+					<a id="decrease-volume-button" href="#"> <img src="images/decrease-volume.svg"></a>
+				</div>
+				<div class="button-container">
+					<a id="mute-button" href="#"> <img src="images/mute.svg"></a>
+				</div>
+			</section>
 		</div>
-	</div>	
+	</div>
 </body>
 </html>

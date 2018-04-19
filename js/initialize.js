@@ -18,6 +18,38 @@ $(document).ready(function(){
         TwincatConnectionModule.subscribeTo('StatusWord', function(statusWord){
             console.log(statusWord);
         });
+        /*
+        TwincatConnectionModule.subscribeTo('PlaymodeRepeatAll', function(isActive){
+          var bool = new Boolean(isActive);
+          var button = $('#repeat-all-button');
+          if(button.hasClass('active') && !isActive){
+            button.removeClass('active');
+          }
+          else if( !button.hasClass('active') && isActive){
+            button.addClass('active');
+          }
+        });
+        TwincatConnectionModule.subscribeTo('PlaymodeRepeatOne', function(isActive){
+          var bool = new Boolean(isActive);
+          var button = $('#repeat-one-button');
+          if(button.hasClass('active') && !isActive){
+            button.removeClass('active');
+          }
+          else if( !button.hasClass('active') && isActive){
+            button.addClass('active');
+          }
+        });
+        TwincatConnectionModule.subscribeTo('PlaymodeShuffleAll', function(isActive){
+          var bool = new Boolean(isActive);
+          var button = $('#shuffle-all-button');
+          if(button.hasClass('active') && !isActive){
+            button.removeClass('active');
+          }
+          else if( !button.hasClass('active') && isActive){
+            button.addClass('active');
+          }
+        });
+        */
     }
 
     function displayRecordInPlayingContainer(recordNr){
@@ -72,6 +104,8 @@ $(document).ready(function(){
         updateActiveInPlayingContainer();
     }
 
+    window.displayRecord = displayRecordInPlayingContainer;
+
     function updateActiveInPlayingContainer(){
         var song, side, tempString, listContainer;
 
@@ -101,32 +135,6 @@ $(document).ready(function(){
         sideList[song].className += 'active';
     }
 
-<<<<<<< HEAD
-    function initialize(){
-        if(initCount === 0){
-            $(".init-element").html('Init. RecordsModule');
-            RecordsModule.init();
-        }
-        else if(initCount === 1){
-            $(".init-element").html('Init. TwincatModule');
-            TwincatConnectionModule.init()
-                .then(initializeSubscribers);
-        }
-        else if(initCount > 1){
-            console.log("All Modules Initialized");
-            //TwincatConnectionModule.startReadWrite();
-            $(".init-element").remove();
-        }
-        else{
-            console.error("Initialization failed");
-        }
-    }
-
-    function moduleInitialized(name){
-        console.log(name + " initialized");
-        initCount++
-        initialize();
-=======
     window.moduleInitSuccess = function(name){
         console.log(name + " init success")
         initCount++;
@@ -222,14 +230,39 @@ $(document).ready(function(){
             TwincatConnectionModule.toggleMute();
         });
 
-        $('.repeat-button').click(function(){
-            TwincatConnectionModule.togglePlaymodeRepeat();
+        $('.repeat-all-button').click(function(){
+          if($(this).hasClass('active')){
+            $('.playmode-button').removeClass('active');
+          }else{
+            $('.playmode-button').removeClass('active');
+            $(this).addClass('active');
+          }
+          TwincatConnectionModule.togglePlaymodeRepeatAll();
+        });
+
+        $('.repeat-one-button').click(function(){
+          if($(this).hasClass('active')){
+            $('.playmode-button').removeClass('active');
+          }else{
+            $('.playmode-button').removeClass('active');
+            $(this).addClass('active');
+          }
+          TwincatConnectionModule.togglePlaymodeRepeatOne();
+        });
+
+        $('.shuffle-all-button').click(function(){
+          if($(this).hasClass('active')){
+            $('.playmode-button').removeClass('active');
+          }else{
+            $('.playmode-button').removeClass('active');
+            $(this).addClass('active');
+          }
+          TwincatConnectionModule.togglePlaymodeShuffleAll();
         });
 
         $('.vinyl-container').propeller({});
 
         moduleInitSuccess("Handlers");
->>>>>>> cde300cf03a0d4436257eec306b20f5f0c56bbf8
     }
 
     function moduleInitializationFailed(name){
