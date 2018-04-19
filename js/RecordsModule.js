@@ -109,11 +109,10 @@ $(document).ready(function(){
             sidePreview = $('.preview-side-A ul');
             sidePreview.children().remove();
 
-            sidePreview.append('<h4>Side A</h4><div class="play-button side-A">\n' +
-                '                        <a href="#"> <img src="images/play-button.svg"></a>\n' +
+            sidePreview.append('<h4 class="possible-play-selection possible-side-selection">Side A</h4><div class="side-A">\n' +
                 '                    </div>');
             for(var i = 0; i < side.length; i++){
-                sidePreview.append('<li>'+ (i + 1)+ ". " + side[i] +'</li>')
+                sidePreview.append('<li class="possible-play-selection">'+ (i + 1)+ ". " + side[i] +'</li>')
             }
 
             side = record['side_b'];
@@ -121,11 +120,10 @@ $(document).ready(function(){
             sidePreview = $('.preview-side-B ul');
             sidePreview.children().remove();
 
-            sidePreview.append('<h4>Side B</h4> <div class="play-button side-B">\n' +
-                '                        <a href="#"> <img src="images/play-button.svg"></a>\n' +
+            sidePreview.append('<h4 class="possible-play-selection possible-side-selection">Side B</h4> <div class="side-B">\n' +
                 '                    </div>');
             for(i = 0; i < side.length; i++){
-                sidePreview.append('<li>'+ (i + 1)+ ". " + side[i] +'</li>')
+                sidePreview.append('<li class="possible-play-selection">'+ (i + 1)+ ". " + side[i] +'</li>')
             }
 
 
@@ -141,7 +139,7 @@ $(document).ready(function(){
         }
 
         function playFromAlbum(event){
-          console.log(event);
+          console.log($('.possible-play-selection.active, .possible-side-selection.active'))
         }
 
         return{

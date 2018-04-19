@@ -684,6 +684,13 @@ div.preview-album-cover div{
     vertical-align: top;
 }
 
+.possible-play-selection.active,
+.possible-side-selection.active{
+		background-color: #1A7FEF;
+}
+
+
+
 *.unselectable {
     -moz-user-select: -moz-none;
     -khtml-user-select: none;

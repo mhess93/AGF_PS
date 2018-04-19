@@ -260,9 +260,31 @@ $(document).ready(function(){
           TwincatConnectionModule.togglePlaymodeShuffleAll();
         });
 
+        $('.possible-play-selection').click(handlePossiblePlaySelection);
+
         $('.vinyl-container').propeller({});
 
         moduleInitSuccess("Handlers");
+    }
+
+    function handlePossiblePlaySelection(evt){
+      var target = $(this);
+
+      if(!target.hasClass('possible-side-selection')){
+        var wasActive = target.hasClass('active');
+        $('.possible-play-selection, .possible-side-selection').removeClass('active');
+        if(!wasActive){
+          target.addClass('active');
+        }
+      }
+      else{
+        var wasActive = target.parent().hasClass('active');
+        $('.possible-play-selection, .possible-side-selection').removeClass('active');
+        if(!wasActive){
+          target.parent().addClass('active');
+        }
+
+      }
     }
 
     function moduleInitializationFailed(name){
