@@ -38,7 +38,7 @@ $(document).ready(function(){
             },
             init: function(){
                 notificationHeader = $('.notification-header');
-                initialized("Notification Module");
+                moduleInitSuccess("NotificationModule");
             }
         }
     })();

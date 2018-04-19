@@ -43,7 +43,6 @@ body {
     margin-left: -200px;
     background-color: white;
     z-index:10;
-    font-size: 40px;
     text-align: center;
 }
 
@@ -359,9 +358,10 @@ header.player-view-header{
 }
 
 .logo{
-	width:30%;
 	margin-left: 70%;
-	background: url('images/logo.png') no-repeat center;
+	background: url('images/logo.png') no-repeat right;
+    background-size: 285px;
+    margin-right: 25px;
 }
 
 #player-view .controls{
@@ -404,8 +404,7 @@ header.player-view-header{
 }
 
 .song-controls{
-	height:24%;
-    margin-bottom: 1%;
+	height: 25%;
 }
 
 .song-controls div.top-row,
@@ -420,7 +419,8 @@ div.centered-container{
     height: calc(100% - 10px);
 }
 
-.centered-container .button-container{
+/*.centered-container*/
+.button-container{
     height: 72px;
     display: inline-block;
     width: 72px;
@@ -439,7 +439,7 @@ div.centered-container{
 }
 
 .sidebar-container{
-	height:70%;
+	height: calc(100% - 100px);
     padding-top: 1px;
     margin-top: -1px;
 }
@@ -478,13 +478,13 @@ div.centered-container{
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
 }
-
+/*
 .vertically-centered-container .button-container{
     width: 65px;
     height:65px;
     margin:6px;
 }
-
+*/
 .song-selection{
     width: calc(80% - 20px - 4px);
     margin-left:20%;
@@ -549,33 +549,33 @@ div.centered-container{
     background-color: #1A7FEF;
 }
 
-.repeat-button{
-    background-image: url("images/refresh.svg");
+.repeat-all-button{
+    background-image: url("images/repeat-all.svg");
     background-position: center;
     background-size: 46px;
 }
 
-.repeat-button.active{
+.repeat-all-button.active{
     background-image: url("images/refresh_white.png");
 }
 
-.reload-button{
-    background-image: url("images/reload.svg");
+.repeat-one-button{
+    background-image: url("images/repeat-one.svg");
     background-position: center;
     background-size: 46px;
 }
 
-.reload-button.active{
+.repeat-one-button.active{
     background-image: url("images/reload_white.png");
 }
 
-.auto-button{
-    background-image: url("images/auto.svg");
+.shuffle-button{
+    background-image: url("images/shuffle-all.svg");
     background-position: center;
     background-size: 46px;
 }
 
-.auto-button.active{
+.shuffle-button.active{
     background-image: url("images/auto_white.png");
 }
 
@@ -598,7 +598,7 @@ div.centered-container{
 }
 
 .misc-control{
-	height: 30%;
+	height: 100px;
 }
 
 .misc-control .top-row,
@@ -615,14 +615,14 @@ div.centered-container{
 .misc-control .bottom-row{
     padding-top: 10px;
 }
-
+/*
 .misc-control .button-container{
     width: 69px;
     height: 69px;
     margin: 6px;
     display: inline-block;
 }
-
+*/
 .album-list-wrapper{
     height: calc(60% - 60px);
     width: calc(100% - 120px);

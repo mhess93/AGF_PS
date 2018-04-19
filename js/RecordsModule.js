@@ -5,9 +5,12 @@ $(document).ready(function(){
 
         var resolve;
 
+        var moduleName = 'Recordmodule';
+
         var init = function(){
-            return new Promise(function(resolveFunc, reject){
+            return new Promise(function(resolveFunc, rejectFunc){
                 resolve = resolveFunc;
+                reject = rejectFunc;
                 $.ajax({
                     type: "GET",
                     url: "xmlfiles/records_ANSII.xml",
@@ -18,6 +21,7 @@ $(document).ready(function(){
                         function(jqXHR, textStatus, errorThrown){
                             $('.init-message p').html("Error in RecordsModule: " + errorThrown);
                             console.log(errorThrown);
+                            moduleInitFail(moduleName);
                             reject();
                         });
             });
@@ -55,6 +59,12 @@ $(document).ready(function(){
 
                 records[i] = record;
             }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> cde300cf03a0d4436257eec306b20f5f0c56bbf8
             setupAlbumSelection();
         };
 
@@ -75,8 +85,12 @@ $(document).ready(function(){
                 recordContainer.css('background-image',url );
             }
             resolve(recordList);
+<<<<<<< HEAD
             moduleInitialized("Recordmodule");
             //initialized("Record Module");
+=======
+            moduleInitSuccess(moduleName);
+>>>>>>> cde300cf03a0d4436257eec306b20f5f0c56bbf8
         }
 
         function displayInPreview(record, index){
@@ -115,12 +129,12 @@ $(document).ready(function(){
 
 
             $('.play-button.side-A').click(function(){
-                RecordPlayer.playSide(index, 0);
+                TwincatConnectionModule.fetchRecord(index, 0, 0);
                 $('.controls.left-side').toggleClass('active');
             });
 
             $('.play-button.side-B').click(function(){
-                RecordPlayer.playSide(index, 1);
+                TwincatConnectionModule.fetchRecord(index, 1, 0);
                 $('.controls.left-side').toggleClass('active');
             });
         }

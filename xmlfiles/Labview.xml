@@ -109,6 +109,16 @@
             <INT />
           </type>
         </variable>
+        <variable name="gui_PlaymodeRepeat">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="gui_StatusWord">
+          <type>
+            <WORD />
+          </type>
+        </variable>
         <addData>
           <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
             <Attributes>

@@ -15,6 +15,9 @@ $(document).ready(function(){
         var writeLoopID = null;
         var writeLoopDelay = readLoopDelay;
 
+        var fakeLoopId = null;
+        var fakeLoop = false;
+
         var readWriter;
         var readWriterBase64Data;
         var writeWriter;
@@ -22,9 +25,11 @@ $(document).ready(function(){
 
         var writeData = [];
 
-        var nameToIndexTranslation = [];
+        var nameToIndexTranslation = {};
 
         var resolve, reject;
+
+        var moduleName = "Twincatmodule";
 
         function Variable(name, type){
             this.name = name;
@@ -48,6 +53,7 @@ $(document).ready(function(){
         var init = function(){
             return new Promise(function(resolveFunc, rejectFunc){
                 resolve = resolveFunc;
+                reject = rejectFunc;
                 $.ajax({
                     type: "GET",
                     url: "xmlfiles/Labview.xml",
@@ -59,7 +65,7 @@ $(document).ready(function(){
                     }
                 ).fail(
                     function(jqXHR, textStatus, errorThrown){
-                        $('.init-message p').html("ERROR: " + errorThrown);
+                        moduleInitFail(moduleName);
                         reject();
                     }
                 );
@@ -76,9 +82,11 @@ $(document).ready(function(){
                 name = "."+varEntry.getAttribute("name");
 
                 variables[i] = new Variable(name, type);
-
+                //nameToIndexTranslation[name.split('_')[1]] = i;
                 nameToIndexTranslation[name.split('_')[1]] = i;
             }
+            // DELETE BEFORE DEPLOYMENT
+            window.variables = variables;
         }
 
         function subscribeTo(varName, updateFunc){
@@ -105,8 +113,7 @@ $(document).ready(function(){
 
             writeWriter = new TcAdsWebService.DataWriter();
             resolve();
-            //initialized("Twincatconnection Module");
-            moduleInitialized("Twincatmodule");
+            moduleInitSuccess(moduleName);
         };
 
         function setupClient(){
@@ -136,6 +143,7 @@ $(document).ready(function(){
 
             } else {
                 handleADSError(e, arguments.callee);
+                moduleInitFail(moduleName);
             }
         }
 
@@ -191,21 +199,21 @@ $(document).ready(function(){
                     }
                 }
 
-                if(hasAError){
+                if(hasAError){return;}
 
-                    return;
-                }
 
                 for( i = 0; i < variables.length; i++){
                     variables[i].handle = reader.readWORD();
                 }
                 prepareWriters();
 
+                prepareWriters();
+
             } else {
+
                 handleADSError(e, arguments.callee);
+                moduleInitFail(moduleName);
             }
-
-
 
 
         }
@@ -345,6 +353,7 @@ $(document).ready(function(){
                 );
 
                 writeWriter = new TcAdsWebService.DataWriter();
+
                 writeData = [];
             }
 
@@ -370,7 +379,6 @@ $(document).ready(function(){
             var funcName = callee.toString();
             funcName = funcName.substr('function '.length);
             funcName = funcName.substr(0, funcName.indexOf('('));
-            console.error("ERROR IN: " + funcName);
             console.error(e.error);
             moduleInitializationFailed('Twincatmodule');
         }
@@ -413,7 +421,7 @@ $(document).ready(function(){
             subscribeTo: subscribeTo,
 
             startReadWrite : function(){
-                //readLoopID =  window.setInterval(readLoop, readLoopDelay);
+                readLoopID =  window.setInterval(readLoop, readLoopDelay);
                 writeLoopID = window.setInterval(writeLoop, writeLoopDelay);
                 console.log("ReadWrite started");
             },
@@ -433,10 +441,11 @@ $(document).ready(function(){
             },
 
             fetchRecord: function(record,side,song){
-                var recordIndex = nameToIndexTranslation['Rack'],
-                    sideIndex = nameToIndexTranslation['Side'],
-                    songIndex = nameToIndexTranslation['Song'];
-                writeData.push([recordIndex,record], [sideIndex, side],[songIndex, song]);
+                var recordIndex = nameToIndexTranslation['ReqRack'],
+                    sideIndex = nameToIndexTranslation['ReqSide'],
+                    songIndex = nameToIndexTranslation['ReqSong'],
+                    newSongIndex = nameToIndexTranslation['ReqNewValuesSong'];
+                writeData.push([newSongIndex, true],[recordIndex,parseInt(record)], [sideIndex, Boolean(side)],[songIndex, parseInt(song)]);
             },
 
             skipForward: function(){
@@ -448,6 +457,12 @@ $(document).ready(function(){
             },
 
             writeData: writeData,
+
+            writeDataToString: function(){
+              for(var i = 0; i < writeData.length; i++){
+                console.log(variables[writeData[i][0]].name + ": " + writeData[i][1]);
+              }
+            },
 
             increaseVolume: function(){
                 writeData.push([nameToIndexTranslation['IncreaseVolume'],1]);
@@ -476,6 +491,11 @@ $(document).ready(function(){
                 return variables[nameToIndexTranslation['ActRack']].value;
             },
 
+            togglePlaymodeRepeat: function(){
+                var index = nameToIndexTranslation['PlaymodeRepeat'];
+                writeData.push([index, true]);
+            },
+
             /* DELETE  ALL BELLOW */
             addToWrite: function(i,j){
                 writeData.push([i,j]);
@@ -494,6 +514,32 @@ $(document).ready(function(){
                 var variable = variables[index];
                 variable.subscribe(updateFunction);
             },
+
+            startFakeLoop: function(){
+                fakeLoopId = window.setInterval(function(){
+                  console.log(writeData);
+                  writeData = [];
+                }, 1000);
+            },
+            stopFakeLoop : function(){
+                clearInterval(fakeLoopId);
+            },
+
+            toggleFakeLoop(){
+                if(!fakeLoop){
+                    fakeLoopId = window.setInterval(function(){
+                        console.log("Writing: " + writeData.length);
+                        for(var i = 0; i < writeData.length; i++){
+                            console.log(variables[writeData[i][0]].name + ": " + writeData[i][1]);
+                        }
+                        writeData = [];
+                    }, 1000);
+                    fakeLoop = true;
+                }else{
+                    clearInterval(fakeLoopId);
+                    fakeLoop = false;
+                }
+            }
         }
 
     })();

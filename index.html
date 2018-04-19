@@ -4,11 +4,10 @@
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<script type="text/javascript" src="js/TcAdsWebService.js"></script>
 	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
-	<!-- <script type="text/javascript" src="js/propeller.js"></script> -->
+	<script type="text/javascript" src="js/propeller.js"></script>
 	<script type="text/javascript" src="js/TwinCatConnector.js"></script>
 	<script type="text/javascript" src="js/RecordsModule.js"></script>
-	<!--<script type="text/javascript" src="js/RecordPlayer.js"></script>-->
-	<!--<script type="text/javascript" src="js/Notifier.js"></script>-->
+    <script type="text/javascript" src="js/Notifier.js"></script>
 	<script type="text/javascript" src="js/initialize.js"></script>
 
 	<meta charset="utf-8">
@@ -17,142 +16,6 @@
 <body>
 	<div class="body-overlay init-element"></div>
 	<div class="init-message init-element"><p>Init...</p></div>
-	<div id="machine-view" class="body-wrapper">
-		<header class="machine-view-header">
-		<div class="version-container header-content">V0.0.0.00001A</div>
-		<div class="playing-container header-content">aktueller Song: Shake it off - Taylor Swift</div>
-		<div class="status-container running header-content">Status: spielend</div>
-		</header>
-		<main>
-		<div id="main-left">
-			<div class="outer-tab-content active" id="production">
-				<div class="tab">
-					<button class="tab-links active" onclick="openInnerTab(event, 'overview', [1,2,5])">&Uumlbersicht</button>
-					<button class="tab-links" onclick="openInnerTab(event, 'axis-X-and-Y', [1,5])">Achsen X und Y</button>
-					<button class="tab-links" onclick="openInnerTab(event, 'measuring-station', [2,4])">Messstation</button>
-					<button class="tab-links" onclick="openInnerTab(event, 'variables', [2,5])">Variablen</button>
-				</div>
-				<div id="overview" class="tabcontent active">
-					<p>&Uumlbersicht</p>
-					<button id="readOverviewVariables">YEAH</button>
-					<button id="startReadingVariables">Start Reading</button>
-					<button id="stopReadingVariables">Stop Reading</button>
-					<div id="firstVar"></div>
-					<div id="secondVar"></div>
-				</div>
-				<div id="axis-X-and-Y" class="tabcontent">
-					<p>Achsen X und Y</p>
-				</div>
-				<div id="measuring-station" class="tabcontent">
-					<p>Messstation</p>
-				</div>
-				<div id="variables" class="tabcontent production">
-					<p>Variablen</p>
-					<button  onclick="fetchVariables()">Variablen laden</button>
-					<button  onclick="resetVariables()">Zurücksetzen</button>
-					<div id="variableContainer">
-						<div id="boolContainer">
-						</div>
-						<div id="intContainer">
-						</div>
-					</div>
-					<div id="div_log">
-					</div>
-				</div>
-			</div>
-			<div class="outer-tab-content" id="recipe">
-				<div class="tab">
-					<button class="tab-links" onclick="openInnerTab(event, 'recpie-1', [2,3,4])">Rezept-1</button>
-					<button class="tab-links" onclick="openInnerTab(event, 'recpie-2', [4,5])">Rezept-2</button>
-				</div>
-				<div id="recpie-1" class="tabcontent">
-					<p>Rezept-1</p>
-				</div>
-				<div id="recpie-2" class="tabcontent">
-					<p>Rezept-2</p>
-				</div>
-			</div>
-			<div class="outer-tab-content" id="hand">
-				<div class="tab">
-					<button class="tab-links" onclick="openInnerTab(event, 'hand-1', [1,5])">Hand-1</button>
-					<button class="tab-links" onclick="openInnerTab(event, 'hand-2', [2,4])">Hand-2</button>
-				</div>
-				<div id="hand-1" class="tabcontent">
-					<p>Hand-1</p>
-				</div>
-				<div id="hand-2" class="tabcontent">
-					<p>Hand-2</p>
-				</div>
-			</div>
-		</div>
-		<div id="main-sidebar">
-			<div class="sidebar-container-machine-view">
-				<ul class="value-list">
-					<li><h5>Achsen</h5></li>
-					<li><label for="record-number">Schallplatte</label><input name="record-number" disabled="disabled" value="10"></li>
-					<li><label for="song-number">Song</label><input name="song-number"disabled="disabled" value="2"></li>
-					<li><label for="volume">Lautst&aumlrke</label><input name="volume" disabled="disabled" value="10/11"></li>
-					<li><label for="revolution-speed">Drehzahl [r/m]</label><input name="revolution-speed"disabled="disabled" value="120"></li>
-				</ul>
-				<ul class="value-list">
-					<li><h5>Werte</h5></li>
-					<li><label for="record-number">Kolbendruck [N/m&sup2;]</label><input name="record-number" disabled="disabled" value="10"></li>
-					<li><label for="song-number">Armposition</label><input name="song-number"disabled="disabled" value="6"></li>
-					<li><label for="volume">Vorschub [m/s]</label><input name="volume" disabled="disabled" value="0"></li>
-				</ul>
-			</div>
-		</div>
-		</main>
-		<footer>
-		<div class="footer-container">
-			<div class="top-row">
-				<div class="control-button start">
-					<a href="#"><img src="images/play-button.svg"><p>Start</p></a>
-				</div>
-				<div class="control-button stop">
-					<a href="#"><img src="images/stop.svg"><p>Stop</p></a>
-				</div>
-				<div class="control-button auto">
-					<a href="#"><img src="images/auto.svg"><p>Auto</p></a>
-				</div>
-				<div class="control-button right-side">
-					<a href="#"><img src="images/init.svg"><p>Init</p></a>
-				</div>
-			</div>
-			<div class="middle-row">
-				<div class="control-button without-icon tab-links active">
-					<a href="#" onclick="openOuterTab(event, 'production')">
-						<p>Produktion</p>
-					</a>
-				</div>
-				<div class="control-button without-icon tab-links">
-					<a href="#" onclick="openOuterTab(event, 'recipe')">
-						<p>Rezepte</p>
-					</a>
-				</div>
-				<div class="control-button tab-links">
-					<a href="#" onclick="openOuterTab(event, 'hand')">
-						<img src="images/pocket-knife.svg"><p>Hand</p>
-					</a>
-				</div>
-				<div class="control-button right-side">
-					<a href="#">
-						<img src="images/logout.svg"><p>Exit</p>
-					</a>
-				</div>
-				<div class="control-button right-side">
-					<a href="#" class="fullscreen-button">
-						<img src="images/move.svg"><p>Vollbild</p>
-					</a>
-				</div>
-			</div>
-			<div class="bottom-row">
-				<label for="alarms-notifications">Alarme/Meldungen</label>
-				<input type="text" name="alamrs-notifications">
-			</div>
-		</div>
-		</footer>
-	</div>
 	<div id="player-view" class="body-wrapper active">
 		<div class="notification-header"></div>
 		<header class="player-view-header">
@@ -171,9 +34,7 @@
 				</div>
 				<div class="preview-album-cover"></div>
 				<div class="preview-side-B list-with-title">
-					<ul>
-
-					</ul>
+					<ul></ul>
 				</div>
 			</div>
 		</div>
@@ -223,9 +84,15 @@
                 <div class="song-selection">
 					<div class="song-selection-header">
 						<div class="centered-container unselectable">
-							<div class="repeat-button playmode-button unselectable"></div>
-							<div class="reload-button playmode-button unselectable"></div>
-							<div class="auto-button playmode-button unselectable"></div>
+							<div class="repeat-all-button playmode-button unselectable">
+                                
+                            </div>
+							<div class="repeat-one-button playmode-button unselectable">
+                                
+                            </div>
+							<div class="shuffle-button playmode-button unselectable">
+                                
+                            </div>
 						</div>
 					</div>
 					<div class="song-selection-container record-preview">
@@ -246,28 +113,18 @@
                 </div>
             </div>
 			<section class="misc-control">
-                <div class="top-row">
-                    <div class="button-container prevent-contextmenu">
-                        <a id="increase-volume-button" href="#"> <img src="images/plus.svg"></a>
-                    </div>
-                    <div class="button-container prevent-contextmenu">
-                        <a id="decrease-volume-button" href="#"> <img src="images/minus.svg"></a>
-                    </div>
-                    <div class="button-container">
-                        <a id="mute-button" href="#"> <img src="images/cancel.svg"></a>
-                    </div>
-                </div>
-                <div class="bottom-row">
                     <div class="button-container toggle-controls-albums">
                         <a href="#"> <img src="images/more.svg"></a>
                     </div>
-                    <div class="button-container">
-                        <a href="#"> <img src="images/levels.svg"></a>
+                    <div class="button-container prevent-contextmenu">
+                        <a id="increase-volume-button" href="#"> <img src="images/increase-volume.svg"></a>
+                    </div>
+                    <div class="button-container prevent-contextmenu">
+                        <a id="decrease-volume-button" href="#"> <img src="images/decrease-volume.svg"></a>
                     </div>
                     <div class="button-container">
-                        <a href="#"> <img src="images/power-button.svg"></a>
+                        <a id="mute-button" href="#"> <img src="images/mute.svg"></a>
                     </div>
-                </div>
             </section>
 		</div>
 	</div>	
