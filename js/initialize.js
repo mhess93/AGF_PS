@@ -121,8 +121,10 @@ $(document).ready(function(){
         }
         else if(initCount === 1){
             initMessage.text("Initializing Twincatmodule");
-            TwincatConnectionModule.init()
-                .then(initializeSubscribers);
+            initCount++;
+            initialize();
+            //TwincatConnectionModule.init()
+            //    .then(initializeSubscribers);
             return;
         }
         else if(initCount === 2){
@@ -206,11 +208,13 @@ $(document).ready(function(){
 
     window.forceInit = function (){
         initCount = 4;
+        $(".init-element").remove();
     };
     
     window.continueInit = function(){
         initCount++;
     }
+    
 
 
 /*
