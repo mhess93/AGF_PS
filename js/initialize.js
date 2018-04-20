@@ -12,9 +12,9 @@ $(document).ready(function(){
     var loopDelay = 1000;
 
     function initializeSubscribers(asd){
-        TwincatConnectionModule.subscribeTo('ActRack', displayRecordInPlayingContainer);
-        TwincatConnectionModule.subscribeTo('ActSide', updateActiveInPlayingContainer);
-        TwincatConnectionModule.subscribeTo('ActSong', updateActiveInPlayingContainer);
+        TwincatConnectionModule.subscribeTo('ActRack', RecordModule.displayRecordInPlayingContainer);
+        TwincatConnectionModule.subscribeTo('ActSide', RecordModule.updateActiveInPlayingContainer);
+        TwincatConnectionModule.subscribeTo('ActSong', RecordModule.updateActiveInPlayingContainer);
         TwincatConnectionModule.subscribeTo('StatusWord', function(statusWord){
             console.log(statusWord);
         });
@@ -51,7 +51,7 @@ $(document).ready(function(){
         });
         */
     }
-
+/* Moved to RecordModule
     function displayRecordInPlayingContainer(recordNr){
         var record = RecordsModule.getIndex(recordNr);
         var songSelectionContainer =  $('.song-selection-container'),
@@ -105,35 +105,7 @@ $(document).ready(function(){
     }
 
     window.displayRecord = displayRecordInPlayingContainer;
-
-    function updateActiveInPlayingContainer(){
-        var song, side, tempString, listContainer;
-
-        song = TwincatConnectionModule.getActSong();
-        side = TwincatConnectionModule.getActSide();
-
-        if(side !== 0 && side !== 1){
-            side = 0;
-        }
-        if(song === undefined){
-            song = 0;
-        }
-
-        tempString = (side === 0) ? '.side-A' : '.side-B';
-        console.log(song);
-        console.log(side);
-
-        listContainer = $('.song-selection-container');
-
-        listContainer.find("li").removeClass('active')
-
-
-        var sideList =  listContainer
-            .children(tempString)
-            .find('li');
-
-        sideList[song].className += 'active';
-    }
+*/
 
     window.moduleInitSuccess = function(name){
         console.log(name + " init success")
@@ -260,7 +232,9 @@ $(document).ready(function(){
           TwincatConnectionModule.togglePlaymodeShuffleAll();
         });
 
-        $('.possible-play-selection').click(handlePossiblePlaySelection);
+        $('.preview-side-A, .preview-side-B').click(handlePossiblePlaySelection);
+
+        $('.play-selected-button').click(RecordsModule.playSelected);
 
         $('.vinyl-container').propeller({});
 
@@ -268,7 +242,8 @@ $(document).ready(function(){
     }
 
     function handlePossiblePlaySelection(evt){
-      var target = $(this);
+      var target = $(evt.target);
+      console.log(target);
 
       if(!target.hasClass('possible-side-selection')){
         var wasActive = target.hasClass('active');

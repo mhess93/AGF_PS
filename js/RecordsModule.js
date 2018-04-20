@@ -91,15 +91,13 @@ $(document).ready(function(){
             var previewContainer, side, sidePreview;
             var record = records[index];
 
+            $('.possible-play-selection, .possible-side-selection').removeClass('active');
             previewContainer = $('.preview-wrapper');
 
             var url = 'url(\" images/'+ record['record_cover']+'")' + ", " + backupCover;
 
             previewContainer.children('.preview-album-cover')
                 .css('background-image', url);
-
-            previewContainer.children('.preview-album-cover').click(playFromAlbum);
-
 
             previewContainer.children('.preview-album-information')
                 .html('<b>' + record['record_name'] + ', ' + record['artist'] + '</b>');
@@ -109,8 +107,7 @@ $(document).ready(function(){
             sidePreview = $('.preview-side-A ul');
             sidePreview.children().remove();
 
-            sidePreview.append('<h4 class="possible-play-selection possible-side-selection">Side A</h4><div class="side-A">\n' +
-                '                    </div>');
+            sidePreview.append('<h4 class="possible-side-selection">Side A</h4>');
             for(var i = 0; i < side.length; i++){
                 sidePreview.append('<li class="possible-play-selection">'+ (i + 1)+ ". " + side[i] +'</li>')
             }
@@ -120,26 +117,95 @@ $(document).ready(function(){
             sidePreview = $('.preview-side-B ul');
             sidePreview.children().remove();
 
-            sidePreview.append('<h4 class="possible-play-selection possible-side-selection">Side B</h4> <div class="side-B">\n' +
-                '                    </div>');
+            sidePreview.append('<h4 class="possible-side-selection">Side B</h4>');
             for(i = 0; i < side.length; i++){
                 sidePreview.append('<li class="possible-play-selection">'+ (i + 1)+ ". " + side[i] +'</li>')
             }
-
-
-            $('.play-button.side-A').click(function(){
-                TwincatConnectionModule.fetchRecord(index, 0, 0);
-                $('.controls.left-side').toggleClass('active');
-            });
-
-            $('.play-button.side-B').click(function(){
-                TwincatConnectionModule.fetchRecord(index, 1, 0);
-                $('.controls.left-side').toggleClass('active');
-            });
         }
 
-        function playFromAlbum(event){
-          console.log($('.possible-play-selection.active, .possible-side-selection.active'))
+        function playSelected(evt){
+          console.log($('.possible-play-selection.active, .possible-side-selection.active'));
+        }
+
+        function displayRecordInPlayingContainer(recordNr){
+            var record = RecordsModule.getIndex(recordNr);
+            var songSelectionContainer =  $('.song-selection-container'),
+                sideList,
+                recordSideList,
+                displayedIndex,
+                elementToAppend;
+
+            songSelectionContainer
+                .children('h3')
+                .html(record['record_name']);
+
+            sideList = songSelectionContainer
+                .children('.side-A')
+                .children('ul');
+
+            recordSideList= record['side_a'];
+            sideList
+                .children()
+                .remove();
+
+            for(var i = 0; i < recordSideList.length; i++){
+                displayedIndex = i + 1;
+                elementToAppend = $('<li>' + displayedIndex + '. ' + recordSideList[i] + '</li>');
+                sideList.append(elementToAppend);
+                elementToAppend.click({index: displayedIndex}, function(event){
+                    TwincatConnectionModule.fetchRecord(recordNr, 0, event.data.index - 1);
+                });
+            }
+
+            sideList = songSelectionContainer
+                .children('.side-B')
+                .children('ul');
+
+            recordSideList= record['side_b'];
+
+            sideList
+                .children()
+                .remove();
+
+            for(var i = 0; i < recordSideList.length; i++){
+                displayedIndex = i + 1;
+                elementToAppend = $('<li>' + displayedIndex + '. ' + recordSideList[i] + '</li>');
+                sideList.append(elementToAppend);
+                elementToAppend.click({index: displayedIndex}, function(event){
+                    TwincatConnectionModule.fetchRecord(recordNr, 1, event.data.index);
+                });
+            }
+
+            updateActiveInPlayingContainer();
+        }
+
+        function updateActiveInPlayingContainer(){
+            var song, side, tempString, listContainer;
+
+            song = TwincatConnectionModule.getActSong();
+            side = TwincatConnectionModule.getActSide();
+
+            if(side !== 0 && side !== 1){
+                side = 0;
+            }
+            if(song === undefined){
+                song = 0;
+            }
+
+            tempString = (side === 0) ? '.side-A' : '.side-B';
+            console.log(song);
+            console.log(side);
+
+            listContainer = $('.song-selection-container');
+
+            listContainer.find("li").removeClass('active')
+
+
+            var sideList =  listContainer
+                .children(tempString)
+                .find('li');
+
+            sideList[song].className += 'active';
         }
 
         return{
@@ -155,7 +221,11 @@ $(document).ready(function(){
 
             length: function () {
                 return records.length;
-            }
+            },
+
+            playSelected: playSelected,
+
+            displayRecordInPlayingContainer : displayRecordInPlayingContainer
         }
     })();
 

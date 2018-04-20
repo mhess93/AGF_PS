@@ -561,6 +561,7 @@ div.centered-container{
 .playmode-button{
 	background-position: center;
 	background-size: 46px;
+	background-repeat:no-repeat;
 }
 
 .playmode-button.active{
@@ -649,6 +650,8 @@ div.centered-container{
     text-align: right;
 }
 
+
+
 div.preview-album-information{
     width: 100%;
     height: 15%;
@@ -667,12 +670,17 @@ div.preview-album-cover{
 		text-align: center;
 }
 
-div.preview-album-cover div{
+.play-selected-button{
 	width: 100px;
 	height: 100px;
 	display: inline-block;
-	background-image: url("images/play-button.svg");
+	background-image: url("../images/play-button.svg");
 	margin: 75px;
+}
+
+.play-selected-button:active{
+	-webkit-filter: invert(40%);
+	filter: invert(40%);
 }
 
 .preview-wrapper .play-button {
@@ -686,10 +694,32 @@ div.preview-album-cover div{
 
 .possible-play-selection.active,
 .possible-side-selection.active{
-		background-color: #1A7FEF;
+		background-color: #4295f4;
 }
 
+li.possible-play-selection{
+	padding: 5px;
+	padding-right: 20px;
+	border-radius: 3px;
+	font-size: 18px;
+	line-height: 20px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
 
+.preview-side-A ul{
+	padding-right: 20px;
+}
+
+.preview-side-B ul{
+	padding-left: 20px;
+}
+
+ul.possible-side-selection{
+	height: 100%;
+	border-radius: 5px;
+}
 
 *.unselectable {
     -moz-user-select: -moz-none;
