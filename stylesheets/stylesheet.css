@@ -160,11 +160,11 @@ main div#main-left {
 }
 
 #overview  {
-    background: url("images/turntables.svg") no-repeat center;
+    background: url("../images/turntables.svg") no-repeat center;
 }
 
 #axis-X-and-Y  {
-    background: url("images/axis.svg") no-repeat center;
+    background: url("../images/axis.svg") no-repeat center;
 }
 
 #main-sidebar {
@@ -359,7 +359,7 @@ header.player-view-header{
 
 .logo{
 	margin-left: 70%;
-	background: url('images/logo.png') no-repeat right;
+	background: url('../images/logo.png') no-repeat right;
   margin-right: 77px;
 }
 
@@ -395,7 +395,7 @@ header.player-view-header{
 .vinyl-container{
     width:80%;
     display:inline-block;
-	background-image: url("images/record-plate.PNG");
+	background-image: url("../images/record-plate.PNG");
 	background-position: center;
 	background-size: 90%;
 	background-repeat: no-repeat;
@@ -433,7 +433,7 @@ div.centered-container{
 .arm-container{
     display: inline-block;
     width: 20%;
-    background: url('images/sound-arm.jpg') center no-repeat;
+    background: url('../images/sound-arm.jpg') center no-repeat;
     background-size: 250px;
 }
 
@@ -570,15 +570,15 @@ div.centered-container{
 }
 
 .repeat-all-button{
-    background-image: url("images/repeat-all.svg");
+    background-image: url("../images/repeat-all.svg");
 }
 
 .repeat-one-button{
-    background-image: url("images/repeat-one.svg");
+    background-image: url("../images/repeat-one.svg");
 }
 
 .shuffle-all-button{
-    background-image: url("images/shuffle-all.svg");
+    background-image: url("../images/shuffle-all.svg");
 }
 
 .list-with-title ul{
@@ -686,7 +686,7 @@ div.preview-album-cover{
 .preview-wrapper .play-button {
     height: 40px;
     width: 40px;
-    background-image: url('images/play-button.svg');
+    background-image: url('../images/play-button.svg');
     display: inline-block;
     margin-left: 10px;
     vertical-align: top;
