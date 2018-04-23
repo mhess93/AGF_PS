@@ -4,6 +4,9 @@ $(document).ready(function(){
         var records = [];
 
         var resolve;
+        var previewedRecord = -1;
+        var selectedSide = undefined;
+        var selectedSong = -1;
 
         var moduleName = 'Recordmodule';
         var backupCover = "url(\" images/logo.png \")";
@@ -90,6 +93,10 @@ $(document).ready(function(){
         function displayInPreview(index){
             var previewContainer, side, sidePreview;
             var record = records[index];
+            previewedRecord = index;
+            selectedSide = undefined;
+            selectedSong = -1;
+            //console.log("Record: " + previewedRecord + " ,Side: " + selectedSide + ", Song: " + selectedSong);
 
             $('.possible-play-selection, .possible-side-selection').removeClass('active');
             previewContainer = $('.preview-wrapper');
@@ -109,7 +116,7 @@ $(document).ready(function(){
 
             sidePreview.append('<h4 class="possible-side-selection">Side A</h4>');
             for(var i = 0; i < side.length; i++){
-                sidePreview.append('<li class="possible-play-selection">'+ (i + 1)+ ". " + side[i] +'</li>')
+                sidePreview.append('<li class="possible-play-selection" data-index="' + i + '">'+ (i + 1)+ ". " + side[i] +'</li>')
             }
 
             side = record['side_b'];
@@ -119,16 +126,32 @@ $(document).ready(function(){
 
             sidePreview.append('<h4 class="possible-side-selection">Side B</h4>');
             for(i = 0; i < side.length; i++){
-                sidePreview.append('<li class="possible-play-selection">'+ (i + 1)+ ". " + side[i] +'</li>')
+                sidePreview.append('<li class="possible-play-selection" data-index="' + i + '">'+ (i + 1)+ ". " + side[i] +'</li>')
             }
         }
 
         function playSelected(evt){
-          console.log($('.possible-play-selection.active, .possible-side-selection.active'));
+          var selection = $('.possible-play-selection.active, .possible-side-selection.active');
+          if(selectedSide === undefined){
+            TwincatConnectionModule.fetchRecord(previewedRecord, false, 0);
+          }
+          else{
+            if(selectedSong === -1){
+              TwincatConnectionModule.fetchRecord(previewedRecord, selectedSide, 0);
+
+            }else{
+              TwincatConnectionModule.fetchRecord(previewedRecord, selectedSide, selectedSong);
+
+            }
+          }
+          //console.log("Record: " + previewedRecord + " ,Side: " + selectedSide + ", Song: " + selectedSong);
+          selection.removeClass('active');
+          selectedSide = undefined;
+          selectedSong = -1;
         }
 
         function displayRecordInPlayingContainer(recordNr){
-            var record = RecordsModule.getIndex(recordNr);
+            var record = RecordsModule.getIndex(recordNr - 1); //In Twincat Arrays start at 1
             var songSelectionContainer =  $('.song-selection-container'),
                 sideList,
                 recordSideList,
@@ -153,7 +176,7 @@ $(document).ready(function(){
                 elementToAppend = $('<li>' + displayedIndex + '. ' + recordSideList[i] + '</li>');
                 sideList.append(elementToAppend);
                 elementToAppend.click({index: displayedIndex}, function(event){
-                    TwincatConnectionModule.fetchRecord(recordNr, 0, event.data.index - 1);
+                    TwincatConnectionModule.fetchRecord(recordNr, 0, event.data.index);
                 });
             }
 
@@ -182,7 +205,7 @@ $(document).ready(function(){
         function updateActiveInPlayingContainer(){
             var song, side, tempString, listContainer;
 
-            song = TwincatConnectionModule.getActSong();
+            song = TwincatConnectionModule.getActSong() - 1;
             side = TwincatConnectionModule.getActSide();
 
             if(side !== 0 && side !== 1){
@@ -208,6 +231,34 @@ $(document).ready(function(){
             sideList[song].className += 'active';
         }
 
+        function handlePossiblePlaySelection(evt){
+          var target = $(evt.target);
+          var isSideB = target.closest('.preview-side-A, .preview-side-B').hasClass('preview-side-B');
+          //console.log("Is Side B: " + isSideB);
+
+          selectedSong = -1;
+          selectedSide = undefined;
+
+          if(!target.hasClass('possible-side-selection')){
+            var wasActive = target.hasClass('active');
+            $('.possible-play-selection, .possible-side-selection').removeClass('active');
+            if(!wasActive){
+              target.addClass('active');
+              selectedSong = target.attr('data-index');
+              selectedSide = isSideB;
+            }
+          }
+          else{
+            var wasActive = target.parent().hasClass('active');
+            $('.possible-play-selection, .possible-side-selection').removeClass('active');
+            if(!wasActive){
+              target.parent().addClass('active');
+              selectedSide = isSideB;
+            }
+          }
+          //console.log("Record: " + previewedRecord + " ,Side: " + selectedSide + ", Song: " + selectedSong);
+        }
+
         return{
             init: init,
 
@@ -223,9 +274,17 @@ $(document).ready(function(){
                 return records.length;
             },
 
+            toString: function(){
+              return "Record: " + previewedRecord + " ,Side: " + selectedSide + ", Song: " + selectedSong;
+            },
+
+            updateActiveInPlayingContainer: updateActiveInPlayingContainer,
+
             playSelected: playSelected,
 
-            displayRecordInPlayingContainer : displayRecordInPlayingContainer
+            displayRecordInPlayingContainer: displayRecordInPlayingContainer,
+
+            handlePossiblePlaySelection: handlePossiblePlaySelection
         }
     })();
 

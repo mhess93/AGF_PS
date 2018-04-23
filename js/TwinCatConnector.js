@@ -43,6 +43,7 @@ $(document).ready(function(){
             this.update = function(newValue){
                 if (arguments.length && this.value !== newValue) {
                     this.value = newValue;
+                    console.log(this.subscribers.length);
                     for (var i = 0; i < this.subscribers.length; i++) {
                         this.subscribers[i](this.value);
                     }
@@ -380,7 +381,7 @@ $(document).ready(function(){
             funcName = funcName.substr('function '.length);
             funcName = funcName.substr(0, funcName.indexOf('('));
             console.error(e.error);
-            moduleInitializationFailed('Twincatmodule');
+
         }
 
         function getSizeFromDataType(dataType){
@@ -445,7 +446,8 @@ $(document).ready(function(){
                     sideIndex = nameToIndexTranslation['ReqSide'],
                     songIndex = nameToIndexTranslation['ReqSong'],
                     newSongIndex = nameToIndexTranslation['ReqNewValuesSong'];
-                writeData.push([newSongIndex, true],[recordIndex,parseInt(record)], [sideIndex, Boolean(side)],[songIndex, parseInt(song)]);
+                console.log("Playing Record: " + record + ", Side: " + side + ", Song: " + song);
+                writeData.push([newSongIndex, true],[recordIndex, parseInt(record) + 1], [sideIndex, Boolean(side)],[songIndex, parseInt(song) + 1]);// In Twincat Arrays start at 1
             },
 
             skipForward: function(){
@@ -509,15 +511,6 @@ $(document).ready(function(){
                 writeData.push([index, true]);
             },
 
-            /* DELETE  ALL BELLOW */
-            addToWrite: function(i,j){
-                writeData.push([i,j]);
-            },
-
-            nameToIndex: nameToIndexTranslation,
-
-            variables: variables,
-
             subscribe: function(name, updateFunction){
                 var index = nameToIndexTranslation[name];
                 if(!index){
@@ -527,6 +520,15 @@ $(document).ready(function(){
                 var variable = variables[index];
                 variable.subscribe(updateFunction);
             },
+
+            /* DELETE  ALL BELLOW */
+            addToWrite: function(i,j){
+                writeData.push([i,j]);
+            },
+
+            nameToIndex: nameToIndexTranslation,
+
+            variables: variables,
 
             startFakeLoop: function(){
                 fakeLoopId = window.setInterval(function(){
@@ -552,6 +554,28 @@ $(document).ready(function(){
                     clearInterval(fakeLoopId);
                     fakeLoop = false;
                 }
+            },
+
+            devInit: function(){
+              return new Promise(function(resolveFunc, rejectFunc){
+                  resolve = resolveFunc;
+                  reject = rejectFunc;
+                  $.ajax({
+                      type: "GET",
+                      url: "xmlfiles/Frontend.xml",
+                      dataType: "xml"
+                  }).done(
+                      function(data){
+                          parseLabview(data);
+                          moduleInitSuccess(moduleName);
+                      }
+                  ).fail(
+                      function(jqXHR, textStatus, errorThrown){
+                          moduleInitFail(moduleName);
+                          reject();
+                      }
+                  );
+              });
             }
         }
 

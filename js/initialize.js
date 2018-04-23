@@ -12,12 +12,13 @@ $(document).ready(function(){
     var loopDelay = 1000;
 
     function initializeSubscribers(asd){
-        TwincatConnectionModule.subscribeTo('ActRack', RecordModule.displayRecordInPlayingContainer);
-        TwincatConnectionModule.subscribeTo('ActSide', RecordModule.updateActiveInPlayingContainer);
-        TwincatConnectionModule.subscribeTo('ActSong', RecordModule.updateActiveInPlayingContainer);
+        TwincatConnectionModule.subscribeTo('ActRack', RecordsModule.displayRecordInPlayingContainer);
+        TwincatConnectionModule.subscribeTo('SideTwo', RecordsModule.updateActiveInPlayingContainer);
+        TwincatConnectionModule.subscribeTo('ActSong', RecordsModule.updateActiveInPlayingContainer);
         TwincatConnectionModule.subscribeTo('StatusWord', function(statusWord){
             console.log(statusWord);
         });
+        moduleInitSuccess('Subscribers');
         /*
         TwincatConnectionModule.subscribeTo('PlaymodeRepeatAll', function(isActive){
           var bool = new Boolean(isActive);
@@ -51,61 +52,6 @@ $(document).ready(function(){
         });
         */
     }
-/* Moved to RecordModule
-    function displayRecordInPlayingContainer(recordNr){
-        var record = RecordsModule.getIndex(recordNr);
-        var songSelectionContainer =  $('.song-selection-container'),
-            sideList,
-            recordSideList,
-            displayedIndex,
-            elementToAppend;
-
-        songSelectionContainer
-            .children('h3')
-            .html(record['record_name']);
-
-        sideList = songSelectionContainer
-            .children('.side-A')
-            .children('ul');
-
-        recordSideList= record['side_a'];
-        sideList
-            .children()
-            .remove();
-
-        for(var i = 0; i < recordSideList.length; i++){
-            displayedIndex = i + 1;
-            elementToAppend = $('<li>' + displayedIndex + '. ' + recordSideList[i] + '</li>');
-            sideList.append(elementToAppend);
-            elementToAppend.click({index: displayedIndex}, function(event){
-                TwincatConnectionModule.fetchRecord(recordNr, 0, event.data.index - 1);
-            });
-        }
-
-        sideList = songSelectionContainer
-            .children('.side-B')
-            .children('ul');
-
-        recordSideList= record['side_b'];
-
-        sideList
-            .children()
-            .remove();
-
-        for(var i = 0; i < recordSideList.length; i++){
-            displayedIndex = i + 1;
-            elementToAppend = $('<li>' + displayedIndex + '. ' + recordSideList[i] + '</li>');
-            sideList.append(elementToAppend);
-            elementToAppend.click({index: displayedIndex}, function(event){
-                TwincatConnectionModule.fetchRecord(recordNr, 1, event.data.index);
-            });
-        }
-
-        updateActiveInPlayingContainer();
-    }
-
-    window.displayRecord = displayRecordInPlayingContainer;
-*/
 
     window.moduleInitSuccess = function(name){
         console.log(name + " init success")
@@ -127,23 +73,24 @@ $(document).ready(function(){
         }
         else if(initCount === 1){
             initMessage.text("Initializing Twincatmodule");
-            initCount++;
-            initialize();
-            //TwincatConnectionModule.init()
-            //    .then(initializeSubscribers);
+            TwincatConnectionModule.devInit();
             return;
         }
         else if(initCount === 2){
+          initMessage.text("Initializing Subscribers");
+            initializeSubscribers();
+        }
+        else if(initCount === 3){
             initMessage.text("Setting up Handlers");
             initHandlers();
             return;
         }
-        else if(initCount === 3){
+        else if(initCount === 4){
             initMessage.text("Setting Up NotificationModule");
             NotificationModule.init();
             return;
         }
-        else if(initCount === 4){
+        else if(initCount === 5){
             $(".init-element").remove();
             //TwincatConnectionModule.toggleFakeLoop();
             console.log("Init Successfull");
@@ -232,7 +179,7 @@ $(document).ready(function(){
           TwincatConnectionModule.togglePlaymodeShuffleAll();
         });
 
-        $('.preview-side-A, .preview-side-B').click(handlePossiblePlaySelection);
+        $('.preview-side-A, .preview-side-B').click(RecordsModule.handlePossiblePlaySelection);
 
         $('.play-selected-button').click(RecordsModule.playSelected);
 
@@ -241,34 +188,13 @@ $(document).ready(function(){
         moduleInitSuccess("Handlers");
     }
 
-    function handlePossiblePlaySelection(evt){
-      var target = $(evt.target);
-      console.log(target);
-
-      if(!target.hasClass('possible-side-selection')){
-        var wasActive = target.hasClass('active');
-        $('.possible-play-selection, .possible-side-selection').removeClass('active');
-        if(!wasActive){
-          target.addClass('active');
-        }
-      }
-      else{
-        var wasActive = target.parent().hasClass('active');
-        $('.possible-play-selection, .possible-side-selection').removeClass('active');
-        if(!wasActive){
-          target.parent().addClass('active');
-        }
-
-      }
-    }
-
     function moduleInitializationFailed(name){
         console.error(name + ' initialization failed');
         setTimeout(initialize,100000);
     }
 
     window.forceInit = function (){
-        initCount = 4;
+        initCount = 5;
         $(".init-element").remove();
     };
 
