@@ -10,6 +10,9 @@ $(document).ready(function(){
 
         var moduleName = 'Recordmodule';
         var backupCover = "url(\" images/logo.png \")";
+        var svg;
+        var circleOptions = {fill: 'none', stroke: 'red', strokeWidth: 0.01};
+        var svgOptions = {viewBox: '-1 -1 2 2'}
 
         var init = function(){
             return new Promise(function(resolveFunc, rejectFunc){
@@ -37,6 +40,7 @@ $(document).ready(function(){
             recordListXML = xml.getElementsByTagName("record");
             for (var i = 0; i < recordListXML.length; i++) {
                 recordToBeParsed = recordListXML[i];
+                console.log(recordToBeParsed);
                 record = [];
                 record['record_name'] = recordToBeParsed.getElementsByTagName('record_name')[0].childNodes[0].nodeValue;
                 record['artist'] = recordToBeParsed.getElementsByTagName('artist')[0].childNodes[0].nodeValue;
@@ -87,7 +91,16 @@ $(document).ready(function(){
             resolve(recordList);
             displayInPreview(0);
 
-            moduleInitSuccess(moduleName);
+            setupSVG();
+        }
+
+        function setupSVG(){
+          var vinylContainer = $('.vinyl-container');
+          vinylContainer.svg();
+          svg = $('.vinyl-container').svg('get');
+          svg.configure(svgOptions);
+
+          moduleInitSuccess(moduleName);
         }
 
         function displayInPreview(index){
@@ -200,12 +213,13 @@ $(document).ready(function(){
             }
 
             updateActiveInPlayingContainer();
+            drawCircles(recordNr);
         }
 
         function updateActiveInPlayingContainer(){
             var song, side, tempString, listContainer;
 
-            song = TwincatConnectionModule.getActSong() - 1;
+            song = TwincatConnectionModule.getActSong();
             side = TwincatConnectionModule.getActSide();
 
             if(side !== 0 && side !== 1){
@@ -216,20 +230,47 @@ $(document).ready(function(){
             }
 
             tempString = (side === 0) ? '.side-A' : '.side-B';
-            console.log(song);
-            console.log(side);
 
             listContainer = $('.song-selection-container');
 
             listContainer.find("li").removeClass('active')
 
-
             var sideList =  listContainer
                 .children(tempString)
                 .find('li');
-
             sideList[song].className += 'active';
         }
+
+        function drawCircles(recordNr){
+          var side = TwincatConnectionModule.getActSide();
+          var record = records[recordNr  - 1]; // In Twincat Arrays start at 1
+
+          if(side !== 0 && side !== 1){
+              side = 0;
+          }
+
+          var sideList = (side === 0) ? record['side_a'] : record['side_b'];
+
+          svg.clear();
+
+          var base = 0.9
+          var diff = base - 0.4;
+          var steps = diff / sideList.length;
+
+          for(var i = 0; i < sideList.length; i++){
+            drawCircle(base - (steps * i));
+          }
+
+        }
+
+        function drawCircle(radius){
+          if(!radius)
+            return;
+
+          svg.circle(0, 0, radius, circleOptions);
+        }
+
+        window.drawRdaii = drawCircle;
 
         function handlePossiblePlaySelection(evt){
           var target = $(evt.target);

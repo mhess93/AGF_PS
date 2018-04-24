@@ -36,6 +36,7 @@ $(document).ready(function(){
             this.type = type;
             this.length = name.length;
             this.typeSize = getSizeFromDataType(type);
+            this.value = undefined;
             this.subscribers = [];
             this.subscribe = function(subscriber){
                 this.subscribers.push(subscriber);
@@ -43,7 +44,6 @@ $(document).ready(function(){
             this.update = function(newValue){
                 if (arguments.length && this.value !== newValue) {
                     this.value = newValue;
-                    console.log(this.subscribers.length);
                     for (var i = 0; i < this.subscribers.length; i++) {
                         this.subscribers[i](this.value);
                     }
@@ -447,6 +447,15 @@ $(document).ready(function(){
                     songIndex = nameToIndexTranslation['ReqSong'],
                     newSongIndex = nameToIndexTranslation['ReqNewValuesSong'];
                 console.log("Playing Record: " + record + ", Side: " + side + ", Song: " + song);
+                console.log(RecordsModule.getIndex(recordIndex));
+                var record = RecordsModule.getIndex(record);
+                var songName;
+                if(!side){
+                  songName = record.side_a[song];
+                }else{
+                  songName = record.side_b[song];
+                }
+                NotificationModule.displayNotification("Playing " + record.record_name + ", " + songName);
                 writeData.push([newSongIndex, true],[recordIndex, parseInt(record) + 1], [sideIndex, Boolean(side)],[songIndex, parseInt(song) + 1]);// In Twincat Arrays start at 1
             },
 
@@ -480,13 +489,15 @@ $(document).ready(function(){
                 writeData.push([index, !value]);
             },
 
-
             getActSide: function(){
-                return variables[nameToIndexTranslation['ActSide']].value;
+                return variables[nameToIndexTranslation['SideTwo']].value;
             },
 
             getActSong: function(){
-                return variables[nameToIndexTranslation['ActSong']].value;
+                var value = variables[nameToIndexTranslation['ActSong']].value - 1;
+                if(isNaN(value))
+                  value = 0;
+                return value;
             },
 
             getActRecord: function(){
