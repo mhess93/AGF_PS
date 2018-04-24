@@ -387,7 +387,7 @@ header.player-view-header{
 }
 
 .vinyl-arm-section{
-	height: 75%;
+		height: calc(100% - 200px);
     width: 80%;
     padding: 0 10%;
 }
@@ -403,26 +403,37 @@ header.player-view-header{
 }
 
 .song-controls{
-	height: 25%;
+	height: 200px;
+	padding-right: 16%;
 }
 
 .song-controls div.top-row,
 .song-controls div.bottom-row{
-    height: 50%;
+    height: 85px;
     text-align:center
 }
 
-div.centered-container{
+.song-controls .bottom-row{
+	padding-bottom: 10px;
+	padding-top: 5px;
+}
+
+.song-controls .top-row{
+	padding-bottom: 5px;
+	padding-top: 10px;
+}
+
+
+.centered-container{
     display: inline-block;
-    margin: 5px 0;
     height: calc(100% - 10px);
 }
 
 /*.centered-container*/
 .button-container{
-    height: 72px;
+    height: 75px;
     display: inline-block;
-    width: 72px;
+    width: 75px;
     margin:5px;
 }
 
@@ -600,8 +611,8 @@ div.centered-container{
 }
 
 .misc-control{
-	height: 90px;
-	padding-left: 33px;
+	height: 85px;
+	padding-left: 27px;
 	padding-bottom: 10px;
 	padding-top: 5px;
 }
